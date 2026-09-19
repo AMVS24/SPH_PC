@@ -1,11 +1,4 @@
-#include <math.h>
-#include <backend/linalg.h>
-
-struct {
-    vec2 p;
-    vec2 v;
-    vec2 a;
-} Particle;
+#include <physics.h>
 
 
 double poly_6_kernel(double q){
@@ -25,15 +18,23 @@ double poly_6_kernel(double q){
 }
 
 double spiky_kernel(double q, vec2 dir){
-    static const double normalisation_const = 10/(7*MATH_PI*H*H*H);
+    static const double normalisation_const = 10/(7*pi*H*H*H);
 
     if(q<1){
         return -dir * normalisation_const * ();
     }
     else if(q<2){
-        return -dir * normalisation_const * ();
+        return -1*dir * normalisation_const * ();
     }
     else{
         return dir*
+    }
+}
+
+// threads
+void integrate(vec2* position_array, vec2* velocity_array, vec2* acceleration_array, int n, double dt){
+    for(int i=0; i<n; i++){
+        vec2 v_half_step = velocity_array[i] + acceleration_array[i]*0.5*dt;
+        position_array[i] += v_half_step
     }
 }
