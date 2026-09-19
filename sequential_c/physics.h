@@ -1,5 +1,4 @@
-#include <math.h>
-
+#include <constants.h>
 #include <backend/linalg.h>
 
 struct {
@@ -10,4 +9,4 @@ struct {
 
 double poly_6_kernel(double q);
 
-double spiky_kernel(double q, vec2 dir);
+vec2 spiky_kernel(double q, vec2 dir);

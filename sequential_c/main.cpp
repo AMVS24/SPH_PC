@@ -1,10 +1,11 @@
 #include <physics.h>
 #include <random>
 
-#define PRESSURE_MULTIPLIER 100
-#define TARGET_DENISTY 1
-#define PARTICLE_MASS 1
+#define PRESSURE_MULTIPLIER 100.0
+#define TARGET_DENISTY 1.0
+#define PARTICLE_MASS 1.0
 #define avg(a,b) (a+b)/2
+#define H 20.0
 
 #define GRAVITY 1
 
@@ -39,9 +40,9 @@ vec2*  spawn_particles(int n, int seed, vec2 bb_min, vec2 bb_max, vec2* position
     }
 }
 
-double density_at(vec2 pos_i, vec2* position_array, int n, int i){
+double density_at(vec2 pos_i, vec2* position_array, int n, int j){
     double result;
-    result = PARTICLE_MASS*poly_6_kernel(position_array[j] - pos_i);
+    result = PARTICLE_MASS*poly_6_kernel(vnorm(position_array[j] - pos_i)/H);
 
 }
 
@@ -63,7 +64,7 @@ int main(int* argc, char** argv){
     for(int i = 0; i<n; i++){
         for(int j = 0; j<n; j++){
             if(i != j){
-                density_array[i] += density_at(position_array[i], position_array, n, i);
+                density_array[i] += density_at(position_array[i], position_array, n, j);
             }
         }
 
@@ -71,18 +72,18 @@ int main(int* argc, char** argv){
 
     // This can also technically be done with multithreading and for loops but subtraction and multiplication for 
     // vecN is ready defined and will be done via multithreading
-    pressure_array = PRESSURE_MULTIPLIER*(density_array-TARGET_DENISTY);    
+    pressure_array = (density_array-TARGET_DENISTY)*PRESSURE_MULTIPLIER;    
 
 
     for(int i = 0; i<n; i++){
         for(int j = 0; j<n; j++){
             if(i != j && density_array[j] != 0){
-                double norm = vnorm(position_array[j]-position_array[]);
-                acceleration_array[i] += ((pressure_array[i]*pressure_array[j])/(2*density_array[j]))*spiky_kernel(); //m_j = m_i so they cancel out during a =F/m_i
+                double norm = vnorm(position_array[j]-position_array[i]);
+                acceleration_array[i] += ((pressure_array[i]*pressure_array[j])/(2*density_array[j]))*spiky_kernel(norm/H, (position_array[j]-position_array[i])/norm); //m_j = m_i so they cancel out during a =F/m_i
                 
             }
         }
-        acceleration_array[i][1] += GRAVITY;
+        acceleration_array[i].y += GRAVITY;
 
     }
 

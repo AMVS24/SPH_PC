@@ -2,7 +2,7 @@
 
 
 double poly_6_kernel(double q){
-    static const double normalisation_const = 10/(7*pi*H*H);
+    static const double normalisation_const = 10/(7*PI*H*H);
 
     if(q < 1){
         double q2 = q*q;
@@ -17,17 +17,17 @@ double poly_6_kernel(double q){
     }
 }
 
-double spiky_kernel(double q, vec2 dir){
-    static const double normalisation_const = 10/(7*pi*H*H*H);
+vec2 spiky_kernel(double q, vec2 dir){
+    static const double normalisation_const = 10/(7*PI*H*H*H);
 
     if(q<1){
-        return -dir * normalisation_const * ();
+        return -1*dir * normalisation_const * (-3 * q + 2.25 * q * q);
     }
     else if(q<2){
-        return -1*dir * normalisation_const * ();
+        return -1*dir * normalisation_const * (-3 * (2 - q) * (2-q) / 4);
     }
     else{
-        return dir*
+        return dir*0;
     }
 }
 
@@ -35,6 +35,6 @@ double spiky_kernel(double q, vec2 dir){
 void integrate(vec2* position_array, vec2* velocity_array, vec2* acceleration_array, int n, double dt){
     for(int i=0; i<n; i++){
         vec2 v_half_step = velocity_array[i] + acceleration_array[i]*0.5*dt;
-        position_array[i] += v_half_step
+        position_array[i] += v_half_step;
     }
 }
