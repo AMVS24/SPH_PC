@@ -1,3 +1,7 @@
 #define PI 3.14159265358979323846
 int DIM = 2;
 double H = 20;
+double PRESSURE_MULTIPLIER = 100.0;
+double TARGET_DENISTY = 1.0;
+double PARTICLE_MASS = 1.0;
+double GRAVITY = 1.0;

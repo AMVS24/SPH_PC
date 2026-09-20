@@ -32,20 +32,20 @@ vec2 vdiv(const vec2* a, const vec2* b, vec2* c){
     // for matrix add and mul this could use threads
 }
 vec2 vadd_constant(const vec2* a, double b, vec2* c){
-    c->x += b;
-    c->y += b;
+    c->x = a->x + b;
+    c->y = a->y + b;
 
     // for matrix add and mul this could use threads
 }
 vec2 vsub_constant(const vec2* a, double b, vec2* c){
-    c->x -= b;
-    c->y -= b;
+    c->x = a->x - b;
+    c->y = a->y - b;
 
     // for matrix add and mul this could use threads
 }
 vec2 vmul_constant(const vec2* a, double b, vec2* c){
-    c->x *= b;
-    c->y *= b;
+    c->x = a->x * b;
+    c->y = a->y * b;
 
     // for matrix add and mul this could use threads
 }
@@ -64,10 +64,12 @@ vec2 vdiv_constant(const vec2* a, double b, vec2* c){
 double vnorm(const vec2* a){
     double norm;
     norm = sqrt(a->x*a->x + a->y*a->y);
+    return norm;
 }
 double vnorm(const vec2 a){
     double norm;
     norm = sqrt(a.x*a.x + a.y*a.y);
+    return norm;
 }
 
 
@@ -131,24 +133,24 @@ vec3 vmul_constant(const vec3* a, double b, vec3* c){
 1)vecN (*matrix{pointer, n})[m] = malloc and just handle what happens when you do matrix1*matrix2 seperately
 2)smthing else???
 */
-vecN vadd(const vecN* a, vecN* b, vecN* c){
+vecN vadd(const vecN& a, vecN& b, vecN& c){
     for(int i = 0; i<a->size; i++){
         c->data[i] = a->data[i] + b->data[i];
     }
     //this could use threads
 }
-vecN vsub(const vecN* a, const vecN* b, vecN* c){
+vecN vsub(const vecN& a, const vecN& b, vecN& c){
     for(int i = 0; i<a->size; i++){
         c->data[i] = a->data[i] - b->data[i];    }
     //this could use threads
 }
-vecN vmul(const vecN* a, const vecN* b, vecN* c){
+vecN vmul(const vecN& a, const vecN& b, vecN& c){
     for(int i = 0; i<a->size; i++){
         c->data[i] = a->data[i] * b->data[i];
     }
     //this could use threads
 }
-vecN vdiv(const vecN* a, const vecN* b, vecN* c){
+vecN vdiv(const vecN& a, const vecN& b, vecN& c){
     for(int i = 0; i<a->size; i++){
         if(b->data[i] == 0 || b->data[i]==0){
             throw std::runtime_error("VecN Division threw divide-by-0 error");
@@ -160,28 +162,28 @@ vecN vdiv(const vecN* a, const vecN* b, vecN* c){
     }
     // for matrix add and mul this could use threads
 }
-vecN vadd_constant(const vecN* a, double b, vecN* c){
+vecN vadd_constant(const vecN& a, double b, vecN& c){
     for(int i = 0; i<a->size; i++){
         a->data[i] += b;
     }
 
     //this could use threads
 }
-vecN vsub_constant(const vecN* a, double b, vecN* c){
+vecN vsub_constant(const vecN& a, double b, vecN& c){
     for(int i = 0; i<a->size; i++){
         a->data[i] -= b;
     }
 
     //this could use threads
 }
-vecN vmul_constant(const vecN* a, double b, vecN* c){
+vecN vmul_constant(const vecN& a, double b, vecN& c){
     for(int i = 0; i<a->size; i++){
         a->data[i] *= b;
     }
 
     //this could use threads
 }
-vecN vdiv_constant(const vecN* a, double b, vecN* c){
+vecN vdiv_constant(const vecN& a, double b, vecN& c){
     for(int i = 0; i<a->size; i++){
         if(b == 0 || b==0){
             throw std::runtime_error("VecN const Division threw divide-by-0 error");
