@@ -2,7 +2,6 @@
 #include <random>
 #include <vector>
 #include "../Rendering/Renderer.h"
-#include "profiler/Profiler.h"
 #define avg(a,b) (a+b)/2
 
 
@@ -65,21 +64,15 @@ int main(int argc, char** argv){
     vec2 *position_array, *velocity_array, *acceleration_array;
     vecN density_array(n);
     vecN pressure_array(n);
-    {
-        ScopedTimer t(g_profiler, "Initialisation");
-        spawn_particles(n, 42, world_center - SPAWN_HALF_EXTENT, world_center + SPAWN_HALF_EXTENT, position_array, velocity_array, acceleration_array);
+    spawn_particles(n, 42, world_center - SPAWN_HALF_EXTENT, world_center + SPAWN_HALF_EXTENT, position_array, velocity_array, acceleration_array);
 
-        for(int i=0; i<n;i++){
-            velocity_array[i] += acceleration_array[i]*0.5*dt; // base case for first frame for leapfrog integration, first kick in ->(kick)-drift-kick-drift-kick.....
-        }
+    for(int i=0; i<n;i++){
+        velocity_array[i] += acceleration_array[i]*0.5*dt; // base case for first frame for leapfrog integration, first kick in ->(kick)-drift-kick-drift-kick.....
     }
 
     vector<vec2> ndc_positions(n);
     const double particle_scale_xy = PARTICLE_SIZE_TO_H*H*PARTICLE_NDC_PER_WORLD_UNIT;
     const vec2 particle_scale{particle_scale_xy, particle_scale_xy};
-
-    const int PROFILER_REPORT_EVERY_FRAMES = 60;
-    int frame_count = 0;
 
     while(!renderer.shouldClose()){
         for(int step = 0; step < substeps_per_frame; step++){
@@ -88,14 +81,5 @@ int main(int argc, char** argv){
 
         world_to_ndc(position_array, ndc_positions.data(), n, WORLD_MIN, WORLD_MAX);
         renderer.renderParticles(ndc_positions.data(), n, particle_scale);
-
-        frame_count++;
-        if(frame_count % PROFILER_REPORT_EVERY_FRAMES == 0){
-            g_profiler.report();
-        }
     }
-
-    g_profiler.report();
-    g_profiler.write_csv("../sequential_c/profiler/results.csv"); // cwd is Rendering/ -- see README/Makefile run target
-
 }

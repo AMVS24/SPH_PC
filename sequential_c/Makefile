@@ -22,12 +22,15 @@ CXXFLAGS := -std=c++17 -O2 -I. -Ibackend -I$(INC_R)
 LDFLAGS  := -L$(LIB_R) -static-libgcc -static-libstdc++
 LDLIBS   := -lglfw3 -lgdi32 -lopengl32
 
-SRCS := main.cpp physics.cpp backend/linalg.cpp profiler/Profiler.cpp $(RENDERING_DIR)/Renderer.cpp
+SRCS := main.cpp physics.cpp backend/linalg.cpp $(RENDERING_DIR)/Renderer.cpp
 GLAD_SRC := $(INC_R)/../src/glad.c
 
 N ?= 500
+DATA ?= headless/positions.bin
+SPEED ?= 1
+STEPS ?= 1000
 
-.PHONY: all run clean
+.PHONY: all run clean timing run-timing headless run-headless run-replay
 
 all: build/sph.exe
 
@@ -35,12 +38,37 @@ build/glad.o: $(GLAD_SRC)
 	mkdir -p build
 	$(CC) -c $(GLAD_SRC) -I $(INC_R) -o build/glad.o
 
-build/sph.exe: $(SRCS) backend/linalg.h backend/constants.h physics.h profiler/Profiler.h $(RENDERING_DIR)/Renderer.h build/glad.o
+build/sph.exe: $(SRCS) backend/linalg.h backend/constants.h physics.h $(RENDERING_DIR)/Renderer.h build/glad.o
 	mkdir -p build
 	$(CXX) $(CXXFLAGS) $(SRCS) build/glad.o $(LDFLAGS) $(LDLIBS) -o build/sph.exe
 
 run: build/sph.exe
 	cd $(RENDERING_DIR) && ../sequential_c/build/sph.exe $(N)
+
+timing: timing/build/timing.exe
+
+timing/build/timing.exe: timing/timing_main.cpp physics.cpp backend/linalg.cpp backend/linalg.h backend/constants.h physics.h
+	mkdir -p timing/build
+	$(CXX) -std=c++17 -O2 -I. -Ibackend timing/timing_main.cpp physics.cpp backend/linalg.cpp -static-libgcc -static-libstdc++ -o timing/build/timing.exe
+
+run-timing: timing/build/timing.exe
+	./timing/build/timing.exe $(N)
+
+headless: headless/build/headless.exe headless/build/replay.exe
+
+headless/build/headless.exe: headless/headless_main.cpp physics.cpp backend/linalg.cpp backend/linalg.h backend/constants.h physics.h
+	mkdir -p headless/build
+	$(CXX) -std=c++17 -O2 -I. -Ibackend headless/headless_main.cpp physics.cpp backend/linalg.cpp -static-libgcc -static-libstdc++ -o headless/build/headless.exe
+
+headless/build/replay.exe: headless/replay_main.cpp backend/linalg.cpp backend/linalg.h backend/constants.h $(RENDERING_DIR)/Renderer.cpp $(RENDERING_DIR)/Renderer.h build/glad.o
+	mkdir -p headless/build
+	$(CXX) $(CXXFLAGS) headless/replay_main.cpp backend/linalg.cpp $(RENDERING_DIR)/Renderer.cpp build/glad.o $(LDFLAGS) $(LDLIBS) -o headless/build/replay.exe
+
+run-headless: headless/build/headless.exe
+	./headless/build/headless.exe $(N) $(STEPS) $(DATA)
+
+run-replay: headless/build/replay.exe
+	cd $(RENDERING_DIR) && ../sequential_c/headless/build/replay.exe $(CURDIR)/$(DATA) $(SPEED)
 
 clean:
 	rm -rf build
