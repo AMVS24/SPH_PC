@@ -1,0 +1,17 @@
+{
+  "scene": "momentum",
+  "dx": 0.005,
+  "g": 0.0,
+  "domain": [
+    0,
+    0,
+    1,
+    1
+  ],
+  "t_end": 0.6,
+  "snapshot_dt": 0.01,
+  "dx_requested": 0.005,
+  "rho0": 1000.0,
+  "n": 2000,
+  "mass": 0.025
+}

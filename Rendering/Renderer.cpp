@@ -57,7 +57,7 @@ Renderer::Renderer(int width, int height, const char *title)
     glfwGetFramebufferSize(window, &fbW, &fbH);
     glViewport(0, 0, fbW, fbH);
 
-    shader = new Shader("shaders/particle.vs", "shaders/particle.fs");
+    shader = new Shader("dependencies/shaders/particle.vs", "dependencies/shaders/particle.fs");
     square = new Square();
 }
 
