@@ -38,17 +38,24 @@ public:
     // Solid fill colour for the squares (RGB, 0..1). Defaults to white.
     void setParticleColor(float r, float g, float b);
 
+    // true (default): draw the circle texture, tinted by the particle colour.
+    // false: draw a plain opaque square of the particle colour, as before the
+    // texture was added.
+    void setUseTexture(bool useTexture) { useTexture_ = useTexture; }
+
     bool ok() const { return window != nullptr; }
 
 private:
     GLFWwindow *window = nullptr;
     Shader *shader = nullptr;
     Square *square = nullptr;
+    unsigned int particleTexture = 0;
 
     // Reused scratch buffer: vec2 (double) positions packed into floats for GL.
     std::vector<float> instanceScratch;
 
     float color[3] = {1.0f, 1.0f, 1.0f};
+    bool useTexture_ = true;
 };
 
 #endif

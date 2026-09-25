@@ -40,6 +40,14 @@ PFNGLENABLEPROC                 glad_glEnable                 = NULL;
 PFNGLBLENDFUNCPROC              glad_glBlendFunc              = NULL;
 PFNGLGETSTRINGPROC              glad_glGetString              = NULL;
 
+/* --- textures ------------------------------------------------------------ */
+PFNGLGENTEXTURESPROC            glad_glGenTextures            = NULL;
+PFNGLBINDTEXTUREPROC            glad_glBindTexture            = NULL;
+PFNGLDELETETEXTURESPROC         glad_glDeleteTextures         = NULL;
+PFNGLTEXIMAGE2DPROC             glad_glTexImage2D             = NULL;
+PFNGLTEXPARAMETERIPROC          glad_glTexParameteri          = NULL;
+PFNGLACTIVETEXTUREPROC          glad_glActiveTexture          = NULL;
+
 /* --- shader program ---------------------------------------------------- */
 PFNGLCREATESHADERPROC           glad_glCreateShader           = NULL;
 PFNGLSHADERSOURCEPROC           glad_glShaderSource           = NULL;
@@ -82,6 +90,13 @@ static void load_gl_pointers(GLADloadproc load)
     glad_glEnable                 = (PFNGLENABLEPROC)                 load("glEnable");
     glad_glBlendFunc              = (PFNGLBLENDFUNCPROC)              load("glBlendFunc");
     glad_glGetString              = (PFNGLGETSTRINGPROC)              load("glGetString");
+
+    glad_glGenTextures            = (PFNGLGENTEXTURESPROC)            load("glGenTextures");
+    glad_glBindTexture            = (PFNGLBINDTEXTUREPROC)            load("glBindTexture");
+    glad_glDeleteTextures         = (PFNGLDELETETEXTURESPROC)         load("glDeleteTextures");
+    glad_glTexImage2D             = (PFNGLTEXIMAGE2DPROC)             load("glTexImage2D");
+    glad_glTexParameteri          = (PFNGLTEXPARAMETERIPROC)          load("glTexParameteri");
+    glad_glActiveTexture          = (PFNGLACTIVETEXTUREPROC)          load("glActiveTexture");
 
     glad_glCreateShader           = (PFNGLCREATESHADERPROC)           load("glCreateShader");
     glad_glShaderSource           = (PFNGLSHADERSOURCEPROC)           load("glShaderSource");

@@ -66,6 +66,7 @@ int main(int argc, char** argv){
 
     Renderer renderer(1000,1000, "SPH");
     renderer.setParticleColor(0.0f, 0.0f, 1.0f);
+    renderer.setUseTexture(true);
 
     const double dt = 0.001;
     const int substeps_per_frame = 20;

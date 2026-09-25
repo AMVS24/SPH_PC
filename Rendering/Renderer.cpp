@@ -8,6 +8,44 @@
 #include "Square.h"
 #include "dependencies/include/lib/shader_s.h"
 
+#define STB_IMAGE_IMPLEMENTATION
+#include "dependencies/include/lib/stb_image.h"
+
+namespace
+{
+    const char *PARTICLE_TEXTURE_PATH = "Media/circle_transparent.png";
+
+    // Load an RGBA PNG (white circle, transparent background) into a GL texture.
+    // Returns 0 on failure.
+    unsigned int loadParticleTexture(const char *path)
+    {
+        stbi_set_flip_vertically_on_load(true); // match GL's bottom-left origin
+
+        int width, height, channels;
+        unsigned char *data = stbi_load(path, &width, &height, &channels, STBI_rgb_alpha);
+        if (!data)
+        {
+            std::cerr << "Renderer: failed to load particle texture '" << path << "'\n";
+            return 0;
+        }
+
+        unsigned int tex;
+        glGenTextures(1, &tex);
+        glBindTexture(GL_TEXTURE_2D, tex);
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+
+        stbi_image_free(data);
+        glBindTexture(GL_TEXTURE_2D, 0);
+        return tex;
+    }
+}
+
 namespace
 {
     // Resize the GL viewport to follow the framebuffer (handles HiDPI + resizes).
@@ -59,10 +97,18 @@ Renderer::Renderer(int width, int height, const char *title)
 
     shader = new Shader("dependencies/shaders/particle.vs", "dependencies/shaders/particle.fs");
     square = new Square();
+    particleTexture = loadParticleTexture(PARTICLE_TEXTURE_PATH);
+
+    // Alpha blending so the texture's transparent background shows through
+    // instead of drawing as an opaque square.
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 Renderer::~Renderer()
 {
+    if (particleTexture)
+        glDeleteTextures(1, &particleTexture);
     delete square;
     if (shader)
     {
@@ -106,6 +152,12 @@ void Renderer::renderParticles(const vec2 *positions, int count, vec2 scale)
     shader->use();
     glUniform2f(glGetUniformLocation(shader->ID, "uScale"), (float)scale.x, (float)scale.y);
     glUniform3f(glGetUniformLocation(shader->ID, "uColor"), color[0], color[1], color[2]);
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, particleTexture);
+    glUniform1i(glGetUniformLocation(shader->ID, "uTex"), 0);
+    glUniform1i(glGetUniformLocation(shader->ID, "uUseTexture"), useTexture_ ? 1 : 0);
+
     square->draw();
 
     glfwSwapBuffers(window);
