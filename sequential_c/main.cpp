@@ -1,6 +1,8 @@
 #include <physics.h>
 #include <random>
 #include <vector>
+#include <cstdio>
+#include <cstring>
 #include "../Rendering/Renderer.h"
 #include "profiler/Profiler.h"
 #define avg(a,b) (a+b)/2
@@ -49,7 +51,15 @@ void world_to_ndc(const vec2* world, vec2* ndc, int n, vec2 world_min, vec2 worl
 }
 
 int main(int argc, char** argv){
+    // usage: sph <n_particles> [--quiet|-q]
+    if(argc < 2){
+        fprintf(stderr, "usage: %s <n_particles> [--quiet|-q]\n", argv[0]);
+        return 1;
+    }
     int n = atoi(argv[1]);
+    for(int i = 2; i < argc; i++){
+        if(strcmp(argv[i], "--quiet") == 0 || strcmp(argv[i], "-q") == 0) g_verbose = false;
+    }
 
     vec2 WORLD_MIN{WORLD_MIN_X, WORLD_MIN_Y};
     vec2 WORLD_MAX{WORLD_MAX_X, WORLD_MAX_Y};
@@ -90,12 +100,12 @@ int main(int argc, char** argv){
         renderer.renderParticles(ndc_positions.data(), n, particle_scale);
 
         frame_count++;
-        if(frame_count % PROFILER_REPORT_EVERY_FRAMES == 0){
+        if(g_verbose && frame_count % PROFILER_REPORT_EVERY_FRAMES == 0){
             g_profiler.report();
         }
     }
 
-    g_profiler.report();
+    if(g_verbose) g_profiler.report();
     g_profiler.write_csv("../sequential_c/profiler/results.csv"); // cwd is Rendering/ -- see README/Makefile run target
 
 }

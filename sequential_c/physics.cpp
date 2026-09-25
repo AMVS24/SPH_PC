@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "profiler/Profiler.h"
 
+bool g_verbose = true;
 
 double poly_6_kernel(double q){
     static const double normalisation_const = 10/(7*PI*H*H);
@@ -106,7 +107,7 @@ void integrate(vec2* position_array, vec2* velocity_array, vec2* acceleration_ar
             velocity_array[i] += acceleration_array[i]*dt;
         }
     }
-    printf("%f.2\n", vnorm(velocity_array[0]));
+    if(g_verbose) printf("%f.2\n", vnorm(velocity_array[0]));
 }
 
 void update_forces(vec2* position_array, vec2* velocity_array, vec2* acceleration_array,vecN& density_array, vecN& pressure_array,  int n, int n_fluid ){

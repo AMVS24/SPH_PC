@@ -3,6 +3,9 @@
 #include <constants.h>
 #include <backend/linalg.h>
 
+// When false, suppresses console prints (per-step debug output, profiler reports).
+extern bool g_verbose;
+
 double poly_6_kernel(double q);
 
 vec2 spiky_kernel(double q, vec2 dir);
