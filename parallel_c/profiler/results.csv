@@ -1,0 +1,8 @@
+section,total_ms,calls,avg_ms,percent
+Force Computation,233.706,12323950,1.89636e-05,0.790347
+Pressure Compute,3.8607,1660,0.00232572,0.0130561
+Density Computation,189.339,13989316,1.35346e-05,0.640307
+Density Neighbourhood Search,14476.7,1646010684,8.79503e-06,48.9573
+Integration,8.0251,3320,0.0024172,0.0271393
+Force Neighbourhood Search,14656.9,1647676050,8.89548e-06,49.5666
+Initialisation,1.5671,1,1.5671,0.00529961

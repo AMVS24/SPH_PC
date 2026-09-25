@@ -1,0 +1,19 @@
+{
+  "scene": "dambreak",
+  "dx": 0.0045625,
+  "domain": [
+    0,
+    0,
+    0.584,
+    0.584
+  ],
+  "column_width": 0.146,
+  "column_height": 0.292,
+  "t_end": 0.8,
+  "snapshot_dt": 0.005,
+  "g": 9.81,
+  "dx_requested": 0.0045625,
+  "rho0": 1000.0,
+  "n": 2048,
+  "mass": 0.02081640625
+}

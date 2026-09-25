@@ -1,0 +1,9 @@
+WARNING: Vec2 const Division close to zero
+WARNING: Vec2 const Division close to zero
+WARNING: Vec2 const Division close to zero
+WARNING: Vec2 const Division close to zero
+WARNING: Vec2 const Division close to zero
+  (further Vec2 const Division warnings suppressed)
+step=0 t=0.000000 dt=0.000010964 amax=5124247.369465 vmax=0.000000
+step=500 t=0.018781 dt=0.000037551 amax=436805.747757 vmax=10.189505
+step=1000 t=0.037253 dt=0.000035801 amax=480550.035342 vmax=7.228737

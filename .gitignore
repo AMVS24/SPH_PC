@@ -1,0 +1,9 @@
+# Build artifacts
+build/
+*.exe
+*.o
+*.obj
+
+# Generated simulation output (position dumps, rendered video)
+*.bin
+*.mp4
