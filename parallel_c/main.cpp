@@ -1,8 +1,7 @@
 #include <physics.h>
+#include <omp.h>
 #include <random>
 #include <vector>
-#include <cstdio>
-#include <cstring>
 #include "../Rendering/Renderer.h"
 #define avg(a,b) (a+b)/2
 
@@ -26,6 +25,7 @@ void spawn_particles(int n, int seed, vec2 bb_min, vec2 bb_max, vec2*& position_
     uniform_real_distribution<double> y_pos(bb_min.y, bb_max.y);
 
     // #pragma omp parallel for
+    #pragma omp parallel for schedule(static)
     for(int i = 0;i < n;i++){
         // this can be parallelised with threads
         mt19937 gen(seed+i); // If we use a single seeded rng stream then eventually with multiple threads we won't get rhe same particles
@@ -50,22 +50,15 @@ void world_to_ndc(const vec2* world, vec2* ndc, int n, vec2 world_min, vec2 worl
 }
 
 int main(int argc, char** argv){
-    // usage: sph <n_particles> [--quiet|-q]
-    if(argc < 2){
-        fprintf(stderr, "usage: %s <n_particles> [--quiet|-q]\n", argv[0]);
-        return 1;
-    }
     int n = atoi(argv[1]);
-    for(int i = 2; i < argc; i++){
-        if(strcmp(argv[i], "--quiet") == 0 || strcmp(argv[i], "-q") == 0) g_verbose = false;
-    }
+    omp_set_num_threads(argc > 2 ? atoi(argv[2]) : omp_get_max_threads());
+    printf("threads = %d\n", omp_get_max_threads());
 
     vec2 WORLD_MIN{WORLD_MIN_X, WORLD_MIN_Y};
     vec2 WORLD_MAX{WORLD_MAX_X, WORLD_MAX_Y};
 
     Renderer renderer(1000,1000, "SPH");
     renderer.setParticleColor(0.0f, 0.0f, 1.0f);
-    renderer.setUseTexture(true);
 
     const double dt = 0.001;
     const int substeps_per_frame = 20;
@@ -77,6 +70,13 @@ int main(int argc, char** argv){
     vecN pressure_array(n);
     spawn_particles(n, 42, world_center - SPAWN_HALF_EXTENT, world_center + SPAWN_HALF_EXTENT, position_array, velocity_array, acceleration_array);
 
+    int* cell_id = new int[n];
+    int* cell_count = new int[grid_h*grid_w];
+    int* cell_start = new int[grid_h*grid_w+1];
+    int* cell_particles = new int[n];
+
+
+
     for(int i=0; i<n;i++){
         velocity_array[i] += acceleration_array[i]*0.5*dt; // base case for first frame for leapfrog integration, first kick in ->(kick)-drift-kick-drift-kick.....
     }
@@ -87,19 +87,10 @@ int main(int argc, char** argv){
 
     while(!renderer.shouldClose()){
         for(int step = 0; step < substeps_per_frame; step++){
-            integrate(position_array, velocity_array, acceleration_array, density_array, pressure_array, n, n, dt); // Where all the physics happens
+            integrate(position_array, velocity_array, acceleration_array, density_array, pressure_array, n, n, dt, cell_id, cell_count, cell_start, cell_particles); // Where all the physics happens
         }
 
         world_to_ndc(position_array, ndc_positions.data(), n, WORLD_MIN, WORLD_MAX);
         renderer.renderParticles(ndc_positions.data(), n, particle_scale);
-
-        frame_count++;
-        if(g_verbose && frame_count % PROFILER_REPORT_EVERY_FRAMES == 0){
-            g_profiler.report();
-        }
     }
-
-    if(g_verbose) g_profiler.report();
-    g_profiler.write_csv("../sequential_c/profiler/results.csv"); // cwd is Rendering/ -- see README/Makefile run target
-
 }

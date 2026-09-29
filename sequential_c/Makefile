@@ -72,12 +72,15 @@ endif
 SRCS := main.cpp physics.cpp backend/linalg.cpp profiler/Profiler.cpp $(RENDERING_DIR)/Renderer.cpp
 
 N ?= 500
+DATA ?= headless/positions.bin
+SPEED ?= 1
+STEPS ?= 1000
 QUIET ?= 0
 ifeq ($(QUIET),1)
     RUN_FLAGS := --quiet
 endif
 
-.PHONY: all run clean
+.PHONY: all run clean timing run-timing headless run-headless run-replay
 
 all: $(BIN)
 
@@ -91,6 +94,31 @@ $(BIN): $(SRCS) backend/linalg.h backend/constants.h physics.h profiler/Profiler
 
 run: $(BIN)
 	cd $(RENDERING_DIR) && ../sequential_c/$(BIN) $(N) $(RUN_FLAGS)
+
+timing: timing/build/timing.exe
+
+timing/build/timing.exe: timing/timing_main.cpp physics.cpp backend/linalg.cpp backend/linalg.h backend/constants.h physics.h
+	mkdir -p timing/build
+	$(CXX) -std=c++17 -O2 -I. -Ibackend timing/timing_main.cpp physics.cpp backend/linalg.cpp -static-libgcc -static-libstdc++ -o timing/build/timing.exe
+
+run-timing: timing/build/timing.exe
+	./timing/build/timing.exe $(N)
+
+headless: headless/build/headless.exe headless/build/replay.exe
+
+headless/build/headless.exe: headless/headless_main.cpp physics.cpp backend/linalg.cpp backend/linalg.h backend/constants.h physics.h
+	mkdir -p headless/build
+	$(CXX) -std=c++17 -O2 -I. -Ibackend headless/headless_main.cpp physics.cpp backend/linalg.cpp -static-libgcc -static-libstdc++ -o headless/build/headless.exe
+
+headless/build/replay.exe: headless/replay_main.cpp backend/linalg.cpp backend/linalg.h backend/constants.h $(RENDERING_DIR)/Renderer.cpp $(RENDERING_DIR)/Renderer.h build/glad.o
+	mkdir -p headless/build
+	$(CXX) $(CXXFLAGS) headless/replay_main.cpp backend/linalg.cpp $(RENDERING_DIR)/Renderer.cpp build/glad.o $(LDFLAGS) $(LDLIBS) -o headless/build/replay.exe
+
+run-headless: headless/build/headless.exe
+	./headless/build/headless.exe $(N) $(STEPS) $(DATA)
+
+run-replay: headless/build/replay.exe
+	cd $(RENDERING_DIR) && ../sequential_c/headless/build/replay.exe $(CURDIR)/$(DATA) $(SPEED)
 
 clean:
 	rm -rf build
