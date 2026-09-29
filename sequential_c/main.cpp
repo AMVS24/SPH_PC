@@ -92,14 +92,5 @@ int main(int argc, char** argv){
 
         world_to_ndc(position_array, ndc_positions.data(), n, WORLD_MIN, WORLD_MAX);
         renderer.renderParticles(ndc_positions.data(), n, particle_scale);
-
-        frame_count++;
-        if(g_verbose && frame_count % PROFILER_REPORT_EVERY_FRAMES == 0){
-            g_profiler.report();
-        }
     }
-
-    if(g_verbose) g_profiler.report();
-    g_profiler.write_csv("../sequential_c/profiler/results.csv"); // cwd is Rendering/ -- see README/Makefile run target
-
 }

@@ -4,7 +4,7 @@
 #   make / mingw32-make            build only
 #   make run / mingw32-make run    build (if needed) and run with 500 particles
 #   make run N=2000                build (if needed) and run with 2000 particles
-#   make run QUIET=1               run without console output (profiler CSV still written)
+#   make run QUIET=1               run without console output
 #   make clean                     remove build/
 #
 # On Windows use mingw32-make, not `make` -- the MinGW toolchain doesn't put a
@@ -69,7 +69,7 @@ else
     endif
 endif
 
-SRCS := main.cpp physics.cpp backend/linalg.cpp profiler/Profiler.cpp $(RENDERING_DIR)/Renderer.cpp
+SRCS := main.cpp physics.cpp backend/linalg.cpp $(RENDERING_DIR)/Renderer.cpp
 
 N ?= 500
 DATA ?= headless/positions.bin
@@ -88,7 +88,7 @@ build/glad.o: $(GLAD_SRC)
 	mkdir -p build
 	$(CC) -c $(GLAD_SRC) $(GLADFLAGS) -I $(INC_R) -o build/glad.o
 
-$(BIN): $(SRCS) backend/linalg.h backend/constants.h physics.h profiler/Profiler.h $(RENDERING_DIR)/Renderer.h build/glad.o
+$(BIN): $(SRCS) backend/linalg.h backend/constants.h physics.h $(RENDERING_DIR)/Renderer.h build/glad.o
 	mkdir -p build
 	$(CXX) $(CXXFLAGS) $(SRCS) build/glad.o $(LDFLAGS) $(LDLIBS) -o $(BIN)
 
