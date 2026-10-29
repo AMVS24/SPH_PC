@@ -34,5 +34,7 @@ constexpr double BOUNDARY_WIDTH = 500.0;
 constexpr double BOUNDARY_HEIGHT = 500.0;
 inline int grid_w = (int)(BOUNDARY_WIDTH/(2*H));
 inline int grid_h = (int)(BOUNDARY_HEIGHT/(2*H));
+inline double grid_min_x = (WORLD_MIN_X+WORLD_MAX_X)*0.5 - BOUNDARY_WIDTH*0.5;
+inline double grid_min_y = (WORLD_MIN_Y+WORLD_MAX_Y)*0.5 - BOUNDARY_HEIGHT*0.5;
 
 constexpr double PARTICLE_NDC_PER_WORLD_UNIT = 0.004;

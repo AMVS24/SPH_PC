@@ -10,7 +10,7 @@
 #include <cmath>
 #include <algorithm>
 #include <iomanip>
-#include "profiler/Profiler.h"
+#include <chrono>
 
 struct SceneParams {
     double dx = 0;
@@ -139,9 +139,73 @@ static void enforce_domain_boundary(vec2* position_array, vec2* velocity_array, 
     }
 }
 
+static double ms_since(std::chrono::high_resolution_clock::time_point t0){
+    return std::chrono::duration<double, std::milli>(std::chrono::high_resolution_clock::now() - t0).count();
+}
+
+struct Nbr { int j; double norm; vec2 diff; };
+
+static void update_forces_breakdown(vec2* position_array, vec2* velocity_array, vec2* acceleration_array, vecN& density_array, vecN& pressure_array, int n, int n_fluid, std::vector<std::vector<Nbr>>& nb, double stage_ms[6]){
+    auto t0 = std::chrono::high_resolution_clock::now();
+    for(int i = 0; i<n; i++){
+        nb[i].clear();
+        for(int j = 0; j<n; j++){
+            vec2 diff = position_array[j]-position_array[i];
+            double norm = vnorm(diff);
+            if(norm < 2*H) nb[i].push_back({j, norm, diff});
+        }
+    }
+    stage_ms[0] += ms_since(t0);
+
+    t0 = std::chrono::high_resolution_clock::now();
+    for(int i = 0; i<n; i++){
+        density_array[i] = 0;
+        for(const Nbr& k : nb[i]) density_array[i] += PARTICLE_MASS*poly_6_kernel(k.norm/H);
+    }
+    stage_ms[1] += ms_since(t0);
+
+    t0 = std::chrono::high_resolution_clock::now();
+    pressure_array = (density_array-TARGET_DENSITY)*PRESSURE_MULTIPLIER;
+    stage_ms[4] += ms_since(t0);
+
+    double c0 = sqrt(PRESSURE_MULTIPLIER);
+
+    t0 = std::chrono::high_resolution_clock::now();
+    for(int i = 0; i<n_fluid; i++){
+        nb[i].clear();
+        for(int j = 0; j<n; j++){
+            if(i != j && density_array[j] != 0){
+                vec2 diff = position_array[j]-position_array[i];
+                double norm = vnorm(diff);
+                if(norm != 0 && norm < 2*H) nb[i].push_back({j, norm, diff});
+            }
+        }
+    }
+    stage_ms[2] += ms_since(t0);
+
+    t0 = std::chrono::high_resolution_clock::now();
+    for(int i = 0; i<n_fluid; i++){
+        acceleration_array[i] = vec2{0,0};
+        for(const Nbr& k : nb[i]){
+            int j = k.j;
+            vec2 grad = spiky_kernel(k.norm/H, k.diff/k.norm);
+            acceleration_array[i] -= (pressure_array[i]/(density_array[i]*density_array[i]) + pressure_array[j]/(density_array[j]*density_array[j]))*grad;
+            double dot_prod = dot(k.diff, velocity_array[j] - velocity_array[i]);
+            if(dot_prod < 0){
+                double mu = H*dot_prod/(k.norm*k.norm + 0.0001*H*H);
+                double avg_density = (density_array[i] + density_array[j])*0.5;
+                double pi = (-VISCOSITY_ALPHA*c0*mu)/(avg_density + 1e-9);
+                acceleration_array[i] -= pi*grad;
+            }
+        }
+        acceleration_array[i].y -= GRAVITY;
+    }
+    stage_ms[3] += ms_since(t0);
+}
+
 int main(int argc, char** argv){
     if(argc < 5){
-        fprintf(stderr, "usage: %s scene.json scene.init.csv out.csv out.steps.csv\n", argv[0]);
+        fprintf(stderr, "usage: %s scene.json scene.init.csv out.csv out.steps.csv [--max-steps N] [--breakdown]\n", argv[0]);
         return 1;
     }
     std::string json_path = argv[1];
@@ -149,7 +213,13 @@ int main(int argc, char** argv){
     std::string out_path = argv[3];
     std::string steps_path = argv[4];
 
-    g_profiler.begin("Initialisation");
+    long long max_steps = -1;
+    bool breakdown = false;
+    for(int a=5; a<argc; a++){
+        std::string arg = argv[a];
+        if(arg == "--max-steps" && a+1 < argc) max_steps = std::stoll(argv[++a]);
+        else if(arg == "--breakdown") breakdown = true;
+    }
 
     SceneParams sp = load_scene_json(json_path);
 
@@ -188,8 +258,6 @@ int main(int argc, char** argv){
     vecN density_array(n);
     vecN pressure_array(n);
 
-    g_profiler.end("Initialisation");
-
     std::ofstream out(out_path);
     out << std::setprecision(17);
     out << "frame,t,id,x,y,vx,vy,rho,p\n";
@@ -219,7 +287,17 @@ int main(int argc, char** argv){
     const double C = 0.3;
     long long step = 0;
 
+    const int WINDOW = 10;
+    std::vector<double> window_ms_per_step;
+    double window_accum_ms = 0;
+    int window_count = 0;
+
+    std::vector<std::vector<Nbr>> nb(breakdown ? n : 0);
+    double stage_accum[6] = {0, 0, 0, 0, 0, 0};
+    std::vector<double> stage_windows[6];
+
     while(t < sp.t_end){
+        if(max_steps >= 0 && step >= max_steps) break;
         double vmax = 0, amax = 0;
         for(int i=0;i<n_fluid;i++){
             vmax = std::max(vmax, vnorm(velocity_array[i]));
@@ -238,16 +316,32 @@ int main(int argc, char** argv){
             fprintf(stderr, "step=%lld t=%.6f dt=%.9f amax=%.6f vmax=%.6f\n", step, t, dt, amax, vmax);
         }
 
-        {
-            ScopedTimer t_integ(g_profiler, "Integration");
-            for(int i=0;i<n_fluid;i++) velocity_array[i] += acceleration_array[i]*0.5*dt;
-            for(int i=0;i<n_fluid;i++) position_array[i] += velocity_array[i]*dt;
-            enforce_domain_boundary(position_array, velocity_array, n_fluid, sp.domain);
+        auto step_t0 = std::chrono::high_resolution_clock::now();
+
+        for(int i=0;i<n_fluid;i++) velocity_array[i] += acceleration_array[i]*0.5*dt;
+        for(int i=0;i<n_fluid;i++) position_array[i] += velocity_array[i]*dt;
+        auto bc_t0 = std::chrono::high_resolution_clock::now();
+        enforce_domain_boundary(position_array, velocity_array, n_fluid, sp.domain);
+        if(breakdown){
+            stage_accum[5] += ms_since(bc_t0);
+            update_forces_breakdown(position_array, velocity_array, acceleration_array, density_array, pressure_array, n, n_fluid, nb, stage_accum);
         }
-        update_forces(position_array, velocity_array, acceleration_array, density_array, pressure_array, n, n_fluid);
-        {
-            ScopedTimer t_integ(g_profiler, "Integration");
-            for(int i=0;i<n_fluid;i++) velocity_array[i] += acceleration_array[i]*0.5*dt;
+        else{
+            update_forces(position_array, velocity_array, acceleration_array, density_array, pressure_array, n, n_fluid);
+        }
+        for(int i=0;i<n_fluid;i++) velocity_array[i] += acceleration_array[i]*0.5*dt;
+
+        double step_ms = std::chrono::duration<double, std::milli>(std::chrono::high_resolution_clock::now() - step_t0).count();
+        window_accum_ms += step_ms;
+        window_count++;
+        if(window_count == WINDOW){
+            window_ms_per_step.push_back(window_accum_ms / WINDOW);
+            window_accum_ms = 0;
+            window_count = 0;
+            for(int s=0;s<6;s++){
+                stage_windows[s].push_back(stage_accum[s] / WINDOW);
+                stage_accum[s] = 0;
+            }
         }
 
         t += dt;
@@ -258,7 +352,29 @@ int main(int argc, char** argv){
         }
     }
 
-    g_profiler.report(std::cerr);
+    double window_mean = 0, window_stdev = 0;
+    if(!window_ms_per_step.empty()){
+        for(double v : window_ms_per_step) window_mean += v;
+        window_mean /= window_ms_per_step.size();
+        for(double v : window_ms_per_step) window_stdev += (v-window_mean)*(v-window_mean);
+        window_stdev = window_ms_per_step.size() > 1 ? std::sqrt(window_stdev/(window_ms_per_step.size()-1)) : 0.0;
+    }
+
     printf("done: n_fluid=%d steps=%lld t=%.6f frames=%d\n", n_fluid, step, t, frame);
+    printf("window_stats: window_size=%d n_windows=%zu mean_ms_per_step=%.6f stdev_ms_per_step=%.6f\n",
+           WINDOW, window_ms_per_step.size(), window_mean, window_stdev);
+    if(breakdown){
+        const char* stage_names[6] = {"A", "B", "C", "D", "E", "F"};
+        printf("breakdown:");
+        for(int s=0;s<6;s++){
+            double m = 0, sd = 0;
+            for(double v : stage_windows[s]) m += v;
+            if(!stage_windows[s].empty()) m /= stage_windows[s].size();
+            for(double v : stage_windows[s]) sd += (v-m)*(v-m);
+            sd = stage_windows[s].size() > 1 ? std::sqrt(sd/(stage_windows[s].size()-1)) : 0.0;
+            printf(" %s_mean=%.6f %s_stdev=%.6f", stage_names[s], m, stage_names[s], sd);
+        }
+        printf("\n");
+    }
     return 0;
 }

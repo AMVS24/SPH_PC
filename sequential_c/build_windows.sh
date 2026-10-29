@@ -22,7 +22,7 @@ mkdir -p build
 $CC -c "$INC_R/../src/glad.c" -I "$INC_R" -o build/glad.o
 
 $CXX -std=c++17 -O2 -I. -Ibackend -I"$INC_R" -L"$LIB_R" \
-    main.cpp physics.cpp backend/linalg.cpp profiler/Profiler.cpp ../Rendering/Renderer.cpp build/glad.o \
+    main.cpp physics.cpp backend/linalg.cpp ../Rendering/Renderer.cpp build/glad.o \
     -static-libgcc -static-libstdc++ -lglfw3 -lgdi32 -lopengl32 \
     -o build/sph.exe
 

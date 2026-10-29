@@ -104,9 +104,6 @@ void update_forces(vec2* position_array, vec2* velocity_array, vec2* acceleratio
     // sitting exactly on the boundary edge (enforce_boundary clamps position
     // to exactly min/max on a wall bounce) would otherwise land one cell past
     // the valid range.
-    double grid_min_x = (WORLD_MIN_X+WORLD_MAX_X)*0.5 - BOUNDARY_WIDTH*0.5;
-    double grid_min_y = (WORLD_MIN_Y+WORLD_MAX_Y)*0.5 - BOUNDARY_HEIGHT*0.5;
-
     #pragma omp parallel for schedule(static)
     for(int i = 0; i < n; i++){
         int cx = (int)((position_array[i].x - grid_min_x)/(2*H));

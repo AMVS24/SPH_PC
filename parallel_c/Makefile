@@ -33,7 +33,7 @@ THREADS ?=
 VIDEO ?= headless/replay.mp4
 FPS ?= 60
 
-.PHONY: all run clean timing run-timing headless run-headless run-replay run-video validate
+.PHONY: all run clean timing run-timing headless run-headless run-replay run-video validate validate-prehash
 
 all: build/sph.exe
 
@@ -42,6 +42,12 @@ validate: build/validate.exe
 build/validate.exe: validate_main.cpp physics.cpp backend/linalg.cpp backend/linalg.h backend/constants.h physics.h
 	mkdir -p build
 	$(CXX) -std=c++17 -O2 -fopenmp -I. -Ibackend validate_main.cpp physics.cpp backend/linalg.cpp -static-libgcc -static-libstdc++ -o build/validate.exe
+
+validate-prehash: build/validate_prehash.exe
+
+build/validate_prehash.exe: validate_main.cpp prehash/physics_prehash.cpp backend/linalg.cpp backend/linalg.h backend/constants.h physics.h
+	mkdir -p build
+	$(CXX) -std=c++17 -O2 -fopenmp -DPREHASH -I. -Ibackend validate_main.cpp prehash/physics_prehash.cpp backend/linalg.cpp -static-libgcc -static-libstdc++ -o build/validate_prehash.exe
 
 build/glad.o: $(GLAD_SRC)
 	mkdir -p build

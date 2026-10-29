@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "../sequential_c/backend/linalg.h" // vec2
+#include <backend/linalg.h> // vec2
 
 // Forward declarations keep GLFW/shader headers out of this interface.
 struct GLFWwindow;

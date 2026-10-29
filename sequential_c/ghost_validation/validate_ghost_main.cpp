@@ -10,7 +10,6 @@
 #include <cmath>
 #include <algorithm>
 #include <iomanip>
-#include "profiler/Profiler.h"
 
 struct SceneParams {
     double dx = 0;
@@ -172,8 +171,6 @@ int main(int argc, char** argv){
     std::string out_path = argv[3];
     std::string steps_path = argv[4];
 
-    g_profiler.begin("Initialisation");
-
     SceneParams sp = load_scene_json(json_path);
 
     std::vector<vec2> pos, vel;
@@ -218,8 +215,6 @@ int main(int argc, char** argv){
 
     vecN density_array(n);
     vecN pressure_array(n);
-
-    g_profiler.end("Initialisation");
 
     std::ofstream out(out_path);
     out << std::setprecision(17);
@@ -269,17 +264,11 @@ int main(int argc, char** argv){
             fprintf(stderr, "step=%lld t=%.6f dt=%.9f amax=%.6f vmax=%.6f\n", step, t, dt, amax, vmax);
         }
 
-        {
-            ScopedTimer t_integ(g_profiler, "Integration");
-            for(int i=0;i<n_fluid;i++) velocity_array[i] += acceleration_array[i]*0.5*dt;
-            for(int i=0;i<n_fluid;i++) position_array[i] += velocity_array[i]*dt;
-            enforce_domain_boundary(position_array, velocity_array, n_fluid, sp.domain);
-        }
+        for(int i=0;i<n_fluid;i++) velocity_array[i] += acceleration_array[i]*0.5*dt;
+        for(int i=0;i<n_fluid;i++) position_array[i] += velocity_array[i]*dt;
+        enforce_domain_boundary(position_array, velocity_array, n_fluid, sp.domain);
         update_forces(position_array, velocity_array, acceleration_array, density_array, pressure_array, n, n_fluid);
-        {
-            ScopedTimer t_integ(g_profiler, "Integration");
-            for(int i=0;i<n_fluid;i++) velocity_array[i] += acceleration_array[i]*0.5*dt;
-        }
+        for(int i=0;i<n_fluid;i++) velocity_array[i] += acceleration_array[i]*0.5*dt;
 
         t += dt;
         step++;
@@ -289,7 +278,6 @@ int main(int argc, char** argv){
         }
     }
 
-    g_profiler.report(std::cerr);
     printf("done: n_fluid=%d n_ghost=%d steps=%lld t=%.6f frames=%d\n", n_fluid, n_ghost, step, t, frame);
     return 0;
 }

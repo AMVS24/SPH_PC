@@ -30,7 +30,7 @@ DATA ?= headless/positions.bin
 SPEED ?= 1
 STEPS ?= 1000
 
-.PHONY: all run clean timing run-timing headless run-headless run-replay
+.PHONY: all run clean timing run-timing headless run-headless run-replay validate
 
 all: build/sph.exe
 
@@ -44,6 +44,12 @@ build/sph.exe: $(SRCS) backend/linalg.h backend/constants.h physics.h $(RENDERIN
 
 run: build/sph.exe
 	cd $(RENDERING_DIR) && ../sequential_c/build/sph.exe $(N)
+
+validate: build/validate.exe
+
+build/validate.exe: validate_main.cpp physics.cpp backend/linalg.cpp backend/linalg.h backend/constants.h physics.h
+	mkdir -p build
+	$(CXX) -std=c++17 -O2 -I. -Ibackend validate_main.cpp physics.cpp backend/linalg.cpp -static-libgcc -static-libstdc++ -o build/validate.exe
 
 timing: timing/build/timing.exe
 

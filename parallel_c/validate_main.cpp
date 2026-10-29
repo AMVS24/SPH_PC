@@ -146,19 +146,58 @@ static double ms_since(std::chrono::high_resolution_clock::time_point t0){
 
 struct Nbr { int j; double norm; vec2 diff; };
 
-static void update_forces_breakdown(vec2* position_array, vec2* velocity_array, vec2* acceleration_array, vecN& density_array, vecN& pressure_array, int n, int n_fluid, std::vector<std::vector<Nbr>>& nb, double stage_ms[6]){
+struct Grid { int* cell_id; int* cell_count; int* cell_start; int* cell_particles; };
+
+static void build_grid(vec2* position_array, int n, const Grid& g){
+    #pragma omp parallel for schedule(static)
+    for(int i = 0; i < n; i++){
+        int cx = (int)((position_array[i].x - grid_min_x)/(2*H));
+        int cy = (int)((position_array[i].y - grid_min_y)/(2*H));
+        if(cx < 0) cx = 0; else if(cx >= grid_w) cx = grid_w-1;
+        if(cy < 0) cy = 0; else if(cy >= grid_h) cy = grid_h-1;
+        g.cell_id[i] = cx + cy*grid_w;
+    }
+    for(int c = 0; c < grid_h*grid_w; c++) g.cell_count[c] = 0;
+    for(int i = 0; i < n; i++) g.cell_count[g.cell_id[i]]++;
+    g.cell_start[0] = 0;
+    for(int c = 0; c < grid_h*grid_w; c++) g.cell_start[c+1] = g.cell_start[c] + g.cell_count[c];
+    std::vector<int> cursor(g.cell_start, g.cell_start + grid_h*grid_w);
+    for(int i = 0; i < n; i++) g.cell_particles[cursor[g.cell_id[i]]++] = i;
+}
+
+template <typename F>
+static inline void for_each_candidate(int i, int n, const Grid& g, F&& f){
+#ifdef PREHASH
+    for(int j = 0; j<n; j++) f(j);
+#else
+    int ci = g.cell_id[i];
+    int cell_nbhd[9] = {ci+grid_w, ci+grid_w+1, ci+grid_w-1, ci, ci+1, ci-1, ci-grid_w, ci-grid_w+1, ci-grid_w-1};
+    for(int cell = 0; cell<9; cell++){
+        int c = cell_nbhd[cell];
+        if(c < 0 || c >= grid_h*grid_w) continue;
+        for(int k = g.cell_start[c]; k < g.cell_start[c+1]; k++) f(g.cell_particles[k]);
+    }
+#endif
+}
+
+static void update_forces_breakdown(vec2* position_array, vec2* velocity_array, vec2* acceleration_array, vecN& density_array, vecN& pressure_array, int n, int n_fluid, std::vector<std::vector<Nbr>>& nb, const Grid& g, double stage_ms[6]){
     auto t0 = std::chrono::high_resolution_clock::now();
+#ifndef PREHASH
+    build_grid(position_array, n, g);
+#endif
+    #pragma omp parallel for schedule(static)
     for(int i = 0; i<n; i++){
         nb[i].clear();
-        for(int j = 0; j<n; j++){
+        for_each_candidate(i, n, g, [&](int j){
             vec2 diff = position_array[j]-position_array[i];
             double norm = vnorm(diff);
             if(norm < 2*H) nb[i].push_back({j, norm, diff});
-        }
+        });
     }
     stage_ms[0] += ms_since(t0);
 
     t0 = std::chrono::high_resolution_clock::now();
+    #pragma omp parallel for schedule(static)
     for(int i = 0; i<n; i++){
         density_array[i] = 0;
         for(const Nbr& k : nb[i]) density_array[i] += PARTICLE_MASS*poly_6_kernel(k.norm/H);
@@ -172,19 +211,21 @@ static void update_forces_breakdown(vec2* position_array, vec2* velocity_array, 
     double c0 = sqrt(PRESSURE_MULTIPLIER);
 
     t0 = std::chrono::high_resolution_clock::now();
+    #pragma omp parallel for schedule(static)
     for(int i = 0; i<n_fluid; i++){
         nb[i].clear();
-        for(int j = 0; j<n; j++){
+        for_each_candidate(i, n, g, [&](int j){
             if(i != j && density_array[j] != 0){
                 vec2 diff = position_array[j]-position_array[i];
                 double norm = vnorm(diff);
                 if(norm != 0 && norm < 2*H) nb[i].push_back({j, norm, diff});
             }
-        }
+        });
     }
     stage_ms[2] += ms_since(t0);
 
     t0 = std::chrono::high_resolution_clock::now();
+    #pragma omp parallel for schedule(static)
     for(int i = 0; i<n_fluid; i++){
         acceleration_array[i] = vec2{0,0};
         for(const Nbr& k : nb[i]){
@@ -260,6 +301,16 @@ int main(int argc, char** argv){
     vecN density_array(n);
     vecN pressure_array(n);
 
+    grid_min_x = sp.domain[0];
+    grid_min_y = sp.domain[1];
+    grid_w = (int)std::ceil((sp.domain[2]-sp.domain[0])/(2*H)) + 1;
+    grid_h = (int)std::ceil((sp.domain[3]-sp.domain[1])/(2*H)) + 1;
+    Grid g;
+    g.cell_id = (int*)malloc(sizeof(int)*n);
+    g.cell_count = (int*)malloc(sizeof(int)*grid_w*grid_h);
+    g.cell_start = (int*)malloc(sizeof(int)*(grid_w*grid_h + 1));
+    g.cell_particles = (int*)malloc(sizeof(int)*n);
+
     std::ofstream out(out_path);
     out << std::setprecision(17);
     out << "frame,t,id,x,y,vx,vy,rho,p\n";
@@ -267,7 +318,7 @@ int main(int argc, char** argv){
     steps << std::setprecision(17);
     steps << "step,t,dt,h,c0,amax,vmax\n";
 
-    update_forces(position_array, velocity_array, acceleration_array, density_array, pressure_array, n, n_fluid);
+    update_forces(position_array, velocity_array, acceleration_array, density_array, pressure_array, n, n_fluid, g.cell_id, g.cell_count, g.cell_start, g.cell_particles);
 
     int frame = 0;
     double t = 0.0;
@@ -320,17 +371,20 @@ int main(int argc, char** argv){
 
         auto step_t0 = std::chrono::high_resolution_clock::now();
 
+        #pragma omp parallel for schedule(static)
         for(int i=0;i<n_fluid;i++) velocity_array[i] += acceleration_array[i]*0.5*dt;
+        #pragma omp parallel for schedule(static)
         for(int i=0;i<n_fluid;i++) position_array[i] += velocity_array[i]*dt;
         auto bc_t0 = std::chrono::high_resolution_clock::now();
         enforce_domain_boundary(position_array, velocity_array, n_fluid, sp.domain);
         if(breakdown){
             stage_accum[5] += ms_since(bc_t0);
-            update_forces_breakdown(position_array, velocity_array, acceleration_array, density_array, pressure_array, n, n_fluid, nb, stage_accum);
+            update_forces_breakdown(position_array, velocity_array, acceleration_array, density_array, pressure_array, n, n_fluid, nb, g, stage_accum);
         }
         else{
-            update_forces(position_array, velocity_array, acceleration_array, density_array, pressure_array, n, n_fluid);
+            update_forces(position_array, velocity_array, acceleration_array, density_array, pressure_array, n, n_fluid, g.cell_id, g.cell_count, g.cell_start, g.cell_particles);
         }
+        #pragma omp parallel for schedule(static)
         for(int i=0;i<n_fluid;i++) velocity_array[i] += acceleration_array[i]*0.5*dt;
 
         double step_ms = std::chrono::duration<double, std::milli>(std::chrono::high_resolution_clock::now() - step_t0).count();
