@@ -1,0 +1,6684 @@
+{
+  "method": "hydrostatic scene via validate.exe, 10-step window mean +/- stdev",
+  "results": {
+    "hash|1|2000": {
+      "n_total": 2030,
+      "steps": 150,
+      "ms_per_step": 3.453054,
+      "ms_per_step_stdev": 0.3162,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 2000
+    },
+    "hash|2|2000": {
+      "n_total": 2030,
+      "steps": 150,
+      "ms_per_step": 1.344131,
+      "ms_per_step_stdev": 0.209783,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 2000
+    },
+    "hash|4|2000": {
+      "n_total": 2030,
+      "steps": 150,
+      "ms_per_step": 0.710897,
+      "ms_per_step_stdev": 0.074635,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 2000
+    },
+    "hash|8|2000": {
+      "n_total": 2030,
+      "steps": 150,
+      "ms_per_step": 0.767017,
+      "ms_per_step_stdev": 0.14114,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 2000
+    },
+    "hash|16|2000": {
+      "n_total": 2030,
+      "steps": 150,
+      "ms_per_step": 0.837311,
+      "ms_per_step_stdev": 0.117969,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 2000
+    },
+    "hash|24|2000": {
+      "n_total": 2030,
+      "steps": 150,
+      "ms_per_step": 1.01865,
+      "ms_per_step_stdev": 0.123298,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 2000
+    },
+    "hash|32|2000": {
+      "n_total": 2030,
+      "steps": 150,
+      "ms_per_step": 1.147545,
+      "ms_per_step_stdev": 0.039079,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 2000
+    },
+    "hash|1|4000": {
+      "n_total": 4018,
+      "steps": 150,
+      "ms_per_step": 5.991923,
+      "ms_per_step_stdev": 0.644127,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 4000
+    },
+    "hash|2|4000": {
+      "n_total": 4018,
+      "steps": 150,
+      "ms_per_step": 2.460097,
+      "ms_per_step_stdev": 0.63692,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 4000
+    },
+    "hash|4|4000": {
+      "n_total": 4018,
+      "steps": 150,
+      "ms_per_step": 1.147044,
+      "ms_per_step_stdev": 0.08379,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 4000
+    },
+    "hash|8|4000": {
+      "n_total": 4018,
+      "steps": 150,
+      "ms_per_step": 0.951644,
+      "ms_per_step_stdev": 0.182572,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 4000
+    },
+    "hash|16|4000": {
+      "n_total": 4018,
+      "steps": 150,
+      "ms_per_step": 1.352817,
+      "ms_per_step_stdev": 0.156311,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 4000
+    },
+    "hash|24|4000": {
+      "n_total": 4018,
+      "steps": 150,
+      "ms_per_step": 1.439931,
+      "ms_per_step_stdev": 0.211943,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 4000
+    },
+    "hash|32|4000": {
+      "n_total": 4018,
+      "steps": 150,
+      "ms_per_step": 1.413534,
+      "ms_per_step_stdev": 0.114892,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 4000
+    },
+    "hash|1|6000": {
+      "n_total": 6000,
+      "steps": 150,
+      "ms_per_step": 6.812431,
+      "ms_per_step_stdev": 1.447984,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 6000
+    },
+    "hash|2|6000": {
+      "n_total": 6000,
+      "steps": 150,
+      "ms_per_step": 2.806898,
+      "ms_per_step_stdev": 0.205671,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 6000
+    },
+    "hash|4|6000": {
+      "n_total": 6000,
+      "steps": 150,
+      "ms_per_step": 1.572581,
+      "ms_per_step_stdev": 0.107514,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 6000
+    },
+    "hash|8|6000": {
+      "n_total": 6000,
+      "steps": 150,
+      "ms_per_step": 1.455293,
+      "ms_per_step_stdev": 0.239698,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 6000
+    },
+    "hash|16|6000": {
+      "n_total": 6000,
+      "steps": 150,
+      "ms_per_step": 1.573929,
+      "ms_per_step_stdev": 0.187869,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 6000
+    },
+    "hash|24|6000": {
+      "n_total": 6000,
+      "steps": 150,
+      "ms_per_step": 1.469176,
+      "ms_per_step_stdev": 0.096452,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 6000
+    },
+    "hash|32|6000": {
+      "n_total": 6000,
+      "steps": 150,
+      "ms_per_step": 1.78326,
+      "ms_per_step_stdev": 0.11644,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 6000
+    },
+    "hash|1|8000": {
+      "n_total": 7935,
+      "steps": 150,
+      "ms_per_step": 7.17982,
+      "ms_per_step_stdev": 1.270305,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 8000
+    },
+    "hash|2|8000": {
+      "n_total": 7935,
+      "steps": 150,
+      "ms_per_step": 3.549421,
+      "ms_per_step_stdev": 0.224156,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 8000
+    },
+    "hash|4|8000": {
+      "n_total": 7935,
+      "steps": 150,
+      "ms_per_step": 1.953651,
+      "ms_per_step_stdev": 0.124571,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 8000
+    },
+    "hash|8|8000": {
+      "n_total": 7935,
+      "steps": 150,
+      "ms_per_step": 1.704498,
+      "ms_per_step_stdev": 0.328485,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 8000
+    },
+    "hash|16|8000": {
+      "n_total": 7935,
+      "steps": 150,
+      "ms_per_step": 1.923004,
+      "ms_per_step_stdev": 0.080083,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 8000
+    },
+    "hash|24|8000": {
+      "n_total": 7935,
+      "steps": 150,
+      "ms_per_step": 1.765592,
+      "ms_per_step_stdev": 0.087211,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 8000
+    },
+    "hash|32|8000": {
+      "n_total": 7935,
+      "steps": 150,
+      "ms_per_step": 1.82504,
+      "ms_per_step_stdev": 0.104474,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 8000
+    },
+    "hash|1|10000": {
+      "n_total": 9933,
+      "steps": 150,
+      "ms_per_step": 9.091207,
+      "ms_per_step_stdev": 2.090989,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 10000
+    },
+    "hash|2|10000": {
+      "n_total": 9933,
+      "steps": 150,
+      "ms_per_step": 4.50446,
+      "ms_per_step_stdev": 0.875253,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 10000
+    },
+    "hash|4|10000": {
+      "n_total": 9933,
+      "steps": 150,
+      "ms_per_step": 2.321323,
+      "ms_per_step_stdev": 0.097971,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 10000
+    },
+    "hash|8|10000": {
+      "n_total": 9933,
+      "steps": 150,
+      "ms_per_step": 1.939201,
+      "ms_per_step_stdev": 0.310361,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 10000
+    },
+    "hash|16|10000": {
+      "n_total": 9933,
+      "steps": 150,
+      "ms_per_step": 2.123315,
+      "ms_per_step_stdev": 0.077756,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 10000
+    },
+    "hash|24|10000": {
+      "n_total": 9933,
+      "steps": 150,
+      "ms_per_step": 1.835239,
+      "ms_per_step_stdev": 0.093014,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 10000
+    },
+    "hash|32|10000": {
+      "n_total": 9933,
+      "steps": 150,
+      "ms_per_step": 2.123051,
+      "ms_per_step_stdev": 0.19416,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 10000
+    },
+    "hash|1|12000": {
+      "n_total": 11985,
+      "steps": 150,
+      "ms_per_step": 9.581936,
+      "ms_per_step_stdev": 2.108077,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 12000
+    },
+    "hash|2|12000": {
+      "n_total": 11985,
+      "steps": 150,
+      "ms_per_step": 5.425229,
+      "ms_per_step_stdev": 1.179806,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 12000
+    },
+    "hash|4|12000": {
+      "n_total": 11985,
+      "steps": 150,
+      "ms_per_step": 2.812851,
+      "ms_per_step_stdev": 0.214534,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 12000
+    },
+    "hash|8|12000": {
+      "n_total": 11985,
+      "steps": 150,
+      "ms_per_step": 2.360702,
+      "ms_per_step_stdev": 0.738801,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 12000
+    },
+    "hash|16|12000": {
+      "n_total": 11985,
+      "steps": 150,
+      "ms_per_step": 2.464855,
+      "ms_per_step_stdev": 0.117276,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 12000
+    },
+    "hash|24|12000": {
+      "n_total": 11985,
+      "steps": 150,
+      "ms_per_step": 2.230471,
+      "ms_per_step_stdev": 0.337708,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 12000
+    },
+    "hash|32|12000": {
+      "n_total": 11985,
+      "steps": 150,
+      "ms_per_step": 2.217703,
+      "ms_per_step_stdev": 0.265118,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 12000
+    },
+    "hash|1|14000": {
+      "n_total": 14076,
+      "steps": 150,
+      "ms_per_step": 13.905687,
+      "ms_per_step_stdev": 3.791703,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 14000
+    },
+    "hash|2|14000": {
+      "n_total": 14076,
+      "steps": 150,
+      "ms_per_step": 5.403765,
+      "ms_per_step_stdev": 0.169651,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 14000
+    },
+    "hash|4|14000": {
+      "n_total": 14076,
+      "steps": 150,
+      "ms_per_step": 3.107172,
+      "ms_per_step_stdev": 0.21644,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 14000
+    },
+    "hash|8|14000": {
+      "n_total": 14076,
+      "steps": 150,
+      "ms_per_step": 2.611635,
+      "ms_per_step_stdev": 0.236225,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 14000
+    },
+    "hash|16|14000": {
+      "n_total": 14076,
+      "steps": 150,
+      "ms_per_step": 2.648647,
+      "ms_per_step_stdev": 0.068319,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 14000
+    },
+    "hash|24|14000": {
+      "n_total": 14076,
+      "steps": 150,
+      "ms_per_step": 2.196996,
+      "ms_per_step_stdev": 0.091519,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 14000
+    },
+    "hash|32|14000": {
+      "n_total": 14076,
+      "steps": 150,
+      "ms_per_step": 2.341433,
+      "ms_per_step_stdev": 0.198538,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 14000
+    },
+    "hash|1|16000": {
+      "n_total": 15974,
+      "steps": 150,
+      "ms_per_step": 14.7608,
+      "ms_per_step_stdev": 4.370906,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 16000
+    },
+    "hash|2|16000": {
+      "n_total": 15974,
+      "steps": 150,
+      "ms_per_step": 6.519688,
+      "ms_per_step_stdev": 1.192416,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 16000
+    },
+    "hash|4|16000": {
+      "n_total": 15974,
+      "steps": 150,
+      "ms_per_step": 3.503571,
+      "ms_per_step_stdev": 0.11039,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 16000
+    },
+    "hash|8|16000": {
+      "n_total": 15974,
+      "steps": 150,
+      "ms_per_step": 2.472241,
+      "ms_per_step_stdev": 0.245442,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 16000
+    },
+    "hash|16|16000": {
+      "n_total": 15974,
+      "steps": 150,
+      "ms_per_step": 2.99561,
+      "ms_per_step_stdev": 0.069106,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 16000
+    },
+    "hash|24|16000": {
+      "n_total": 15974,
+      "steps": 150,
+      "ms_per_step": 2.644665,
+      "ms_per_step_stdev": 0.178377,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 16000
+    },
+    "hash|32|16000": {
+      "n_total": 15974,
+      "steps": 150,
+      "ms_per_step": 2.451404,
+      "ms_per_step_stdev": 0.156304,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 16000
+    },
+    "hash|1|18000": {
+      "n_total": 17992,
+      "steps": 150,
+      "ms_per_step": 24.075848,
+      "ms_per_step_stdev": 2.858614,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 18000
+    },
+    "hash|2|18000": {
+      "n_total": 17992,
+      "steps": 150,
+      "ms_per_step": 7.854426,
+      "ms_per_step_stdev": 1.809374,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 18000
+    },
+    "hash|4|18000": {
+      "n_total": 17992,
+      "steps": 150,
+      "ms_per_step": 3.854117,
+      "ms_per_step_stdev": 0.202342,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 18000
+    },
+    "hash|8|18000": {
+      "n_total": 17992,
+      "steps": 150,
+      "ms_per_step": 3.3911,
+      "ms_per_step_stdev": 0.425066,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 18000
+    },
+    "hash|16|18000": {
+      "n_total": 17992,
+      "steps": 150,
+      "ms_per_step": 3.185116,
+      "ms_per_step_stdev": 0.16643,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 18000
+    },
+    "hash|24|18000": {
+      "n_total": 17992,
+      "steps": 150,
+      "ms_per_step": 2.799966,
+      "ms_per_step_stdev": 0.154986,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 18000
+    },
+    "hash|32|18000": {
+      "n_total": 17992,
+      "steps": 150,
+      "ms_per_step": 2.978965,
+      "ms_per_step_stdev": 0.219603,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 18000
+    },
+    "hash|1|20000": {
+      "n_total": 20130,
+      "steps": 150,
+      "ms_per_step": 24.242604,
+      "ms_per_step_stdev": 5.048429,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 20000
+    },
+    "hash|2|20000": {
+      "n_total": 20130,
+      "steps": 150,
+      "ms_per_step": 8.189246,
+      "ms_per_step_stdev": 1.350027,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 20000
+    },
+    "hash|4|20000": {
+      "n_total": 20130,
+      "steps": 150,
+      "ms_per_step": 4.301434,
+      "ms_per_step_stdev": 0.303489,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 20000
+    },
+    "hash|8|20000": {
+      "n_total": 20130,
+      "steps": 150,
+      "ms_per_step": 3.204703,
+      "ms_per_step_stdev": 0.359198,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 20000
+    },
+    "hash|16|20000": {
+      "n_total": 20130,
+      "steps": 150,
+      "ms_per_step": 3.644462,
+      "ms_per_step_stdev": 0.431537,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 20000
+    },
+    "hash|24|20000": {
+      "n_total": 20130,
+      "steps": 150,
+      "ms_per_step": 3.092715,
+      "ms_per_step_stdev": 0.159276,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 20000
+    },
+    "hash|32|20000": {
+      "n_total": 20130,
+      "steps": 150,
+      "ms_per_step": 3.273887,
+      "ms_per_step_stdev": 0.247162,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 20000
+    },
+    "hash|1|22000": {
+      "n_total": 21965,
+      "steps": 150,
+      "ms_per_step": 26.562837,
+      "ms_per_step_stdev": 6.418962,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 22000
+    },
+    "hash|2|22000": {
+      "n_total": 21965,
+      "steps": 150,
+      "ms_per_step": 9.557899,
+      "ms_per_step_stdev": 1.954101,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 22000
+    },
+    "hash|4|22000": {
+      "n_total": 21965,
+      "steps": 150,
+      "ms_per_step": 4.887427,
+      "ms_per_step_stdev": 0.239028,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 22000
+    },
+    "hash|8|22000": {
+      "n_total": 21965,
+      "steps": 150,
+      "ms_per_step": 4.614116,
+      "ms_per_step_stdev": 0.669298,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 22000
+    },
+    "hash|16|22000": {
+      "n_total": 21965,
+      "steps": 150,
+      "ms_per_step": 3.608851,
+      "ms_per_step_stdev": 0.10466,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 22000
+    },
+    "hash|24|22000": {
+      "n_total": 21965,
+      "steps": 150,
+      "ms_per_step": 3.215573,
+      "ms_per_step_stdev": 0.425724,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 22000
+    },
+    "hash|32|22000": {
+      "n_total": 21965,
+      "steps": 150,
+      "ms_per_step": 3.332154,
+      "ms_per_step_stdev": 0.356552,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 22000
+    },
+    "hash|1|24000": {
+      "n_total": 24000,
+      "steps": 150,
+      "ms_per_step": 31.041983,
+      "ms_per_step_stdev": 5.928985,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 24000
+    },
+    "hash|2|24000": {
+      "n_total": 24000,
+      "steps": 150,
+      "ms_per_step": 9.272691,
+      "ms_per_step_stdev": 1.081293,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 24000
+    },
+    "hash|4|24000": {
+      "n_total": 24000,
+      "steps": 150,
+      "ms_per_step": 4.990051,
+      "ms_per_step_stdev": 0.24539,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 24000
+    },
+    "hash|8|24000": {
+      "n_total": 24000,
+      "steps": 150,
+      "ms_per_step": 3.775035,
+      "ms_per_step_stdev": 0.545397,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 24000
+    },
+    "hash|16|24000": {
+      "n_total": 24000,
+      "steps": 150,
+      "ms_per_step": 3.976285,
+      "ms_per_step_stdev": 0.10369,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 24000
+    },
+    "hash|24|24000": {
+      "n_total": 24000,
+      "steps": 150,
+      "ms_per_step": 3.452314,
+      "ms_per_step_stdev": 0.396094,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 24000
+    },
+    "hash|32|24000": {
+      "n_total": 24000,
+      "steps": 150,
+      "ms_per_step": 3.717491,
+      "ms_per_step_stdev": 0.372272,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 24000
+    },
+    "hash|1|26000": {
+      "n_total": 26000,
+      "steps": 150,
+      "ms_per_step": 19.153767,
+      "ms_per_step_stdev": 2.064399,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 26000
+    },
+    "hash|2|26000": {
+      "n_total": 26000,
+      "steps": 150,
+      "ms_per_step": 9.980453,
+      "ms_per_step_stdev": 1.023482,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 26000
+    },
+    "hash|4|26000": {
+      "n_total": 26000,
+      "steps": 150,
+      "ms_per_step": 5.629063,
+      "ms_per_step_stdev": 0.338175,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 26000
+    },
+    "hash|8|26000": {
+      "n_total": 26000,
+      "steps": 150,
+      "ms_per_step": 4.182697,
+      "ms_per_step_stdev": 0.409177,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 26000
+    },
+    "hash|16|26000": {
+      "n_total": 26000,
+      "steps": 150,
+      "ms_per_step": 3.973276,
+      "ms_per_step_stdev": 0.110589,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 26000
+    },
+    "hash|24|26000": {
+      "n_total": 26000,
+      "steps": 150,
+      "ms_per_step": 3.71477,
+      "ms_per_step_stdev": 0.229373,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 26000
+    },
+    "hash|32|26000": {
+      "n_total": 26000,
+      "steps": 150,
+      "ms_per_step": 3.518047,
+      "ms_per_step_stdev": 0.336955,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 26000
+    },
+    "hash|1|28000": {
+      "n_total": 28080,
+      "steps": 150,
+      "ms_per_step": 31.881895,
+      "ms_per_step_stdev": 7.745242,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 28000
+    },
+    "hash|2|28000": {
+      "n_total": 28080,
+      "steps": 150,
+      "ms_per_step": 11.592231,
+      "ms_per_step_stdev": 1.20563,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 28000
+    },
+    "hash|4|28000": {
+      "n_total": 28080,
+      "steps": 150,
+      "ms_per_step": 7.205045,
+      "ms_per_step_stdev": 0.426646,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 28000
+    },
+    "hash|8|28000": {
+      "n_total": 28080,
+      "steps": 150,
+      "ms_per_step": 4.486048,
+      "ms_per_step_stdev": 0.202694,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 28000
+    },
+    "hash|16|28000": {
+      "n_total": 28080,
+      "steps": 150,
+      "ms_per_step": 4.767943,
+      "ms_per_step_stdev": 0.57359,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 28000
+    },
+    "hash|24|28000": {
+      "n_total": 28080,
+      "steps": 150,
+      "ms_per_step": 3.941585,
+      "ms_per_step_stdev": 0.414095,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 28000
+    },
+    "hash|32|28000": {
+      "n_total": 28080,
+      "steps": 150,
+      "ms_per_step": 3.812973,
+      "ms_per_step_stdev": 0.299794,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 28000
+    },
+    "hash|1|30000": {
+      "n_total": 30016,
+      "steps": 150,
+      "ms_per_step": 35.413225,
+      "ms_per_step_stdev": 7.348432,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 30000
+    },
+    "hash|2|30000": {
+      "n_total": 30016,
+      "steps": 150,
+      "ms_per_step": 11.583487,
+      "ms_per_step_stdev": 1.945635,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 30000
+    },
+    "hash|4|30000": {
+      "n_total": 30016,
+      "steps": 150,
+      "ms_per_step": 6.901071,
+      "ms_per_step_stdev": 0.811531,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 30000
+    },
+    "hash|8|30000": {
+      "n_total": 30016,
+      "steps": 150,
+      "ms_per_step": 4.721809,
+      "ms_per_step_stdev": 0.307095,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 30000
+    },
+    "hash|16|30000": {
+      "n_total": 30016,
+      "steps": 150,
+      "ms_per_step": 4.428361,
+      "ms_per_step_stdev": 0.18661,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 30000
+    },
+    "hash|24|30000": {
+      "n_total": 30016,
+      "steps": 150,
+      "ms_per_step": 4.155574,
+      "ms_per_step_stdev": 0.524175,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 30000
+    },
+    "hash|32|30000": {
+      "n_total": 30016,
+      "steps": 150,
+      "ms_per_step": 4.217035,
+      "ms_per_step_stdev": 0.48248,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 30000
+    },
+    "hash|1|32000": {
+      "n_total": 32109,
+      "steps": 150,
+      "ms_per_step": 43.19486,
+      "ms_per_step_stdev": 1.560438,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 32000
+    },
+    "hash|2|32000": {
+      "n_total": 32109,
+      "steps": 150,
+      "ms_per_step": 12.299378,
+      "ms_per_step_stdev": 1.771902,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 32000
+    },
+    "hash|4|32000": {
+      "n_total": 32109,
+      "steps": 150,
+      "ms_per_step": 6.751791,
+      "ms_per_step_stdev": 0.49538,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 32000
+    },
+    "hash|8|32000": {
+      "n_total": 32109,
+      "steps": 150,
+      "ms_per_step": 4.864823,
+      "ms_per_step_stdev": 0.488695,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 32000
+    },
+    "hash|16|32000": {
+      "n_total": 32109,
+      "steps": 150,
+      "ms_per_step": 4.776853,
+      "ms_per_step_stdev": 0.363773,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 32000
+    },
+    "hash|24|32000": {
+      "n_total": 32109,
+      "steps": 150,
+      "ms_per_step": 4.613635,
+      "ms_per_step_stdev": 0.86607,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 32000
+    },
+    "hash|32|32000": {
+      "n_total": 32109,
+      "steps": 150,
+      "ms_per_step": 4.248729,
+      "ms_per_step_stdev": 0.702468,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 32000
+    },
+    "hash|1|34000": {
+      "n_total": 34034,
+      "steps": 150,
+      "ms_per_step": 45.640889,
+      "ms_per_step_stdev": 6.767832,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 34000
+    },
+    "hash|2|34000": {
+      "n_total": 34034,
+      "steps": 150,
+      "ms_per_step": 14.173147,
+      "ms_per_step_stdev": 2.606752,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 34000
+    },
+    "hash|4|34000": {
+      "n_total": 34034,
+      "steps": 150,
+      "ms_per_step": 7.164634,
+      "ms_per_step_stdev": 0.606469,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 34000
+    },
+    "hash|8|34000": {
+      "n_total": 34034,
+      "steps": 150,
+      "ms_per_step": 4.975213,
+      "ms_per_step_stdev": 0.409913,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 34000
+    },
+    "hash|16|34000": {
+      "n_total": 34034,
+      "steps": 150,
+      "ms_per_step": 4.755861,
+      "ms_per_step_stdev": 0.154717,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 34000
+    },
+    "hash|24|34000": {
+      "n_total": 34034,
+      "steps": 150,
+      "ms_per_step": 4.295691,
+      "ms_per_step_stdev": 0.259009,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 34000
+    },
+    "hash|32|34000": {
+      "n_total": 34034,
+      "steps": 150,
+      "ms_per_step": 4.349535,
+      "ms_per_step_stdev": 0.514111,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 34000
+    },
+    "hash|1|36000": {
+      "n_total": 36015,
+      "steps": 150,
+      "ms_per_step": 43.196887,
+      "ms_per_step_stdev": 9.430526,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 36000
+    },
+    "hash|2|36000": {
+      "n_total": 36015,
+      "steps": 150,
+      "ms_per_step": 14.068526,
+      "ms_per_step_stdev": 2.694509,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 36000
+    },
+    "hash|4|36000": {
+      "n_total": 36015,
+      "steps": 150,
+      "ms_per_step": 7.716591,
+      "ms_per_step_stdev": 0.223731,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 36000
+    },
+    "hash|8|36000": {
+      "n_total": 36015,
+      "steps": 150,
+      "ms_per_step": 5.561623,
+      "ms_per_step_stdev": 0.438233,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 36000
+    },
+    "hash|16|36000": {
+      "n_total": 36015,
+      "steps": 150,
+      "ms_per_step": 4.965386,
+      "ms_per_step_stdev": 0.188682,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 36000
+    },
+    "hash|24|36000": {
+      "n_total": 36015,
+      "steps": 150,
+      "ms_per_step": 4.738556,
+      "ms_per_step_stdev": 0.497161,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 36000
+    },
+    "hash|32|36000": {
+      "n_total": 36015,
+      "steps": 150,
+      "ms_per_step": 4.848411,
+      "ms_per_step_stdev": 0.273067,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 36000
+    },
+    "hash|1|38000": {
+      "n_total": 38052,
+      "steps": 150,
+      "ms_per_step": 30.103295,
+      "ms_per_step_stdev": 4.545064,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 38000
+    },
+    "hash|2|38000": {
+      "n_total": 38052,
+      "steps": 150,
+      "ms_per_step": 13.749991,
+      "ms_per_step_stdev": 0.400933,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 38000
+    },
+    "hash|4|38000": {
+      "n_total": 38052,
+      "steps": 150,
+      "ms_per_step": 7.60433,
+      "ms_per_step_stdev": 0.15667,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 38000
+    },
+    "hash|8|38000": {
+      "n_total": 38052,
+      "steps": 150,
+      "ms_per_step": 5.927562,
+      "ms_per_step_stdev": 0.2801,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 38000
+    },
+    "hash|16|38000": {
+      "n_total": 38052,
+      "steps": 150,
+      "ms_per_step": 5.109957,
+      "ms_per_step_stdev": 0.192461,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 38000
+    },
+    "hash|24|38000": {
+      "n_total": 38052,
+      "steps": 150,
+      "ms_per_step": 4.566311,
+      "ms_per_step_stdev": 0.327803,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 38000
+    },
+    "hash|32|38000": {
+      "n_total": 38052,
+      "steps": 150,
+      "ms_per_step": 4.691805,
+      "ms_per_step_stdev": 0.593073,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 38000
+    },
+    "hash|1|40000": {
+      "n_total": 39990,
+      "steps": 150,
+      "ms_per_step": 49.161985,
+      "ms_per_step_stdev": 7.002993,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 40000
+    },
+    "hash|2|40000": {
+      "n_total": 39990,
+      "steps": 150,
+      "ms_per_step": 15.220267,
+      "ms_per_step_stdev": 1.498402,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 40000
+    },
+    "hash|4|40000": {
+      "n_total": 39990,
+      "steps": 150,
+      "ms_per_step": 8.634181,
+      "ms_per_step_stdev": 0.977842,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 40000
+    },
+    "hash|8|40000": {
+      "n_total": 39990,
+      "steps": 150,
+      "ms_per_step": 8.653837,
+      "ms_per_step_stdev": 0.908133,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 40000
+    },
+    "hash|16|40000": {
+      "n_total": 39990,
+      "steps": 150,
+      "ms_per_step": 6.801393,
+      "ms_per_step_stdev": 0.587719,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 40000
+    },
+    "hash|24|40000": {
+      "n_total": 39990,
+      "steps": 150,
+      "ms_per_step": 4.905884,
+      "ms_per_step_stdev": 0.931233,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 40000
+    },
+    "hash|32|40000": {
+      "n_total": 39990,
+      "steps": 150,
+      "ms_per_step": 4.533188,
+      "ms_per_step_stdev": 0.909574,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 40000
+    },
+    "hash|1|42000": {
+      "n_total": 42135,
+      "steps": 150,
+      "ms_per_step": 47.99531,
+      "ms_per_step_stdev": 9.53025,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 42000
+    },
+    "hash|2|42000": {
+      "n_total": 42135,
+      "steps": 150,
+      "ms_per_step": 15.647089,
+      "ms_per_step_stdev": 1.821169,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 42000
+    },
+    "hash|4|42000": {
+      "n_total": 42135,
+      "steps": 150,
+      "ms_per_step": 8.653751,
+      "ms_per_step_stdev": 1.189483,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 42000
+    },
+    "hash|8|42000": {
+      "n_total": 42135,
+      "steps": 150,
+      "ms_per_step": 6.448613,
+      "ms_per_step_stdev": 1.28689,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 42000
+    },
+    "hash|16|42000": {
+      "n_total": 42135,
+      "steps": 150,
+      "ms_per_step": 5.41008,
+      "ms_per_step_stdev": 0.242127,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 42000
+    },
+    "hash|24|42000": {
+      "n_total": 42135,
+      "steps": 150,
+      "ms_per_step": 4.904077,
+      "ms_per_step_stdev": 0.286196,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 42000
+    },
+    "hash|32|42000": {
+      "n_total": 42135,
+      "steps": 150,
+      "ms_per_step": 5.217632,
+      "ms_per_step_stdev": 1.016609,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 42000
+    },
+    "hash|1|44000": {
+      "n_total": 44173,
+      "steps": 150,
+      "ms_per_step": 34.035243,
+      "ms_per_step_stdev": 9.698495,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 44000
+    },
+    "hash|2|44000": {
+      "n_total": 44173,
+      "steps": 150,
+      "ms_per_step": 16.363778,
+      "ms_per_step_stdev": 0.961652,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 44000
+    },
+    "hash|4|44000": {
+      "n_total": 44173,
+      "steps": 150,
+      "ms_per_step": 9.647001,
+      "ms_per_step_stdev": 0.621999,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 44000
+    },
+    "hash|8|44000": {
+      "n_total": 44173,
+      "steps": 150,
+      "ms_per_step": 7.195652,
+      "ms_per_step_stdev": 0.484651,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 44000
+    },
+    "hash|16|44000": {
+      "n_total": 44173,
+      "steps": 150,
+      "ms_per_step": 5.977842,
+      "ms_per_step_stdev": 0.167356,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 44000
+    },
+    "hash|24|44000": {
+      "n_total": 44173,
+      "steps": 150,
+      "ms_per_step": 4.846238,
+      "ms_per_step_stdev": 0.733301,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 44000
+    },
+    "hash|32|44000": {
+      "n_total": 44173,
+      "steps": 150,
+      "ms_per_step": 5.692345,
+      "ms_per_step_stdev": 0.73044,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 44000
+    },
+    "hash|1|46000": {
+      "n_total": 45982,
+      "steps": 150,
+      "ms_per_step": 65.354691,
+      "ms_per_step_stdev": 14.89744,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 46000
+    },
+    "hash|2|46000": {
+      "n_total": 45982,
+      "steps": 150,
+      "ms_per_step": 17.469879,
+      "ms_per_step_stdev": 2.365727,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 46000
+    },
+    "hash|4|46000": {
+      "n_total": 45982,
+      "steps": 150,
+      "ms_per_step": 9.187051,
+      "ms_per_step_stdev": 0.366163,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 46000
+    },
+    "hash|8|46000": {
+      "n_total": 45982,
+      "steps": 150,
+      "ms_per_step": 6.098795,
+      "ms_per_step_stdev": 0.478105,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 46000
+    },
+    "hash|16|46000": {
+      "n_total": 45982,
+      "steps": 150,
+      "ms_per_step": 3.920945,
+      "ms_per_step_stdev": 0.228494,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 46000
+    },
+    "hash|24|46000": {
+      "n_total": 45982,
+      "steps": 150,
+      "ms_per_step": 4.543346,
+      "ms_per_step_stdev": 0.23444,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 46000
+    },
+    "hash|32|46000": {
+      "n_total": 45982,
+      "steps": 150,
+      "ms_per_step": 3.939553,
+      "ms_per_step_stdev": 0.163617,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 46000
+    },
+    "hash|1|48000": {
+      "n_total": 48110,
+      "steps": 150,
+      "ms_per_step": 49.042825,
+      "ms_per_step_stdev": 36.583479,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 48000
+    },
+    "hash|2|48000": {
+      "n_total": 48110,
+      "steps": 150,
+      "ms_per_step": 16.945317,
+      "ms_per_step_stdev": 0.460401,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 48000
+    },
+    "hash|4|48000": {
+      "n_total": 48110,
+      "steps": 150,
+      "ms_per_step": 9.508024,
+      "ms_per_step_stdev": 0.356451,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 48000
+    },
+    "hash|8|48000": {
+      "n_total": 48110,
+      "steps": 150,
+      "ms_per_step": 6.662497,
+      "ms_per_step_stdev": 0.48161,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 48000
+    },
+    "hash|16|48000": {
+      "n_total": 48110,
+      "steps": 150,
+      "ms_per_step": 4.288678,
+      "ms_per_step_stdev": 0.306815,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 48000
+    },
+    "hash|24|48000": {
+      "n_total": 48110,
+      "steps": 150,
+      "ms_per_step": 4.334564,
+      "ms_per_step_stdev": 0.18377,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 48000
+    },
+    "hash|32|48000": {
+      "n_total": 48110,
+      "steps": 150,
+      "ms_per_step": 4.087076,
+      "ms_per_step_stdev": 0.146883,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 48000
+    },
+    "hash|1|50000": {
+      "n_total": 49997,
+      "steps": 150,
+      "ms_per_step": 51.914337,
+      "ms_per_step_stdev": 2.788632,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 50000
+    },
+    "hash|2|50000": {
+      "n_total": 49997,
+      "steps": 150,
+      "ms_per_step": 26.702769,
+      "ms_per_step_stdev": 0.581509,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 50000
+    },
+    "hash|4|50000": {
+      "n_total": 49997,
+      "steps": 150,
+      "ms_per_step": 14.251691,
+      "ms_per_step_stdev": 0.438625,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 50000
+    },
+    "hash|8|50000": {
+      "n_total": 49997,
+      "steps": 150,
+      "ms_per_step": 6.203195,
+      "ms_per_step_stdev": 0.195522,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 50000
+    },
+    "hash|16|50000": {
+      "n_total": 49997,
+      "steps": 150,
+      "ms_per_step": 4.466387,
+      "ms_per_step_stdev": 0.377958,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 50000
+    },
+    "hash|24|50000": {
+      "n_total": 49997,
+      "steps": 150,
+      "ms_per_step": 4.60769,
+      "ms_per_step_stdev": 0.216175,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 50000
+    },
+    "hash|32|50000": {
+      "n_total": 49997,
+      "steps": 150,
+      "ms_per_step": 4.210081,
+      "ms_per_step_stdev": 0.178775,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 50000
+    },
+    "hash|1|52000": {
+      "n_total": 51744,
+      "steps": 150,
+      "ms_per_step": 37.264309,
+      "ms_per_step_stdev": 4.358753,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 52000
+    },
+    "hash|2|52000": {
+      "n_total": 51744,
+      "steps": 150,
+      "ms_per_step": 17.518637,
+      "ms_per_step_stdev": 0.490854,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 52000
+    },
+    "hash|4|52000": {
+      "n_total": 51744,
+      "steps": 150,
+      "ms_per_step": 13.892784,
+      "ms_per_step_stdev": 0.363349,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 52000
+    },
+    "hash|8|52000": {
+      "n_total": 51744,
+      "steps": 150,
+      "ms_per_step": 6.509997,
+      "ms_per_step_stdev": 0.556791,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 52000
+    },
+    "hash|16|52000": {
+      "n_total": 51744,
+      "steps": 150,
+      "ms_per_step": 5.241155,
+      "ms_per_step_stdev": 0.223128,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 52000
+    },
+    "hash|24|52000": {
+      "n_total": 51744,
+      "steps": 150,
+      "ms_per_step": 4.542374,
+      "ms_per_step_stdev": 0.252672,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 52000
+    },
+    "hash|32|52000": {
+      "n_total": 51744,
+      "steps": 150,
+      "ms_per_step": 4.319232,
+      "ms_per_step_stdev": 0.208784,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 52000
+    },
+    "hash|1|54000": {
+      "n_total": 54000,
+      "steps": 150,
+      "ms_per_step": 37.140383,
+      "ms_per_step_stdev": 1.255634,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 54000
+    },
+    "hash|2|54000": {
+      "n_total": 54000,
+      "steps": 150,
+      "ms_per_step": 19.252411,
+      "ms_per_step_stdev": 1.444458,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 54000
+    },
+    "hash|4|54000": {
+      "n_total": 54000,
+      "steps": 150,
+      "ms_per_step": 10.589574,
+      "ms_per_step_stdev": 0.702274,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 54000
+    },
+    "hash|8|54000": {
+      "n_total": 54000,
+      "steps": 150,
+      "ms_per_step": 8.107237,
+      "ms_per_step_stdev": 0.325004,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 54000
+    },
+    "hash|16|54000": {
+      "n_total": 54000,
+      "steps": 150,
+      "ms_per_step": 4.464497,
+      "ms_per_step_stdev": 0.459197,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 54000
+    },
+    "hash|24|54000": {
+      "n_total": 54000,
+      "steps": 150,
+      "ms_per_step": 4.691772,
+      "ms_per_step_stdev": 0.2046,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 54000
+    },
+    "hash|32|54000": {
+      "n_total": 54000,
+      "steps": 150,
+      "ms_per_step": 4.396558,
+      "ms_per_step_stdev": 0.290545,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 54000
+    },
+    "hash|1|56000": {
+      "n_total": 56304,
+      "steps": 150,
+      "ms_per_step": 44.435339,
+      "ms_per_step_stdev": 4.881218,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 56000
+    },
+    "hash|2|56000": {
+      "n_total": 56304,
+      "steps": 150,
+      "ms_per_step": 20.135093,
+      "ms_per_step_stdev": 1.338198,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 56000
+    },
+    "hash|4|56000": {
+      "n_total": 56304,
+      "steps": 150,
+      "ms_per_step": 11.187305,
+      "ms_per_step_stdev": 0.36701,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 56000
+    },
+    "hash|8|56000": {
+      "n_total": 56304,
+      "steps": 150,
+      "ms_per_step": 7.027453,
+      "ms_per_step_stdev": 0.299166,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 56000
+    },
+    "hash|16|56000": {
+      "n_total": 56304,
+      "steps": 150,
+      "ms_per_step": 6.147927,
+      "ms_per_step_stdev": 0.439676,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 56000
+    },
+    "hash|24|56000": {
+      "n_total": 56304,
+      "steps": 150,
+      "ms_per_step": 5.016313,
+      "ms_per_step_stdev": 0.382548,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 56000
+    },
+    "hash|32|56000": {
+      "n_total": 56304,
+      "steps": 150,
+      "ms_per_step": 4.634977,
+      "ms_per_step_stdev": 0.171031,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 56000
+    },
+    "hash|1|58000": {
+      "n_total": 58157,
+      "steps": 150,
+      "ms_per_step": 48.130084,
+      "ms_per_step_stdev": 4.804871,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 58000
+    },
+    "hash|2|58000": {
+      "n_total": 58157,
+      "steps": 150,
+      "ms_per_step": 21.060095,
+      "ms_per_step_stdev": 1.808015,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 58000
+    },
+    "hash|4|58000": {
+      "n_total": 58157,
+      "steps": 150,
+      "ms_per_step": 11.412745,
+      "ms_per_step_stdev": 0.503121,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 58000
+    },
+    "hash|8|58000": {
+      "n_total": 58157,
+      "steps": 150,
+      "ms_per_step": 7.317421,
+      "ms_per_step_stdev": 0.378922,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 58000
+    },
+    "hash|16|58000": {
+      "n_total": 58157,
+      "steps": 150,
+      "ms_per_step": 5.237059,
+      "ms_per_step_stdev": 0.723897,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 58000
+    },
+    "hash|24|58000": {
+      "n_total": 58157,
+      "steps": 150,
+      "ms_per_step": 5.376419,
+      "ms_per_step_stdev": 0.394989,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 58000
+    },
+    "hash|32|58000": {
+      "n_total": 58157,
+      "steps": 150,
+      "ms_per_step": 5.413412,
+      "ms_per_step_stdev": 0.33483,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 58000
+    },
+    "hash|1|60000": {
+      "n_total": 60040,
+      "steps": 150,
+      "ms_per_step": 44.097901,
+      "ms_per_step_stdev": 4.334703,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 60000
+    },
+    "hash|2|60000": {
+      "n_total": 60040,
+      "steps": 150,
+      "ms_per_step": 24.823083,
+      "ms_per_step_stdev": 2.506888,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 60000
+    },
+    "hash|4|60000": {
+      "n_total": 60040,
+      "steps": 150,
+      "ms_per_step": 11.778854,
+      "ms_per_step_stdev": 0.624185,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 60000
+    },
+    "hash|8|60000": {
+      "n_total": 60040,
+      "steps": 150,
+      "ms_per_step": 9.771094,
+      "ms_per_step_stdev": 0.330152,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 60000
+    },
+    "hash|16|60000": {
+      "n_total": 60040,
+      "steps": 150,
+      "ms_per_step": 5.132191,
+      "ms_per_step_stdev": 0.361778,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 60000
+    },
+    "hash|24|60000": {
+      "n_total": 60040,
+      "steps": 150,
+      "ms_per_step": 6.186205,
+      "ms_per_step_stdev": 0.531639,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 60000
+    },
+    "hash|32|60000": {
+      "n_total": 60040,
+      "steps": 150,
+      "ms_per_step": 4.857665,
+      "ms_per_step_stdev": 0.446187,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 60000
+    },
+    "hash|1|62000": {
+      "n_total": 61953,
+      "steps": 150,
+      "ms_per_step": 43.165525,
+      "ms_per_step_stdev": 5.78725,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 62000
+    },
+    "hash|2|62000": {
+      "n_total": 61953,
+      "steps": 150,
+      "ms_per_step": 29.564995,
+      "ms_per_step_stdev": 1.081527,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 62000
+    },
+    "hash|4|62000": {
+      "n_total": 61953,
+      "steps": 150,
+      "ms_per_step": 17.282531,
+      "ms_per_step_stdev": 0.306422,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 62000
+    },
+    "hash|8|62000": {
+      "n_total": 61953,
+      "steps": 150,
+      "ms_per_step": 7.468142,
+      "ms_per_step_stdev": 0.487092,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 62000
+    },
+    "hash|16|62000": {
+      "n_total": 61953,
+      "steps": 150,
+      "ms_per_step": 6.941824,
+      "ms_per_step_stdev": 0.3193,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 62000
+    },
+    "hash|24|62000": {
+      "n_total": 61953,
+      "steps": 150,
+      "ms_per_step": 5.311003,
+      "ms_per_step_stdev": 0.476912,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 62000
+    },
+    "hash|32|62000": {
+      "n_total": 61953,
+      "steps": 150,
+      "ms_per_step": 6.355033,
+      "ms_per_step_stdev": 0.289135,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 62000
+    },
+    "hash|1|64000": {
+      "n_total": 64092,
+      "steps": 150,
+      "ms_per_step": 62.256254,
+      "ms_per_step_stdev": 0.879607,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 64000
+    },
+    "hash|2|64000": {
+      "n_total": 64092,
+      "steps": 150,
+      "ms_per_step": 32.8865,
+      "ms_per_step_stdev": 0.535637,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 64000
+    },
+    "hash|4|64000": {
+      "n_total": 64092,
+      "steps": 150,
+      "ms_per_step": 17.941283,
+      "ms_per_step_stdev": 0.293669,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 64000
+    },
+    "hash|8|64000": {
+      "n_total": 64092,
+      "steps": 150,
+      "ms_per_step": 7.792471,
+      "ms_per_step_stdev": 0.244088,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 64000
+    },
+    "hash|16|64000": {
+      "n_total": 64092,
+      "steps": 150,
+      "ms_per_step": 6.794126,
+      "ms_per_step_stdev": 0.404377,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 64000
+    },
+    "hash|24|64000": {
+      "n_total": 64092,
+      "steps": 150,
+      "ms_per_step": 5.491435,
+      "ms_per_step_stdev": 0.2923,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 64000
+    },
+    "hash|32|64000": {
+      "n_total": 64092,
+      "steps": 150,
+      "ms_per_step": 5.148732,
+      "ms_per_step_stdev": 0.2734,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 64000
+    },
+    "hash|1|66000": {
+      "n_total": 66068,
+      "steps": 150,
+      "ms_per_step": 43.994918,
+      "ms_per_step_stdev": 1.633857,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 66000
+    },
+    "hash|2|66000": {
+      "n_total": 66068,
+      "steps": 150,
+      "ms_per_step": 22.595655,
+      "ms_per_step_stdev": 0.837173,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 66000
+    },
+    "hash|4|66000": {
+      "n_total": 66068,
+      "steps": 150,
+      "ms_per_step": 12.665061,
+      "ms_per_step_stdev": 0.459656,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 66000
+    },
+    "hash|8|66000": {
+      "n_total": 66068,
+      "steps": 150,
+      "ms_per_step": 7.804858,
+      "ms_per_step_stdev": 0.372931,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 66000
+    },
+    "hash|16|66000": {
+      "n_total": 66068,
+      "steps": 150,
+      "ms_per_step": 5.732347,
+      "ms_per_step_stdev": 0.351489,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 66000
+    },
+    "hash|24|66000": {
+      "n_total": 66068,
+      "steps": 150,
+      "ms_per_step": 5.577397,
+      "ms_per_step_stdev": 0.21497,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 66000
+    },
+    "hash|32|66000": {
+      "n_total": 66068,
+      "steps": 150,
+      "ms_per_step": 5.384099,
+      "ms_per_step_stdev": 0.287679,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 66000
+    },
+    "hash|1|68000": {
+      "n_total": 68074,
+      "steps": 150,
+      "ms_per_step": 47.116113,
+      "ms_per_step_stdev": 0.855188,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 68000
+    },
+    "hash|2|68000": {
+      "n_total": 68074,
+      "steps": 150,
+      "ms_per_step": 25.872229,
+      "ms_per_step_stdev": 2.94893,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 68000
+    },
+    "hash|4|68000": {
+      "n_total": 68074,
+      "steps": 150,
+      "ms_per_step": 13.174618,
+      "ms_per_step_stdev": 0.685372,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 68000
+    },
+    "hash|8|68000": {
+      "n_total": 68074,
+      "steps": 150,
+      "ms_per_step": 8.270539,
+      "ms_per_step_stdev": 0.370797,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 68000
+    },
+    "hash|16|68000": {
+      "n_total": 68074,
+      "steps": 150,
+      "ms_per_step": 5.966827,
+      "ms_per_step_stdev": 0.531095,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 68000
+    },
+    "hash|24|68000": {
+      "n_total": 68074,
+      "steps": 150,
+      "ms_per_step": 5.52344,
+      "ms_per_step_stdev": 0.271801,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 68000
+    },
+    "hash|32|68000": {
+      "n_total": 68074,
+      "steps": 150,
+      "ms_per_step": 5.416839,
+      "ms_per_step_stdev": 0.229171,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 68000
+    },
+    "hash|1|70000": {
+      "n_total": 70110,
+      "steps": 150,
+      "ms_per_step": 51.497734,
+      "ms_per_step_stdev": 5.678747,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 70000
+    },
+    "hash|2|70000": {
+      "n_total": 70110,
+      "steps": 150,
+      "ms_per_step": 25.223117,
+      "ms_per_step_stdev": 3.382694,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 70000
+    },
+    "hash|4|70000": {
+      "n_total": 70110,
+      "steps": 150,
+      "ms_per_step": 13.142709,
+      "ms_per_step_stdev": 0.323182,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 70000
+    },
+    "hash|8|70000": {
+      "n_total": 70110,
+      "steps": 150,
+      "ms_per_step": 8.119072,
+      "ms_per_step_stdev": 0.354489,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 70000
+    },
+    "hash|16|70000": {
+      "n_total": 70110,
+      "steps": 150,
+      "ms_per_step": 5.868649,
+      "ms_per_step_stdev": 0.385926,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 70000
+    },
+    "hash|24|70000": {
+      "n_total": 70110,
+      "steps": 150,
+      "ms_per_step": 5.711584,
+      "ms_per_step_stdev": 0.281445,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 70000
+    },
+    "hash|32|70000": {
+      "n_total": 70110,
+      "steps": 150,
+      "ms_per_step": 5.594398,
+      "ms_per_step_stdev": 0.357814,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 70000
+    },
+    "hash|1|72000": {
+      "n_total": 71968,
+      "steps": 150,
+      "ms_per_step": 53.325473,
+      "ms_per_step_stdev": 5.50373,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 72000
+    },
+    "hash|2|72000": {
+      "n_total": 71968,
+      "steps": 150,
+      "ms_per_step": 25.586692,
+      "ms_per_step_stdev": 0.794251,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 72000
+    },
+    "hash|4|72000": {
+      "n_total": 71968,
+      "steps": 150,
+      "ms_per_step": 14.366354,
+      "ms_per_step_stdev": 0.804682,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 72000
+    },
+    "hash|8|72000": {
+      "n_total": 71968,
+      "steps": 150,
+      "ms_per_step": 9.223659,
+      "ms_per_step_stdev": 0.327788,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 72000
+    },
+    "hash|16|72000": {
+      "n_total": 71968,
+      "steps": 150,
+      "ms_per_step": 6.846502,
+      "ms_per_step_stdev": 0.396971,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 72000
+    },
+    "hash|24|72000": {
+      "n_total": 71968,
+      "steps": 150,
+      "ms_per_step": 6.150171,
+      "ms_per_step_stdev": 0.220833,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 72000
+    },
+    "hash|32|72000": {
+      "n_total": 71968,
+      "steps": 150,
+      "ms_per_step": 5.858222,
+      "ms_per_step_stdev": 0.318089,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 72000
+    },
+    "hash|1|74000": {
+      "n_total": 74061,
+      "steps": 150,
+      "ms_per_step": 50.181727,
+      "ms_per_step_stdev": 1.476385,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 74000
+    },
+    "hash|2|74000": {
+      "n_total": 74061,
+      "steps": 150,
+      "ms_per_step": 26.013288,
+      "ms_per_step_stdev": 0.763482,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 74000
+    },
+    "hash|4|74000": {
+      "n_total": 74061,
+      "steps": 150,
+      "ms_per_step": 14.42521,
+      "ms_per_step_stdev": 0.760361,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 74000
+    },
+    "hash|8|74000": {
+      "n_total": 74061,
+      "steps": 150,
+      "ms_per_step": 9.318037,
+      "ms_per_step_stdev": 0.454146,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 74000
+    },
+    "hash|16|74000": {
+      "n_total": 74061,
+      "steps": 150,
+      "ms_per_step": 6.49986,
+      "ms_per_step_stdev": 0.320997,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 74000
+    },
+    "hash|24|74000": {
+      "n_total": 74061,
+      "steps": 150,
+      "ms_per_step": 6.293355,
+      "ms_per_step_stdev": 0.200199,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 74000
+    },
+    "hash|32|74000": {
+      "n_total": 74061,
+      "steps": 150,
+      "ms_per_step": 6.076743,
+      "ms_per_step_stdev": 1.037455,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 74000
+    },
+    "hash|1|76000": {
+      "n_total": 76184,
+      "steps": 150,
+      "ms_per_step": 58.247751,
+      "ms_per_step_stdev": 5.258976,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 76000
+    },
+    "hash|2|76000": {
+      "n_total": 76184,
+      "steps": 150,
+      "ms_per_step": 27.948557,
+      "ms_per_step_stdev": 3.443877,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 76000
+    },
+    "hash|4|76000": {
+      "n_total": 76184,
+      "steps": 150,
+      "ms_per_step": 14.824042,
+      "ms_per_step_stdev": 0.812358,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 76000
+    },
+    "hash|8|76000": {
+      "n_total": 76184,
+      "steps": 150,
+      "ms_per_step": 9.338922,
+      "ms_per_step_stdev": 0.689355,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 76000
+    },
+    "hash|16|76000": {
+      "n_total": 76184,
+      "steps": 150,
+      "ms_per_step": 7.0383,
+      "ms_per_step_stdev": 0.366801,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 76000
+    },
+    "hash|24|76000": {
+      "n_total": 76184,
+      "steps": 150,
+      "ms_per_step": 6.571861,
+      "ms_per_step_stdev": 0.478049,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 76000
+    },
+    "hash|32|76000": {
+      "n_total": 76184,
+      "steps": 150,
+      "ms_per_step": 6.139846,
+      "ms_per_step_stdev": 0.44526,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 76000
+    },
+    "hash|1|78000": {
+      "n_total": 78337,
+      "steps": 150,
+      "ms_per_step": 59.366029,
+      "ms_per_step_stdev": 6.270658,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 78000
+    },
+    "hash|2|78000": {
+      "n_total": 78337,
+      "steps": 150,
+      "ms_per_step": 32.617213,
+      "ms_per_step_stdev": 3.894853,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 78000
+    },
+    "hash|4|78000": {
+      "n_total": 78337,
+      "steps": 150,
+      "ms_per_step": 14.958963,
+      "ms_per_step_stdev": 0.467285,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 78000
+    },
+    "hash|8|78000": {
+      "n_total": 78337,
+      "steps": 150,
+      "ms_per_step": 10.120453,
+      "ms_per_step_stdev": 0.84294,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 78000
+    },
+    "hash|16|78000": {
+      "n_total": 78337,
+      "steps": 150,
+      "ms_per_step": 6.633989,
+      "ms_per_step_stdev": 0.256492,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 78000
+    },
+    "hash|24|78000": {
+      "n_total": 78337,
+      "steps": 150,
+      "ms_per_step": 6.837546,
+      "ms_per_step_stdev": 0.28929,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 78000
+    },
+    "hash|32|78000": {
+      "n_total": 78337,
+      "steps": 150,
+      "ms_per_step": 6.094308,
+      "ms_per_step_stdev": 0.498189,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 78000
+    },
+    "hash|1|80000": {
+      "n_total": 79935,
+      "steps": 150,
+      "ms_per_step": 54.742797,
+      "ms_per_step_stdev": 1.334444,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 80000
+    },
+    "hash|2|80000": {
+      "n_total": 79935,
+      "steps": 150,
+      "ms_per_step": 28.189449,
+      "ms_per_step_stdev": 1.002371,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 80000
+    },
+    "hash|4|80000": {
+      "n_total": 79935,
+      "steps": 150,
+      "ms_per_step": 15.483823,
+      "ms_per_step_stdev": 0.638154,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 80000
+    },
+    "hash|8|80000": {
+      "n_total": 79935,
+      "steps": 150,
+      "ms_per_step": 9.990778,
+      "ms_per_step_stdev": 0.431848,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 80000
+    },
+    "hash|16|80000": {
+      "n_total": 79935,
+      "steps": 150,
+      "ms_per_step": 6.784815,
+      "ms_per_step_stdev": 0.423936,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 80000
+    },
+    "hash|24|80000": {
+      "n_total": 79935,
+      "steps": 150,
+      "ms_per_step": 6.374772,
+      "ms_per_step_stdev": 0.263402,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 80000
+    },
+    "hash|32|80000": {
+      "n_total": 79935,
+      "steps": 150,
+      "ms_per_step": 6.333991,
+      "ms_per_step_stdev": 0.244333,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 80000
+    },
+    "hash|1|82000": {
+      "n_total": 82140,
+      "steps": 150,
+      "ms_per_step": 59.799345,
+      "ms_per_step_stdev": 6.245021,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 82000
+    },
+    "hash|2|82000": {
+      "n_total": 82140,
+      "steps": 150,
+      "ms_per_step": 30.080481,
+      "ms_per_step_stdev": 4.255701,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 82000
+    },
+    "hash|4|82000": {
+      "n_total": 82140,
+      "steps": 150,
+      "ms_per_step": 16.620169,
+      "ms_per_step_stdev": 0.926637,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 82000
+    },
+    "hash|8|82000": {
+      "n_total": 82140,
+      "steps": 150,
+      "ms_per_step": 10.360625,
+      "ms_per_step_stdev": 0.468438,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 82000
+    },
+    "hash|16|82000": {
+      "n_total": 82140,
+      "steps": 150,
+      "ms_per_step": 6.766211,
+      "ms_per_step_stdev": 0.13522,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 82000
+    },
+    "hash|24|82000": {
+      "n_total": 82140,
+      "steps": 150,
+      "ms_per_step": 6.539885,
+      "ms_per_step_stdev": 0.360639,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 82000
+    },
+    "hash|32|82000": {
+      "n_total": 82140,
+      "steps": 150,
+      "ms_per_step": 6.303925,
+      "ms_per_step_stdev": 0.183809,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 82000
+    },
+    "hash|1|84000": {
+      "n_total": 83776,
+      "steps": 150,
+      "ms_per_step": 62.491495,
+      "ms_per_step_stdev": 5.663508,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 84000
+    },
+    "hash|2|84000": {
+      "n_total": 83776,
+      "steps": 150,
+      "ms_per_step": 37.86767,
+      "ms_per_step_stdev": 3.921649,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 84000
+    },
+    "hash|4|84000": {
+      "n_total": 83776,
+      "steps": 150,
+      "ms_per_step": 16.105001,
+      "ms_per_step_stdev": 0.799284,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 84000
+    },
+    "hash|8|84000": {
+      "n_total": 83776,
+      "steps": 150,
+      "ms_per_step": 10.501128,
+      "ms_per_step_stdev": 0.649201,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 84000
+    },
+    "hash|16|84000": {
+      "n_total": 83776,
+      "steps": 150,
+      "ms_per_step": 6.976182,
+      "ms_per_step_stdev": 0.267367,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 84000
+    },
+    "hash|24|84000": {
+      "n_total": 83776,
+      "steps": 150,
+      "ms_per_step": 7.724236,
+      "ms_per_step_stdev": 0.430067,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 84000
+    },
+    "hash|32|84000": {
+      "n_total": 83776,
+      "steps": 150,
+      "ms_per_step": 6.287191,
+      "ms_per_step_stdev": 0.177044,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 84000
+    },
+    "hash|1|86000": {
+      "n_total": 86033,
+      "steps": 150,
+      "ms_per_step": 63.690886,
+      "ms_per_step_stdev": 7.637389,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 86000
+    },
+    "hash|2|86000": {
+      "n_total": 86033,
+      "steps": 150,
+      "ms_per_step": 33.669061,
+      "ms_per_step_stdev": 6.961442,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 86000
+    },
+    "hash|4|86000": {
+      "n_total": 86033,
+      "steps": 150,
+      "ms_per_step": 16.420506,
+      "ms_per_step_stdev": 1.101014,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 86000
+    },
+    "hash|8|86000": {
+      "n_total": 86033,
+      "steps": 150,
+      "ms_per_step": 10.790562,
+      "ms_per_step_stdev": 0.25674,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 86000
+    },
+    "hash|16|86000": {
+      "n_total": 86033,
+      "steps": 150,
+      "ms_per_step": 6.906539,
+      "ms_per_step_stdev": 0.635324,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 86000
+    },
+    "hash|24|86000": {
+      "n_total": 86033,
+      "steps": 150,
+      "ms_per_step": 7.693875,
+      "ms_per_step_stdev": 0.491918,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 86000
+    },
+    "hash|32|86000": {
+      "n_total": 86033,
+      "steps": 150,
+      "ms_per_step": 6.154491,
+      "ms_per_step_stdev": 0.321743,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 86000
+    },
+    "hash|1|88000": {
+      "n_total": 88090,
+      "steps": 150,
+      "ms_per_step": 66.855699,
+      "ms_per_step_stdev": 5.756817,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 88000
+    },
+    "hash|2|88000": {
+      "n_total": 88090,
+      "steps": 150,
+      "ms_per_step": 34.953145,
+      "ms_per_step_stdev": 6.49267,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 88000
+    },
+    "hash|4|88000": {
+      "n_total": 88090,
+      "steps": 150,
+      "ms_per_step": 17.311053,
+      "ms_per_step_stdev": 1.467904,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 88000
+    },
+    "hash|8|88000": {
+      "n_total": 88090,
+      "steps": 150,
+      "ms_per_step": 11.001052,
+      "ms_per_step_stdev": 0.481965,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 88000
+    },
+    "hash|16|88000": {
+      "n_total": 88090,
+      "steps": 150,
+      "ms_per_step": 7.139783,
+      "ms_per_step_stdev": 0.441301,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 88000
+    },
+    "hash|24|88000": {
+      "n_total": 88090,
+      "steps": 150,
+      "ms_per_step": 7.001275,
+      "ms_per_step_stdev": 0.180233,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 88000
+    },
+    "hash|32|88000": {
+      "n_total": 88090,
+      "steps": 150,
+      "ms_per_step": 6.523138,
+      "ms_per_step_stdev": 0.18564,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 88000
+    },
+    "hash|1|90000": {
+      "n_total": 89784,
+      "steps": 150,
+      "ms_per_step": 68.733055,
+      "ms_per_step_stdev": 6.671994,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 90000
+    },
+    "hash|2|90000": {
+      "n_total": 89784,
+      "steps": 150,
+      "ms_per_step": 34.808979,
+      "ms_per_step_stdev": 5.506143,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 90000
+    },
+    "hash|4|90000": {
+      "n_total": 89784,
+      "steps": 150,
+      "ms_per_step": 17.954911,
+      "ms_per_step_stdev": 2.355554,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 90000
+    },
+    "hash|8|90000": {
+      "n_total": 89784,
+      "steps": 150,
+      "ms_per_step": 11.500183,
+      "ms_per_step_stdev": 0.601349,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 90000
+    },
+    "hash|16|90000": {
+      "n_total": 89784,
+      "steps": 150,
+      "ms_per_step": 7.366609,
+      "ms_per_step_stdev": 0.404043,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 90000
+    },
+    "hash|24|90000": {
+      "n_total": 89784,
+      "steps": 150,
+      "ms_per_step": 7.170006,
+      "ms_per_step_stdev": 0.310676,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 90000
+    },
+    "hash|32|90000": {
+      "n_total": 89784,
+      "steps": 150,
+      "ms_per_step": 6.703469,
+      "ms_per_step_stdev": 0.233622,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 90000
+    },
+    "hash|1|92000": {
+      "n_total": 92120,
+      "steps": 150,
+      "ms_per_step": 68.038828,
+      "ms_per_step_stdev": 5.252456,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 92000
+    },
+    "hash|2|92000": {
+      "n_total": 92120,
+      "steps": 150,
+      "ms_per_step": 34.261345,
+      "ms_per_step_stdev": 4.00099,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 92000
+    },
+    "hash|4|92000": {
+      "n_total": 92120,
+      "steps": 150,
+      "ms_per_step": 17.396701,
+      "ms_per_step_stdev": 0.993006,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 92000
+    },
+    "hash|8|92000": {
+      "n_total": 92120,
+      "steps": 150,
+      "ms_per_step": 11.525611,
+      "ms_per_step_stdev": 0.415081,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 92000
+    },
+    "hash|16|92000": {
+      "n_total": 92120,
+      "steps": 150,
+      "ms_per_step": 7.241548,
+      "ms_per_step_stdev": 0.478714,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 92000
+    },
+    "hash|24|92000": {
+      "n_total": 92120,
+      "steps": 150,
+      "ms_per_step": 7.368538,
+      "ms_per_step_stdev": 0.445665,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 92000
+    },
+    "hash|32|92000": {
+      "n_total": 92120,
+      "steps": 150,
+      "ms_per_step": 6.797465,
+      "ms_per_step_stdev": 0.229492,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 92000
+    },
+    "hash|1|94000": {
+      "n_total": 94248,
+      "steps": 150,
+      "ms_per_step": 70.398103,
+      "ms_per_step_stdev": 3.645789,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 94000
+    },
+    "hash|2|94000": {
+      "n_total": 94248,
+      "steps": 150,
+      "ms_per_step": 32.733022,
+      "ms_per_step_stdev": 0.763698,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 94000
+    },
+    "hash|4|94000": {
+      "n_total": 94248,
+      "steps": 150,
+      "ms_per_step": 18.135607,
+      "ms_per_step_stdev": 0.828271,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 94000
+    },
+    "hash|8|94000": {
+      "n_total": 94248,
+      "steps": 150,
+      "ms_per_step": 11.090785,
+      "ms_per_step_stdev": 0.468939,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 94000
+    },
+    "hash|16|94000": {
+      "n_total": 94248,
+      "steps": 150,
+      "ms_per_step": 7.424706,
+      "ms_per_step_stdev": 0.417757,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 94000
+    },
+    "hash|24|94000": {
+      "n_total": 94248,
+      "steps": 150,
+      "ms_per_step": 7.288495,
+      "ms_per_step_stdev": 0.281737,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 94000
+    },
+    "hash|32|94000": {
+      "n_total": 94248,
+      "steps": 150,
+      "ms_per_step": 7.048637,
+      "ms_per_step_stdev": 0.20324,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 94000
+    },
+    "hash|1|96000": {
+      "n_total": 96000,
+      "steps": 150,
+      "ms_per_step": 63.758585,
+      "ms_per_step_stdev": 1.351365,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 96000
+    },
+    "hash|2|96000": {
+      "n_total": 96000,
+      "steps": 150,
+      "ms_per_step": 33.41467,
+      "ms_per_step_stdev": 0.871841,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 96000
+    },
+    "hash|4|96000": {
+      "n_total": 96000,
+      "steps": 150,
+      "ms_per_step": 18.406467,
+      "ms_per_step_stdev": 0.604095,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 96000
+    },
+    "hash|8|96000": {
+      "n_total": 96000,
+      "steps": 150,
+      "ms_per_step": 11.293663,
+      "ms_per_step_stdev": 0.485098,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 96000
+    },
+    "hash|16|96000": {
+      "n_total": 96000,
+      "steps": 150,
+      "ms_per_step": 7.4144,
+      "ms_per_step_stdev": 0.236766,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 96000
+    },
+    "hash|24|96000": {
+      "n_total": 96000,
+      "steps": 150,
+      "ms_per_step": 7.624485,
+      "ms_per_step_stdev": 0.657801,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 96000
+    },
+    "hash|32|96000": {
+      "n_total": 96000,
+      "steps": 150,
+      "ms_per_step": 7.127733,
+      "ms_per_step_stdev": 0.327453,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 96000
+    },
+    "hash|1|98000": {
+      "n_total": 97768,
+      "steps": 150,
+      "ms_per_step": 67.349384,
+      "ms_per_step_stdev": 1.537922,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 98000
+    },
+    "hash|2|98000": {
+      "n_total": 97768,
+      "steps": 150,
+      "ms_per_step": 34.309509,
+      "ms_per_step_stdev": 0.829625,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 98000
+    },
+    "hash|4|98000": {
+      "n_total": 97768,
+      "steps": 150,
+      "ms_per_step": 21.333796,
+      "ms_per_step_stdev": 0.612691,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 98000
+    },
+    "hash|8|98000": {
+      "n_total": 97768,
+      "steps": 150,
+      "ms_per_step": 11.694255,
+      "ms_per_step_stdev": 0.494585,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 98000
+    },
+    "hash|16|98000": {
+      "n_total": 97768,
+      "steps": 150,
+      "ms_per_step": 7.844591,
+      "ms_per_step_stdev": 0.507123,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 98000
+    },
+    "hash|24|98000": {
+      "n_total": 97768,
+      "steps": 150,
+      "ms_per_step": 7.660464,
+      "ms_per_step_stdev": 0.523662,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 98000
+    },
+    "hash|32|98000": {
+      "n_total": 97768,
+      "steps": 150,
+      "ms_per_step": 7.417346,
+      "ms_per_step_stdev": 0.257257,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 98000
+    },
+    "hash|1|100000": {
+      "n_total": 99960,
+      "steps": 150,
+      "ms_per_step": 67.435141,
+      "ms_per_step_stdev": 2.332845,
+      "variant": "hash",
+      "threads": 1,
+      "particles_requested": 100000
+    },
+    "hash|2|100000": {
+      "n_total": 99960,
+      "steps": 150,
+      "ms_per_step": 35.675439,
+      "ms_per_step_stdev": 0.877804,
+      "variant": "hash",
+      "threads": 2,
+      "particles_requested": 100000
+    },
+    "hash|4|100000": {
+      "n_total": 99960,
+      "steps": 150,
+      "ms_per_step": 19.209767,
+      "ms_per_step_stdev": 0.863471,
+      "variant": "hash",
+      "threads": 4,
+      "particles_requested": 100000
+    },
+    "hash|8|100000": {
+      "n_total": 99960,
+      "steps": 150,
+      "ms_per_step": 12.349667,
+      "ms_per_step_stdev": 0.500087,
+      "variant": "hash",
+      "threads": 8,
+      "particles_requested": 100000
+    },
+    "hash|16|100000": {
+      "n_total": 99960,
+      "steps": 150,
+      "ms_per_step": 8.109411,
+      "ms_per_step_stdev": 0.517734,
+      "variant": "hash",
+      "threads": 16,
+      "particles_requested": 100000
+    },
+    "hash|24|100000": {
+      "n_total": 99960,
+      "steps": 150,
+      "ms_per_step": 8.044625,
+      "ms_per_step_stdev": 0.51464,
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 100000
+    },
+    "hash|32|100000": {
+      "n_total": 99960,
+      "steps": 150,
+      "ms_per_step": 7.664798,
+      "ms_per_step_stdev": 0.294522,
+      "variant": "hash",
+      "threads": 32,
+      "particles_requested": 100000
+    },
+    "sequential|1|250": {
+      "n_total": 240,
+      "steps": 150,
+      "ms_per_step": 0.375047,
+      "ms_per_step_stdev": 0.028225,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 250
+    },
+    "prehash|1|250": {
+      "n_total": 240,
+      "steps": 150,
+      "ms_per_step": 0.402753,
+      "ms_per_step_stdev": 0.033814,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 250
+    },
+    "prehash|2|250": {
+      "n_total": 240,
+      "steps": 150,
+      "ms_per_step": 0.31023,
+      "ms_per_step_stdev": 0.011927,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 250
+    },
+    "prehash|4|250": {
+      "n_total": 240,
+      "steps": 150,
+      "ms_per_step": 0.269853,
+      "ms_per_step_stdev": 0.006099,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 250
+    },
+    "prehash|8|250": {
+      "n_total": 240,
+      "steps": 150,
+      "ms_per_step": 0.3049,
+      "ms_per_step_stdev": 0.009414,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 250
+    },
+    "prehash|16|250": {
+      "n_total": 240,
+      "steps": 150,
+      "ms_per_step": 0.475325,
+      "ms_per_step_stdev": 0.026464,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 250
+    },
+    "prehash|24|250": {
+      "n_total": 240,
+      "steps": 150,
+      "ms_per_step": 0.667744,
+      "ms_per_step_stdev": 0.064118,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 250
+    },
+    "prehash|32|250": {
+      "n_total": 240,
+      "steps": 150,
+      "ms_per_step": 0.696207,
+      "ms_per_step_stdev": 0.029195,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 250
+    },
+    "sequential|1|500": {
+      "n_total": 493,
+      "steps": 150,
+      "ms_per_step": 1.160451,
+      "ms_per_step_stdev": 0.067992,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 500
+    },
+    "prehash|1|500": {
+      "n_total": 493,
+      "steps": 150,
+      "ms_per_step": 1.197225,
+      "ms_per_step_stdev": 0.04829,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 500
+    },
+    "prehash|2|500": {
+      "n_total": 493,
+      "steps": 150,
+      "ms_per_step": 0.710024,
+      "ms_per_step_stdev": 0.02531,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 500
+    },
+    "prehash|4|500": {
+      "n_total": 493,
+      "steps": 150,
+      "ms_per_step": 0.502559,
+      "ms_per_step_stdev": 0.019414,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 500
+    },
+    "prehash|8|500": {
+      "n_total": 493,
+      "steps": 150,
+      "ms_per_step": 0.55907,
+      "ms_per_step_stdev": 0.092479,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 500
+    },
+    "prehash|16|500": {
+      "n_total": 493,
+      "steps": 150,
+      "ms_per_step": 0.556887,
+      "ms_per_step_stdev": 0.035934,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 500
+    },
+    "prehash|24|500": {
+      "n_total": 493,
+      "steps": 150,
+      "ms_per_step": 0.678086,
+      "ms_per_step_stdev": 0.025432,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 500
+    },
+    "prehash|32|500": {
+      "n_total": 493,
+      "steps": 150,
+      "ms_per_step": 0.844361,
+      "ms_per_step_stdev": 0.068632,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 500
+    },
+    "sequential|1|750": {
+      "n_total": 735,
+      "steps": 150,
+      "ms_per_step": 2.307514,
+      "ms_per_step_stdev": 0.055554,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 750
+    },
+    "prehash|1|750": {
+      "n_total": 735,
+      "steps": 150,
+      "ms_per_step": 2.323217,
+      "ms_per_step_stdev": 0.096895,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 750
+    },
+    "prehash|2|750": {
+      "n_total": 735,
+      "steps": 150,
+      "ms_per_step": 1.371401,
+      "ms_per_step_stdev": 0.053591,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 750
+    },
+    "prehash|4|750": {
+      "n_total": 735,
+      "steps": 150,
+      "ms_per_step": 0.825306,
+      "ms_per_step_stdev": 0.036173,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 750
+    },
+    "prehash|8|750": {
+      "n_total": 735,
+      "steps": 150,
+      "ms_per_step": 0.654487,
+      "ms_per_step_stdev": 0.045507,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 750
+    },
+    "prehash|16|750": {
+      "n_total": 735,
+      "steps": 150,
+      "ms_per_step": 0.689956,
+      "ms_per_step_stdev": 0.036231,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 750
+    },
+    "prehash|24|750": {
+      "n_total": 735,
+      "steps": 150,
+      "ms_per_step": 0.836758,
+      "ms_per_step_stdev": 0.021338,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 750
+    },
+    "prehash|32|750": {
+      "n_total": 735,
+      "steps": 150,
+      "ms_per_step": 0.970415,
+      "ms_per_step_stdev": 0.048562,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 750
+    },
+    "sequential|1|1000": {
+      "n_total": 1025,
+      "steps": 150,
+      "ms_per_step": 4.1193,
+      "ms_per_step_stdev": 0.082344,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 1000
+    },
+    "prehash|1|1000": {
+      "n_total": 1025,
+      "steps": 150,
+      "ms_per_step": 4.170859,
+      "ms_per_step_stdev": 0.053409,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 1000
+    },
+    "prehash|2|1000": {
+      "n_total": 1025,
+      "steps": 150,
+      "ms_per_step": 2.243015,
+      "ms_per_step_stdev": 0.043244,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 1000
+    },
+    "prehash|4|1000": {
+      "n_total": 1025,
+      "steps": 150,
+      "ms_per_step": 1.30067,
+      "ms_per_step_stdev": 0.069965,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 1000
+    },
+    "prehash|8|1000": {
+      "n_total": 1025,
+      "steps": 150,
+      "ms_per_step": 0.966375,
+      "ms_per_step_stdev": 0.042427,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 1000
+    },
+    "prehash|16|1000": {
+      "n_total": 1025,
+      "steps": 150,
+      "ms_per_step": 0.937367,
+      "ms_per_step_stdev": 0.043393,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 1000
+    },
+    "prehash|24|1000": {
+      "n_total": 1025,
+      "steps": 150,
+      "ms_per_step": 1.016187,
+      "ms_per_step_stdev": 0.037486,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 1000
+    },
+    "prehash|32|1000": {
+      "n_total": 1025,
+      "steps": 150,
+      "ms_per_step": 1.108043,
+      "ms_per_step_stdev": 0.035354,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 1000
+    },
+    "sequential|1|1250": {
+      "n_total": 1288,
+      "steps": 150,
+      "ms_per_step": 6.282115,
+      "ms_per_step_stdev": 0.092741,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 1250
+    },
+    "prehash|1|1250": {
+      "n_total": 1288,
+      "steps": 150,
+      "ms_per_step": 6.339144,
+      "ms_per_step_stdev": 0.10931,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 1250
+    },
+    "prehash|2|1250": {
+      "n_total": 1288,
+      "steps": 150,
+      "ms_per_step": 3.308801,
+      "ms_per_step_stdev": 0.038212,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 1250
+    },
+    "prehash|4|1250": {
+      "n_total": 1288,
+      "steps": 150,
+      "ms_per_step": 1.86258,
+      "ms_per_step_stdev": 0.080944,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 1250
+    },
+    "prehash|8|1250": {
+      "n_total": 1288,
+      "steps": 150,
+      "ms_per_step": 1.296583,
+      "ms_per_step_stdev": 0.055158,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 1250
+    },
+    "prehash|16|1250": {
+      "n_total": 1288,
+      "steps": 150,
+      "ms_per_step": 1.086891,
+      "ms_per_step_stdev": 0.109062,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 1250
+    },
+    "prehash|24|1250": {
+      "n_total": 1288,
+      "steps": 150,
+      "ms_per_step": 1.188935,
+      "ms_per_step_stdev": 0.029549,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 1250
+    },
+    "prehash|32|1250": {
+      "n_total": 1288,
+      "steps": 150,
+      "ms_per_step": 1.253095,
+      "ms_per_step_stdev": 0.078065,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 1250
+    },
+    "sequential|1|1500": {
+      "n_total": 1500,
+      "steps": 150,
+      "ms_per_step": 8.394807,
+      "ms_per_step_stdev": 0.116483,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 1500
+    },
+    "prehash|1|1500": {
+      "n_total": 1500,
+      "steps": 150,
+      "ms_per_step": 8.312701,
+      "ms_per_step_stdev": 0.077199,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 1500
+    },
+    "prehash|2|1500": {
+      "n_total": 1500,
+      "steps": 150,
+      "ms_per_step": 4.368664,
+      "ms_per_step_stdev": 0.027872,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 1500
+    },
+    "prehash|4|1500": {
+      "n_total": 1500,
+      "steps": 150,
+      "ms_per_step": 2.348447,
+      "ms_per_step_stdev": 0.038084,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 1500
+    },
+    "prehash|8|1500": {
+      "n_total": 1500,
+      "steps": 150,
+      "ms_per_step": 1.612068,
+      "ms_per_step_stdev": 0.07277,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 1500
+    },
+    "prehash|16|1500": {
+      "n_total": 1500,
+      "steps": 150,
+      "ms_per_step": 1.366635,
+      "ms_per_step_stdev": 0.11682,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 1500
+    },
+    "prehash|24|1500": {
+      "n_total": 1500,
+      "steps": 150,
+      "ms_per_step": 1.440318,
+      "ms_per_step_stdev": 0.047247,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 1500
+    },
+    "prehash|32|1500": {
+      "n_total": 1500,
+      "steps": 150,
+      "ms_per_step": 1.527733,
+      "ms_per_step_stdev": 0.052422,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 1500
+    },
+    "sequential|1|1750": {
+      "n_total": 1728,
+      "steps": 150,
+      "ms_per_step": 10.919602,
+      "ms_per_step_stdev": 0.073644,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 1750
+    },
+    "prehash|1|1750": {
+      "n_total": 1728,
+      "steps": 150,
+      "ms_per_step": 10.875078,
+      "ms_per_step_stdev": 0.132667,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 1750
+    },
+    "prehash|2|1750": {
+      "n_total": 1728,
+      "steps": 150,
+      "ms_per_step": 5.694522,
+      "ms_per_step_stdev": 0.04559,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 1750
+    },
+    "prehash|4|1750": {
+      "n_total": 1728,
+      "steps": 150,
+      "ms_per_step": 3.116318,
+      "ms_per_step_stdev": 0.0867,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 1750
+    },
+    "prehash|8|1750": {
+      "n_total": 1728,
+      "steps": 150,
+      "ms_per_step": 2.202579,
+      "ms_per_step_stdev": 0.15322,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 1750
+    },
+    "prehash|16|1750": {
+      "n_total": 1728,
+      "steps": 150,
+      "ms_per_step": 1.735141,
+      "ms_per_step_stdev": 0.13039,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 1750
+    },
+    "prehash|24|1750": {
+      "n_total": 1728,
+      "steps": 150,
+      "ms_per_step": 1.617875,
+      "ms_per_step_stdev": 0.068061,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 1750
+    },
+    "prehash|32|1750": {
+      "n_total": 1728,
+      "steps": 150,
+      "ms_per_step": 1.637391,
+      "ms_per_step_stdev": 0.112699,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 1750
+    },
+    "sequential|1|2000": {
+      "n_total": 2030,
+      "steps": 150,
+      "ms_per_step": 14.721061,
+      "ms_per_step_stdev": 0.10092,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 2000
+    },
+    "prehash|1|2000": {
+      "n_total": 2030,
+      "steps": 150,
+      "ms_per_step": 14.846753,
+      "ms_per_step_stdev": 0.172477,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 2000
+    },
+    "prehash|2|2000": {
+      "n_total": 2030,
+      "steps": 150,
+      "ms_per_step": 7.650849,
+      "ms_per_step_stdev": 0.072762,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 2000
+    },
+    "prehash|4|2000": {
+      "n_total": 2030,
+      "steps": 150,
+      "ms_per_step": 3.953685,
+      "ms_per_step_stdev": 0.066747,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 2000
+    },
+    "prehash|8|2000": {
+      "n_total": 2030,
+      "steps": 150,
+      "ms_per_step": 2.676803,
+      "ms_per_step_stdev": 0.123896,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 2000
+    },
+    "prehash|16|2000": {
+      "n_total": 2030,
+      "steps": 150,
+      "ms_per_step": 2.089633,
+      "ms_per_step_stdev": 0.224241,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 2000
+    },
+    "prehash|24|2000": {
+      "n_total": 2030,
+      "steps": 150,
+      "ms_per_step": 1.974826,
+      "ms_per_step_stdev": 0.124426,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 2000
+    },
+    "prehash|32|2000": {
+      "n_total": 2030,
+      "steps": 150,
+      "ms_per_step": 1.990093,
+      "ms_per_step_stdev": 0.16731,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 2000
+    },
+    "sequential|1|2250": {
+      "n_total": 2257,
+      "steps": 150,
+      "ms_per_step": 18.112074,
+      "ms_per_step_stdev": 0.150224,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 2250
+    },
+    "prehash|1|2250": {
+      "n_total": 2257,
+      "steps": 150,
+      "ms_per_step": 18.286943,
+      "ms_per_step_stdev": 0.299448,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 2250
+    },
+    "prehash|2|2250": {
+      "n_total": 2257,
+      "steps": 150,
+      "ms_per_step": 9.290996,
+      "ms_per_step_stdev": 0.074318,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 2250
+    },
+    "prehash|4|2250": {
+      "n_total": 2257,
+      "steps": 150,
+      "ms_per_step": 4.842657,
+      "ms_per_step_stdev": 0.077471,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 2250
+    },
+    "prehash|8|2250": {
+      "n_total": 2257,
+      "steps": 150,
+      "ms_per_step": 3.202169,
+      "ms_per_step_stdev": 0.092028,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 2250
+    },
+    "prehash|16|2250": {
+      "n_total": 2257,
+      "steps": 150,
+      "ms_per_step": 2.359944,
+      "ms_per_step_stdev": 0.396951,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 2250
+    },
+    "prehash|24|2250": {
+      "n_total": 2257,
+      "steps": 150,
+      "ms_per_step": 2.370055,
+      "ms_per_step_stdev": 0.116196,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 2250
+    },
+    "prehash|32|2250": {
+      "n_total": 2257,
+      "steps": 150,
+      "ms_per_step": 2.34315,
+      "ms_per_step_stdev": 0.144201,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 2250
+    },
+    "sequential|1|2500": {
+      "n_total": 2535,
+      "steps": 150,
+      "ms_per_step": 22.647279,
+      "ms_per_step_stdev": 0.124574,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 2500
+    },
+    "prehash|1|2500": {
+      "n_total": 2535,
+      "steps": 150,
+      "ms_per_step": 22.765012,
+      "ms_per_step_stdev": 0.275613,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 2500
+    },
+    "prehash|2|2500": {
+      "n_total": 2535,
+      "steps": 150,
+      "ms_per_step": 11.527828,
+      "ms_per_step_stdev": 0.056445,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 2500
+    },
+    "prehash|4|2500": {
+      "n_total": 2535,
+      "steps": 150,
+      "ms_per_step": 5.979427,
+      "ms_per_step_stdev": 0.042882,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 2500
+    },
+    "prehash|8|2500": {
+      "n_total": 2535,
+      "steps": 150,
+      "ms_per_step": 3.79262,
+      "ms_per_step_stdev": 0.093666,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 2500
+    },
+    "prehash|16|2500": {
+      "n_total": 2535,
+      "steps": 150,
+      "ms_per_step": 3.190594,
+      "ms_per_step_stdev": 0.381035,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 2500
+    },
+    "prehash|24|2500": {
+      "n_total": 2535,
+      "steps": 150,
+      "ms_per_step": 2.877315,
+      "ms_per_step_stdev": 0.226299,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 2500
+    },
+    "prehash|32|2500": {
+      "n_total": 2535,
+      "steps": 150,
+      "ms_per_step": 2.551235,
+      "ms_per_step_stdev": 0.055998,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 2500
+    },
+    "sequential|1|2750": {
+      "n_total": 2788,
+      "steps": 150,
+      "ms_per_step": 27.165683,
+      "ms_per_step_stdev": 0.200271,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 2750
+    },
+    "prehash|1|2750": {
+      "n_total": 2788,
+      "steps": 150,
+      "ms_per_step": 27.386619,
+      "ms_per_step_stdev": 0.321068,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 2750
+    },
+    "prehash|2|2750": {
+      "n_total": 2788,
+      "steps": 150,
+      "ms_per_step": 13.796677,
+      "ms_per_step_stdev": 0.074809,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 2750
+    },
+    "prehash|4|2750": {
+      "n_total": 2788,
+      "steps": 150,
+      "ms_per_step": 7.148299,
+      "ms_per_step_stdev": 0.109716,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 2750
+    },
+    "prehash|8|2750": {
+      "n_total": 2788,
+      "steps": 150,
+      "ms_per_step": 4.56255,
+      "ms_per_step_stdev": 0.104925,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 2750
+    },
+    "prehash|16|2750": {
+      "n_total": 2788,
+      "steps": 150,
+      "ms_per_step": 3.362347,
+      "ms_per_step_stdev": 0.269382,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 2750
+    },
+    "prehash|24|2750": {
+      "n_total": 2788,
+      "steps": 150,
+      "ms_per_step": 3.263631,
+      "ms_per_step_stdev": 0.167407,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 2750
+    },
+    "prehash|32|2750": {
+      "n_total": 2788,
+      "steps": 150,
+      "ms_per_step": 3.025649,
+      "ms_per_step_stdev": 0.148548,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 2750
+    },
+    "sequential|1|3000": {
+      "n_total": 3053,
+      "steps": 150,
+      "ms_per_step": 32.66181,
+      "ms_per_step_stdev": 0.716206,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 3000
+    },
+    "prehash|1|3000": {
+      "n_total": 3053,
+      "steps": 150,
+      "ms_per_step": 32.300951,
+      "ms_per_step_stdev": 0.098216,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 3000
+    },
+    "prehash|2|3000": {
+      "n_total": 3053,
+      "steps": 150,
+      "ms_per_step": 16.480524,
+      "ms_per_step_stdev": 0.062322,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 3000
+    },
+    "prehash|4|3000": {
+      "n_total": 3053,
+      "steps": 150,
+      "ms_per_step": 8.468831,
+      "ms_per_step_stdev": 0.089408,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 3000
+    },
+    "prehash|8|3000": {
+      "n_total": 3053,
+      "steps": 150,
+      "ms_per_step": 5.218789,
+      "ms_per_step_stdev": 0.076821,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 3000
+    },
+    "prehash|16|3000": {
+      "n_total": 3053,
+      "steps": 150,
+      "ms_per_step": 3.806637,
+      "ms_per_step_stdev": 0.301484,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 3000
+    },
+    "prehash|24|3000": {
+      "n_total": 3053,
+      "steps": 150,
+      "ms_per_step": 3.760579,
+      "ms_per_step_stdev": 0.128156,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 3000
+    },
+    "prehash|32|3000": {
+      "n_total": 3053,
+      "steps": 150,
+      "ms_per_step": 3.377011,
+      "ms_per_step_stdev": 0.111297,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 3000
+    },
+    "sequential|1|3250": {
+      "n_total": 3256,
+      "steps": 150,
+      "ms_per_step": 36.87737,
+      "ms_per_step_stdev": 0.607895,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 3250
+    },
+    "prehash|1|3250": {
+      "n_total": 3256,
+      "steps": 150,
+      "ms_per_step": 36.866256,
+      "ms_per_step_stdev": 0.112831,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 3250
+    },
+    "prehash|2|3250": {
+      "n_total": 3256,
+      "steps": 150,
+      "ms_per_step": 18.616171,
+      "ms_per_step_stdev": 0.114241,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 3250
+    },
+    "prehash|4|3250": {
+      "n_total": 3256,
+      "steps": 150,
+      "ms_per_step": 9.575943,
+      "ms_per_step_stdev": 0.113456,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 3250
+    },
+    "prehash|8|3250": {
+      "n_total": 3256,
+      "steps": 150,
+      "ms_per_step": 6.156393,
+      "ms_per_step_stdev": 0.150361,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 3250
+    },
+    "prehash|16|3250": {
+      "n_total": 3256,
+      "steps": 150,
+      "ms_per_step": 4.328875,
+      "ms_per_step_stdev": 0.440675,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 3250
+    },
+    "prehash|24|3250": {
+      "n_total": 3256,
+      "steps": 150,
+      "ms_per_step": 4.280061,
+      "ms_per_step_stdev": 0.165232,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 3250
+    },
+    "prehash|32|3250": {
+      "n_total": 3256,
+      "steps": 150,
+      "ms_per_step": 4.155388,
+      "ms_per_step_stdev": 0.089689,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 3250
+    },
+    "sequential|1|3500": {
+      "n_total": 3496,
+      "steps": 150,
+      "ms_per_step": 42.115077,
+      "ms_per_step_stdev": 0.366719,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 3500
+    },
+    "prehash|1|3500": {
+      "n_total": 3496,
+      "steps": 150,
+      "ms_per_step": 42.075177,
+      "ms_per_step_stdev": 0.055402,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 3500
+    },
+    "prehash|2|3500": {
+      "n_total": 3496,
+      "steps": 150,
+      "ms_per_step": 21.248185,
+      "ms_per_step_stdev": 0.061643,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 3500
+    },
+    "prehash|4|3500": {
+      "n_total": 3496,
+      "steps": 150,
+      "ms_per_step": 10.985885,
+      "ms_per_step_stdev": 0.14415,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 3500
+    },
+    "prehash|8|3500": {
+      "n_total": 3496,
+      "steps": 150,
+      "ms_per_step": 6.971981,
+      "ms_per_step_stdev": 0.190167,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 3500
+    },
+    "prehash|16|3500": {
+      "n_total": 3496,
+      "steps": 150,
+      "ms_per_step": 4.898161,
+      "ms_per_step_stdev": 0.273698,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 3500
+    },
+    "prehash|24|3500": {
+      "n_total": 3496,
+      "steps": 150,
+      "ms_per_step": 4.728931,
+      "ms_per_step_stdev": 0.150383,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 3500
+    },
+    "prehash|32|3500": {
+      "n_total": 3496,
+      "steps": 150,
+      "ms_per_step": 4.269702,
+      "ms_per_step_stdev": 0.196878,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 3500
+    },
+    "sequential|1|3750": {
+      "n_total": 3713,
+      "steps": 150,
+      "ms_per_step": 47.471862,
+      "ms_per_step_stdev": 0.549363,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 3750
+    },
+    "prehash|1|3750": {
+      "n_total": 3713,
+      "steps": 150,
+      "ms_per_step": 47.295399,
+      "ms_per_step_stdev": 0.138535,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 3750
+    },
+    "prehash|2|3750": {
+      "n_total": 3713,
+      "steps": 150,
+      "ms_per_step": 23.927742,
+      "ms_per_step_stdev": 0.07177,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 3750
+    },
+    "prehash|4|3750": {
+      "n_total": 3713,
+      "steps": 150,
+      "ms_per_step": 12.264294,
+      "ms_per_step_stdev": 0.08786,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 3750
+    },
+    "prehash|8|3750": {
+      "n_total": 3713,
+      "steps": 150,
+      "ms_per_step": 7.503588,
+      "ms_per_step_stdev": 0.181914,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 3750
+    },
+    "prehash|16|3750": {
+      "n_total": 3713,
+      "steps": 150,
+      "ms_per_step": 5.219292,
+      "ms_per_step_stdev": 0.445615,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 3750
+    },
+    "prehash|24|3750": {
+      "n_total": 3713,
+      "steps": 150,
+      "ms_per_step": 4.947775,
+      "ms_per_step_stdev": 0.382123,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 3750
+    },
+    "prehash|32|3750": {
+      "n_total": 3713,
+      "steps": 150,
+      "ms_per_step": 4.727687,
+      "ms_per_step_stdev": 0.185456,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 3750
+    },
+    "sequential|1|4000": {
+      "n_total": 4018,
+      "steps": 150,
+      "ms_per_step": 55.353497,
+      "ms_per_step_stdev": 0.396914,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 4000
+    },
+    "prehash|1|4000": {
+      "n_total": 4018,
+      "steps": 150,
+      "ms_per_step": 55.335614,
+      "ms_per_step_stdev": 0.159278,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 4000
+    },
+    "prehash|2|4000": {
+      "n_total": 4018,
+      "steps": 150,
+      "ms_per_step": 29.050955,
+      "ms_per_step_stdev": 1.137666,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 4000
+    },
+    "prehash|4|4000": {
+      "n_total": 4018,
+      "steps": 150,
+      "ms_per_step": 15.08536,
+      "ms_per_step_stdev": 0.866015,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 4000
+    },
+    "prehash|8|4000": {
+      "n_total": 4018,
+      "steps": 150,
+      "ms_per_step": 10.35591,
+      "ms_per_step_stdev": 0.682733,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 4000
+    },
+    "prehash|16|4000": {
+      "n_total": 4018,
+      "steps": 150,
+      "ms_per_step": 5.816891,
+      "ms_per_step_stdev": 0.556684,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 4000
+    },
+    "prehash|24|4000": {
+      "n_total": 4018,
+      "steps": 150,
+      "ms_per_step": 6.005595,
+      "ms_per_step_stdev": 0.183539,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 4000
+    },
+    "prehash|32|4000": {
+      "n_total": 4018,
+      "steps": 150,
+      "ms_per_step": 5.531072,
+      "ms_per_step_stdev": 0.105829,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 4000
+    },
+    "sequential|1|4250": {
+      "n_total": 4200,
+      "steps": 150,
+      "ms_per_step": 61.992917,
+      "ms_per_step_stdev": 1.098083,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 4250
+    },
+    "prehash|1|4250": {
+      "n_total": 4200,
+      "steps": 150,
+      "ms_per_step": 61.063055,
+      "ms_per_step_stdev": 0.66565,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 4250
+    },
+    "prehash|2|4250": {
+      "n_total": 4200,
+      "steps": 150,
+      "ms_per_step": 30.686301,
+      "ms_per_step_stdev": 0.17181,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 4250
+    },
+    "prehash|4|4250": {
+      "n_total": 4200,
+      "steps": 150,
+      "ms_per_step": 15.669016,
+      "ms_per_step_stdev": 0.209598,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 4250
+    },
+    "prehash|8|4250": {
+      "n_total": 4200,
+      "steps": 150,
+      "ms_per_step": 9.732029,
+      "ms_per_step_stdev": 0.177528,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 4250
+    },
+    "prehash|16|4250": {
+      "n_total": 4200,
+      "steps": 150,
+      "ms_per_step": 6.335003,
+      "ms_per_step_stdev": 0.576332,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 4250
+    },
+    "prehash|24|4250": {
+      "n_total": 4200,
+      "steps": 150,
+      "ms_per_step": 6.062401,
+      "ms_per_step_stdev": 0.301028,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 4250
+    },
+    "prehash|32|4250": {
+      "n_total": 4200,
+      "steps": 150,
+      "ms_per_step": 5.762588,
+      "ms_per_step_stdev": 0.187589,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 4250
+    },
+    "sequential|1|4500": {
+      "n_total": 4524,
+      "steps": 150,
+      "ms_per_step": 70.309168,
+      "ms_per_step_stdev": 0.735023,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 4500
+    },
+    "prehash|1|4500": {
+      "n_total": 4524,
+      "steps": 150,
+      "ms_per_step": 70.357142,
+      "ms_per_step_stdev": 1.31091,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 4500
+    },
+    "prehash|2|4500": {
+      "n_total": 4524,
+      "steps": 150,
+      "ms_per_step": 37.958735,
+      "ms_per_step_stdev": 3.164047,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 4500
+    },
+    "prehash|4|4500": {
+      "n_total": 4524,
+      "steps": 150,
+      "ms_per_step": 18.353029,
+      "ms_per_step_stdev": 0.270949,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 4500
+    },
+    "prehash|8|4500": {
+      "n_total": 4524,
+      "steps": 150,
+      "ms_per_step": 12.055081,
+      "ms_per_step_stdev": 0.511186,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 4500
+    },
+    "prehash|16|4500": {
+      "n_total": 4524,
+      "steps": 150,
+      "ms_per_step": 7.716551,
+      "ms_per_step_stdev": 0.48898,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 4500
+    },
+    "prehash|24|4500": {
+      "n_total": 4524,
+      "steps": 150,
+      "ms_per_step": 7.341935,
+      "ms_per_step_stdev": 0.421337,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 4500
+    },
+    "prehash|32|4500": {
+      "n_total": 4524,
+      "steps": 150,
+      "ms_per_step": 6.636781,
+      "ms_per_step_stdev": 0.144985,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 4500
+    },
+    "sequential|1|4750": {
+      "n_total": 4717,
+      "steps": 150,
+      "ms_per_step": 76.395118,
+      "ms_per_step_stdev": 1.140269,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 4750
+    },
+    "prehash|1|4750": {
+      "n_total": 4717,
+      "steps": 150,
+      "ms_per_step": 75.960577,
+      "ms_per_step_stdev": 0.331243,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 4750
+    },
+    "prehash|2|4750": {
+      "n_total": 4717,
+      "steps": 150,
+      "ms_per_step": 38.255318,
+      "ms_per_step_stdev": 0.163974,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 4750
+    },
+    "prehash|4|4750": {
+      "n_total": 4717,
+      "steps": 150,
+      "ms_per_step": 19.627839,
+      "ms_per_step_stdev": 0.212776,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 4750
+    },
+    "prehash|8|4750": {
+      "n_total": 4717,
+      "steps": 150,
+      "ms_per_step": 12.896378,
+      "ms_per_step_stdev": 0.407259,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 4750
+    },
+    "prehash|16|4750": {
+      "n_total": 4717,
+      "steps": 150,
+      "ms_per_step": 8.082467,
+      "ms_per_step_stdev": 0.614144,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 4750
+    },
+    "prehash|24|4750": {
+      "n_total": 4717,
+      "steps": 150,
+      "ms_per_step": 7.652489,
+      "ms_per_step_stdev": 0.39497,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 4750
+    },
+    "prehash|32|4750": {
+      "n_total": 4717,
+      "steps": 150,
+      "ms_per_step": 7.153148,
+      "ms_per_step_stdev": 0.176232,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 4750
+    },
+    "sequential|1|5000": {
+      "n_total": 5005,
+      "steps": 150,
+      "ms_per_step": 85.597511,
+      "ms_per_step_stdev": 0.49471,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 5000
+    },
+    "prehash|1|5000": {
+      "n_total": 5005,
+      "steps": 150,
+      "ms_per_step": 85.135435,
+      "ms_per_step_stdev": 0.95628,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 5000
+    },
+    "prehash|2|5000": {
+      "n_total": 5005,
+      "steps": 150,
+      "ms_per_step": 45.588158,
+      "ms_per_step_stdev": 2.641222,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 5000
+    },
+    "prehash|4|5000": {
+      "n_total": 5005,
+      "steps": 150,
+      "ms_per_step": 22.497712,
+      "ms_per_step_stdev": 1.117808,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 5000
+    },
+    "prehash|8|5000": {
+      "n_total": 5005,
+      "steps": 150,
+      "ms_per_step": 13.552888,
+      "ms_per_step_stdev": 0.384298,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 5000
+    },
+    "prehash|16|5000": {
+      "n_total": 5005,
+      "steps": 150,
+      "ms_per_step": 8.099186,
+      "ms_per_step_stdev": 0.551764,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 5000
+    },
+    "prehash|24|5000": {
+      "n_total": 5005,
+      "steps": 150,
+      "ms_per_step": 8.257685,
+      "ms_per_step_stdev": 0.721119,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 5000
+    },
+    "prehash|32|5000": {
+      "n_total": 5005,
+      "steps": 150,
+      "ms_per_step": 7.86411,
+      "ms_per_step_stdev": 0.087049,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 5000
+    },
+    "sequential|1|5250": {
+      "n_total": 5264,
+      "steps": 150,
+      "ms_per_step": 95.285824,
+      "ms_per_step_stdev": 1.729365,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 5250
+    },
+    "prehash|1|5250": {
+      "n_total": 5264,
+      "steps": 150,
+      "ms_per_step": 94.785064,
+      "ms_per_step_stdev": 1.221031,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 5250
+    },
+    "prehash|2|5250": {
+      "n_total": 5264,
+      "steps": 150,
+      "ms_per_step": 50.122187,
+      "ms_per_step_stdev": 2.790038,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 5250
+    },
+    "prehash|4|5250": {
+      "n_total": 5264,
+      "steps": 150,
+      "ms_per_step": 25.131295,
+      "ms_per_step_stdev": 1.763995,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 5250
+    },
+    "prehash|8|5250": {
+      "n_total": 5264,
+      "steps": 150,
+      "ms_per_step": 14.96501,
+      "ms_per_step_stdev": 0.271403,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 5250
+    },
+    "prehash|16|5250": {
+      "n_total": 5264,
+      "steps": 150,
+      "ms_per_step": 8.501087,
+      "ms_per_step_stdev": 0.465512,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 5250
+    },
+    "prehash|24|5250": {
+      "n_total": 5264,
+      "steps": 150,
+      "ms_per_step": 8.600654,
+      "ms_per_step_stdev": 0.447572,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 5250
+    },
+    "prehash|32|5250": {
+      "n_total": 5264,
+      "steps": 150,
+      "ms_per_step": 8.516307,
+      "ms_per_step_stdev": 0.252575,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 5250
+    },
+    "sequential|1|5500": {
+      "n_total": 5568,
+      "steps": 150,
+      "ms_per_step": 108.437185,
+      "ms_per_step_stdev": 3.961612,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 5500
+    },
+    "prehash|1|5500": {
+      "n_total": 5568,
+      "steps": 150,
+      "ms_per_step": 105.635081,
+      "ms_per_step_stdev": 1.384949,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 5500
+    },
+    "prehash|2|5500": {
+      "n_total": 5568,
+      "steps": 150,
+      "ms_per_step": 55.564177,
+      "ms_per_step_stdev": 2.371699,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 5500
+    },
+    "prehash|4|5500": {
+      "n_total": 5568,
+      "steps": 150,
+      "ms_per_step": 28.274907,
+      "ms_per_step_stdev": 1.888503,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 5500
+    },
+    "prehash|8|5500": {
+      "n_total": 5568,
+      "steps": 150,
+      "ms_per_step": 16.687239,
+      "ms_per_step_stdev": 0.357684,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 5500
+    },
+    "prehash|16|5500": {
+      "n_total": 5568,
+      "steps": 150,
+      "ms_per_step": 9.364051,
+      "ms_per_step_stdev": 0.396946,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 5500
+    },
+    "prehash|24|5500": {
+      "n_total": 5568,
+      "steps": 150,
+      "ms_per_step": 9.468913,
+      "ms_per_step_stdev": 0.745946,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 5500
+    },
+    "prehash|32|5500": {
+      "n_total": 5568,
+      "steps": 150,
+      "ms_per_step": 9.441685,
+      "ms_per_step_stdev": 0.231259,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 5500
+    },
+    "sequential|1|5750": {
+      "n_total": 5782,
+      "steps": 150,
+      "ms_per_step": 114.341326,
+      "ms_per_step_stdev": 1.41829,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 5750
+    },
+    "prehash|1|5750": {
+      "n_total": 5782,
+      "steps": 150,
+      "ms_per_step": 112.434245,
+      "ms_per_step_stdev": 0.892882,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 5750
+    },
+    "prehash|2|5750": {
+      "n_total": 5782,
+      "steps": 150,
+      "ms_per_step": 58.215177,
+      "ms_per_step_stdev": 2.391768,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 5750
+    },
+    "prehash|4|5750": {
+      "n_total": 5782,
+      "steps": 150,
+      "ms_per_step": 31.005429,
+      "ms_per_step_stdev": 1.810665,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 5750
+    },
+    "prehash|8|5750": {
+      "n_total": 5782,
+      "steps": 150,
+      "ms_per_step": 18.023709,
+      "ms_per_step_stdev": 0.339291,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 5750
+    },
+    "prehash|16|5750": {
+      "n_total": 5782,
+      "steps": 150,
+      "ms_per_step": 10.120991,
+      "ms_per_step_stdev": 0.414066,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 5750
+    },
+    "prehash|24|5750": {
+      "n_total": 5782,
+      "steps": 150,
+      "ms_per_step": 9.627739,
+      "ms_per_step_stdev": 0.809585,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 5750
+    },
+    "prehash|32|5750": {
+      "n_total": 5782,
+      "steps": 150,
+      "ms_per_step": 9.965087,
+      "ms_per_step_stdev": 0.274472,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 5750
+    },
+    "sequential|1|6000": {
+      "n_total": 6000,
+      "steps": 150,
+      "ms_per_step": 121.561422,
+      "ms_per_step_stdev": 1.8661,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 6000
+    },
+    "prehash|1|6000": {
+      "n_total": 6000,
+      "steps": 150,
+      "ms_per_step": 120.494894,
+      "ms_per_step_stdev": 0.911671,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 6000
+    },
+    "prehash|2|6000": {
+      "n_total": 6000,
+      "steps": 150,
+      "ms_per_step": 62.747232,
+      "ms_per_step_stdev": 2.217977,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 6000
+    },
+    "prehash|4|6000": {
+      "n_total": 6000,
+      "steps": 150,
+      "ms_per_step": 32.284967,
+      "ms_per_step_stdev": 1.384808,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 6000
+    },
+    "prehash|8|6000": {
+      "n_total": 6000,
+      "steps": 150,
+      "ms_per_step": 18.562853,
+      "ms_per_step_stdev": 0.152419,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 6000
+    },
+    "prehash|16|6000": {
+      "n_total": 6000,
+      "steps": 150,
+      "ms_per_step": 11.092999,
+      "ms_per_step_stdev": 0.602184,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 6000
+    },
+    "prehash|24|6000": {
+      "n_total": 6000,
+      "steps": 150,
+      "ms_per_step": 10.430975,
+      "ms_per_step_stdev": 0.773144,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 6000
+    },
+    "prehash|32|6000": {
+      "n_total": 6000,
+      "steps": 150,
+      "ms_per_step": 10.739628,
+      "ms_per_step_stdev": 0.295096,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 6000
+    },
+    "sequential|1|6250": {
+      "n_total": 6222,
+      "steps": 150,
+      "ms_per_step": 130.563237,
+      "ms_per_step_stdev": 1.125223,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 6250
+    },
+    "prehash|1|6250": {
+      "n_total": 6222,
+      "steps": 150,
+      "ms_per_step": 131.118066,
+      "ms_per_step_stdev": 1.457481,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 6250
+    },
+    "prehash|2|6250": {
+      "n_total": 6222,
+      "steps": 150,
+      "ms_per_step": 68.605859,
+      "ms_per_step_stdev": 3.381824,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 6250
+    },
+    "prehash|4|6250": {
+      "n_total": 6222,
+      "steps": 150,
+      "ms_per_step": 35.654289,
+      "ms_per_step_stdev": 2.181091,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 6250
+    },
+    "prehash|8|6250": {
+      "n_total": 6222,
+      "steps": 150,
+      "ms_per_step": 20.406887,
+      "ms_per_step_stdev": 0.23876,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 6250
+    },
+    "prehash|16|6250": {
+      "n_total": 6222,
+      "steps": 150,
+      "ms_per_step": 12.211235,
+      "ms_per_step_stdev": 0.916466,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 6250
+    },
+    "prehash|24|6250": {
+      "n_total": 6222,
+      "steps": 150,
+      "ms_per_step": 11.013042,
+      "ms_per_step_stdev": 0.776352,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 6250
+    },
+    "prehash|32|6250": {
+      "n_total": 6222,
+      "steps": 150,
+      "ms_per_step": 11.407044,
+      "ms_per_step_stdev": 0.267101,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 6250
+    },
+    "sequential|1|6500": {
+      "n_total": 6448,
+      "steps": 140,
+      "ms_per_step": 140.840191,
+      "ms_per_step_stdev": 2.524593,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 6500
+    },
+    "prehash|1|6500": {
+      "n_total": 6448,
+      "steps": 140,
+      "ms_per_step": 139.48311,
+      "ms_per_step_stdev": 1.08643,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 6500
+    },
+    "prehash|2|6500": {
+      "n_total": 6448,
+      "steps": 150,
+      "ms_per_step": 73.446861,
+      "ms_per_step_stdev": 3.046637,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 6500
+    },
+    "prehash|4|6500": {
+      "n_total": 6448,
+      "steps": 150,
+      "ms_per_step": 38.136737,
+      "ms_per_step_stdev": 2.591772,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 6500
+    },
+    "prehash|8|6500": {
+      "n_total": 6448,
+      "steps": 150,
+      "ms_per_step": 21.932412,
+      "ms_per_step_stdev": 0.249584,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 6500
+    },
+    "prehash|16|6500": {
+      "n_total": 6448,
+      "steps": 150,
+      "ms_per_step": 12.281753,
+      "ms_per_step_stdev": 0.884428,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 6500
+    },
+    "prehash|24|6500": {
+      "n_total": 6448,
+      "steps": 150,
+      "ms_per_step": 12.196729,
+      "ms_per_step_stdev": 0.980036,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 6500
+    },
+    "prehash|32|6500": {
+      "n_total": 6448,
+      "steps": 150,
+      "ms_per_step": 12.150581,
+      "ms_per_step_stdev": 0.236474,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 6500
+    },
+    "sequential|1|6750": {
+      "n_total": 6784,
+      "steps": 130,
+      "ms_per_step": 154.312416,
+      "ms_per_step_stdev": 1.771516,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 6750
+    },
+    "prehash|1|6750": {
+      "n_total": 6784,
+      "steps": 130,
+      "ms_per_step": 153.948744,
+      "ms_per_step_stdev": 1.020298,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 6750
+    },
+    "prehash|2|6750": {
+      "n_total": 6784,
+      "steps": 150,
+      "ms_per_step": 82.214263,
+      "ms_per_step_stdev": 7.365978,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 6750
+    },
+    "prehash|4|6750": {
+      "n_total": 6784,
+      "steps": 150,
+      "ms_per_step": 43.086965,
+      "ms_per_step_stdev": 3.61791,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 6750
+    },
+    "prehash|8|6750": {
+      "n_total": 6784,
+      "steps": 150,
+      "ms_per_step": 24.296499,
+      "ms_per_step_stdev": 0.640048,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 6750
+    },
+    "prehash|16|6750": {
+      "n_total": 6784,
+      "steps": 150,
+      "ms_per_step": 14.254837,
+      "ms_per_step_stdev": 1.341352,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 6750
+    },
+    "prehash|24|6750": {
+      "n_total": 6784,
+      "steps": 150,
+      "ms_per_step": 13.091973,
+      "ms_per_step_stdev": 1.208687,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 6750
+    },
+    "prehash|32|6750": {
+      "n_total": 6784,
+      "steps": 150,
+      "ms_per_step": 13.370772,
+      "ms_per_step_stdev": 0.300853,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 6750
+    },
+    "sequential|1|7000": {
+      "n_total": 7020,
+      "steps": 120,
+      "ms_per_step": 164.707833,
+      "ms_per_step_stdev": 1.266887,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 7000
+    },
+    "prehash|1|7000": {
+      "n_total": 7020,
+      "steps": 120,
+      "ms_per_step": 164.331138,
+      "ms_per_step_stdev": 1.078954,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 7000
+    },
+    "prehash|2|7000": {
+      "n_total": 7020,
+      "steps": 150,
+      "ms_per_step": 87.309703,
+      "ms_per_step_stdev": 3.77241,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 7000
+    },
+    "prehash|4|7000": {
+      "n_total": 7020,
+      "steps": 150,
+      "ms_per_step": 45.606161,
+      "ms_per_step_stdev": 2.83742,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 7000
+    },
+    "prehash|8|7000": {
+      "n_total": 7020,
+      "steps": 150,
+      "ms_per_step": 26.860768,
+      "ms_per_step_stdev": 1.712639,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 7000
+    },
+    "prehash|16|7000": {
+      "n_total": 7020,
+      "steps": 150,
+      "ms_per_step": 15.124021,
+      "ms_per_step_stdev": 0.939967,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 7000
+    },
+    "prehash|24|7000": {
+      "n_total": 7020,
+      "steps": 150,
+      "ms_per_step": 13.773559,
+      "ms_per_step_stdev": 0.985953,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 7000
+    },
+    "prehash|32|7000": {
+      "n_total": 7020,
+      "steps": 150,
+      "ms_per_step": 14.178519,
+      "ms_per_step_stdev": 0.381587,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 7000
+    },
+    "sequential|1|7250": {
+      "n_total": 7260,
+      "steps": 110,
+      "ms_per_step": 176.723641,
+      "ms_per_step_stdev": 1.709318,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 7250
+    },
+    "prehash|1|7250": {
+      "n_total": 7260,
+      "steps": 110,
+      "ms_per_step": 176.093901,
+      "ms_per_step_stdev": 1.041239,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 7250
+    },
+    "prehash|2|7250": {
+      "n_total": 7260,
+      "steps": 150,
+      "ms_per_step": 92.378276,
+      "ms_per_step_stdev": 2.637127,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 7250
+    },
+    "prehash|4|7250": {
+      "n_total": 7260,
+      "steps": 150,
+      "ms_per_step": 48.657662,
+      "ms_per_step_stdev": 2.784596,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 7250
+    },
+    "prehash|8|7250": {
+      "n_total": 7260,
+      "steps": 150,
+      "ms_per_step": 27.574887,
+      "ms_per_step_stdev": 0.408589,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 7250
+    },
+    "prehash|16|7250": {
+      "n_total": 7260,
+      "steps": 150,
+      "ms_per_step": 15.342475,
+      "ms_per_step_stdev": 0.69384,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 7250
+    },
+    "prehash|24|7250": {
+      "n_total": 7260,
+      "steps": 150,
+      "ms_per_step": 14.732951,
+      "ms_per_step_stdev": 1.10239,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 7250
+    },
+    "prehash|32|7250": {
+      "n_total": 7260,
+      "steps": 150,
+      "ms_per_step": 15.227885,
+      "ms_per_step_stdev": 0.480578,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 7250
+    },
+    "sequential|1|7500": {
+      "n_total": 7504,
+      "steps": 100,
+      "ms_per_step": 189.608801,
+      "ms_per_step_stdev": 1.433539,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 7500
+    },
+    "prehash|1|7500": {
+      "n_total": 7504,
+      "steps": 100,
+      "ms_per_step": 188.262696,
+      "ms_per_step_stdev": 1.644423,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 7500
+    },
+    "prehash|2|7500": {
+      "n_total": 7504,
+      "steps": 150,
+      "ms_per_step": 99.952167,
+      "ms_per_step_stdev": 3.637639,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 7500
+    },
+    "prehash|4|7500": {
+      "n_total": 7504,
+      "steps": 150,
+      "ms_per_step": 52.305001,
+      "ms_per_step_stdev": 3.381391,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 7500
+    },
+    "prehash|8|7500": {
+      "n_total": 7504,
+      "steps": 150,
+      "ms_per_step": 29.766428,
+      "ms_per_step_stdev": 0.491353,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 7500
+    },
+    "prehash|16|7500": {
+      "n_total": 7504,
+      "steps": 150,
+      "ms_per_step": 16.279118,
+      "ms_per_step_stdev": 0.542931,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 7500
+    },
+    "prehash|24|7500": {
+      "n_total": 7504,
+      "steps": 150,
+      "ms_per_step": 15.618258,
+      "ms_per_step_stdev": 1.158667,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 7500
+    },
+    "prehash|32|7500": {
+      "n_total": 7504,
+      "steps": 150,
+      "ms_per_step": 16.007684,
+      "ms_per_step_stdev": 0.379462,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 7500
+    },
+    "sequential|1|7750": {
+      "n_total": 7752,
+      "steps": 90,
+      "ms_per_step": 199.94478,
+      "ms_per_step_stdev": 0.894879,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 7750
+    },
+    "prehash|1|7750": {
+      "n_total": 7752,
+      "steps": 90,
+      "ms_per_step": 199.761856,
+      "ms_per_step_stdev": 0.468512,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 7750
+    },
+    "prehash|2|7750": {
+      "n_total": 7752,
+      "steps": 150,
+      "ms_per_step": 101.509341,
+      "ms_per_step_stdev": 1.394076,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 7750
+    },
+    "prehash|4|7750": {
+      "n_total": 7752,
+      "steps": 150,
+      "ms_per_step": 52.53458,
+      "ms_per_step_stdev": 0.839404,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 7750
+    },
+    "prehash|8|7750": {
+      "n_total": 7752,
+      "steps": 150,
+      "ms_per_step": 31.841989,
+      "ms_per_step_stdev": 0.608078,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 7750
+    },
+    "prehash|16|7750": {
+      "n_total": 7752,
+      "steps": 150,
+      "ms_per_step": 17.948315,
+      "ms_per_step_stdev": 1.159893,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 7750
+    },
+    "prehash|24|7750": {
+      "n_total": 7752,
+      "steps": 150,
+      "ms_per_step": 16.441995,
+      "ms_per_step_stdev": 0.966826,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 7750
+    },
+    "prehash|32|7750": {
+      "n_total": 7752,
+      "steps": 150,
+      "ms_per_step": 17.190557,
+      "ms_per_step_stdev": 0.472943,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 7750
+    },
+    "sequential|1|8000": {
+      "n_total": 7935,
+      "steps": 90,
+      "ms_per_step": 211.457202,
+      "ms_per_step_stdev": 1.983707,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 8000
+    },
+    "prehash|1|8000": {
+      "n_total": 7935,
+      "steps": 90,
+      "ms_per_step": 210.050409,
+      "ms_per_step_stdev": 1.402975,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 8000
+    },
+    "prehash|2|8000": {
+      "n_total": 7935,
+      "steps": 150,
+      "ms_per_step": 110.559701,
+      "ms_per_step_stdev": 4.182183,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 8000
+    },
+    "prehash|4|8000": {
+      "n_total": 7935,
+      "steps": 150,
+      "ms_per_step": 57.746516,
+      "ms_per_step_stdev": 3.017681,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 8000
+    },
+    "prehash|8|8000": {
+      "n_total": 7935,
+      "steps": 150,
+      "ms_per_step": 32.88654,
+      "ms_per_step_stdev": 0.81115,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 8000
+    },
+    "prehash|16|8000": {
+      "n_total": 7935,
+      "steps": 150,
+      "ms_per_step": 18.811445,
+      "ms_per_step_stdev": 1.334751,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 8000
+    },
+    "prehash|24|8000": {
+      "n_total": 7935,
+      "steps": 150,
+      "ms_per_step": 17.342267,
+      "ms_per_step_stdev": 1.238394,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 8000
+    },
+    "prehash|32|8000": {
+      "n_total": 7935,
+      "steps": 150,
+      "ms_per_step": 17.736103,
+      "ms_per_step_stdev": 0.444043,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 8000
+    },
+    "sequential|1|8250": {
+      "n_total": 8190,
+      "steps": 80,
+      "ms_per_step": 224.103867,
+      "ms_per_step_stdev": 2.205993,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 8250
+    },
+    "prehash|1|8250": {
+      "n_total": 8190,
+      "steps": 80,
+      "ms_per_step": 224.679664,
+      "ms_per_step_stdev": 2.07476,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 8250
+    },
+    "prehash|2|8250": {
+      "n_total": 8190,
+      "steps": 150,
+      "ms_per_step": 117.427683,
+      "ms_per_step_stdev": 2.498943,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 8250
+    },
+    "prehash|4|8250": {
+      "n_total": 8190,
+      "steps": 150,
+      "ms_per_step": 62.982979,
+      "ms_per_step_stdev": 3.911547,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 8250
+    },
+    "prehash|8|8250": {
+      "n_total": 8190,
+      "steps": 150,
+      "ms_per_step": 35.348732,
+      "ms_per_step_stdev": 0.611359,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 8250
+    },
+    "prehash|16|8250": {
+      "n_total": 8190,
+      "steps": 150,
+      "ms_per_step": 20.040721,
+      "ms_per_step_stdev": 1.499596,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 8250
+    },
+    "prehash|24|8250": {
+      "n_total": 8190,
+      "steps": 150,
+      "ms_per_step": 18.041297,
+      "ms_per_step_stdev": 1.256632,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 8250
+    },
+    "prehash|32|8250": {
+      "n_total": 8190,
+      "steps": 150,
+      "ms_per_step": 18.786369,
+      "ms_per_step_stdev": 0.455487,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 8250
+    },
+    "sequential|1|8500": {
+      "n_total": 8449,
+      "steps": 80,
+      "ms_per_step": 241.070143,
+      "ms_per_step_stdev": 4.234288,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 8500
+    },
+    "prehash|1|8500": {
+      "n_total": 8449,
+      "steps": 80,
+      "ms_per_step": 237.786744,
+      "ms_per_step_stdev": 1.067924,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 8500
+    },
+    "prehash|2|8500": {
+      "n_total": 8449,
+      "steps": 150,
+      "ms_per_step": 124.552707,
+      "ms_per_step_stdev": 2.59193,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 8500
+    },
+    "prehash|4|8500": {
+      "n_total": 8449,
+      "steps": 150,
+      "ms_per_step": 70.362681,
+      "ms_per_step_stdev": 6.992326,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 8500
+    },
+    "prehash|8|8500": {
+      "n_total": 8449,
+      "steps": 150,
+      "ms_per_step": 38.852048,
+      "ms_per_step_stdev": 2.711206,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 8500
+    },
+    "prehash|16|8500": {
+      "n_total": 8449,
+      "steps": 150,
+      "ms_per_step": 20.981451,
+      "ms_per_step_stdev": 1.095417,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 8500
+    },
+    "prehash|24|8500": {
+      "n_total": 8449,
+      "steps": 150,
+      "ms_per_step": 19.054442,
+      "ms_per_step_stdev": 1.062949,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 8500
+    },
+    "prehash|32|8500": {
+      "n_total": 8449,
+      "steps": 150,
+      "ms_per_step": 20.244613,
+      "ms_per_step_stdev": 0.612605,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 8500
+    },
+    "sequential|1|8750": {
+      "n_total": 8833,
+      "steps": 70,
+      "ms_per_step": 263.552457,
+      "ms_per_step_stdev": 3.734312,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 8750
+    },
+    "prehash|1|8750": {
+      "n_total": 8833,
+      "steps": 70,
+      "ms_per_step": 260.571094,
+      "ms_per_step_stdev": 1.271787,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 8750
+    },
+    "prehash|2|8750": {
+      "n_total": 8833,
+      "steps": 150,
+      "ms_per_step": 136.131139,
+      "ms_per_step_stdev": 3.724666,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 8750
+    },
+    "prehash|4|8750": {
+      "n_total": 8833,
+      "steps": 150,
+      "ms_per_step": 72.297446,
+      "ms_per_step_stdev": 3.82581,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 8750
+    },
+    "prehash|8|8750": {
+      "n_total": 8833,
+      "steps": 150,
+      "ms_per_step": 40.115515,
+      "ms_per_step_stdev": 0.553431,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 8750
+    },
+    "prehash|16|8750": {
+      "n_total": 8833,
+      "steps": 150,
+      "ms_per_step": 22.472892,
+      "ms_per_step_stdev": 0.794857,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 8750
+    },
+    "prehash|24|8750": {
+      "n_total": 8833,
+      "steps": 150,
+      "ms_per_step": 20.671773,
+      "ms_per_step_stdev": 1.540384,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 8750
+    },
+    "prehash|32|8750": {
+      "n_total": 8833,
+      "steps": 150,
+      "ms_per_step": 21.773609,
+      "ms_per_step_stdev": 0.538051,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 8750
+    },
+    "sequential|1|9000": {
+      "n_total": 8906,
+      "steps": 70,
+      "ms_per_step": 264.930914,
+      "ms_per_step_stdev": 1.95042,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 9000
+    },
+    "prehash|1|9000": {
+      "n_total": 8906,
+      "steps": 70,
+      "ms_per_step": 265.402039,
+      "ms_per_step_stdev": 2.295292,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 9000
+    },
+    "prehash|2|9000": {
+      "n_total": 8906,
+      "steps": 130,
+      "ms_per_step": 137.327308,
+      "ms_per_step_stdev": 3.416,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 9000
+    },
+    "prehash|4|9000": {
+      "n_total": 8906,
+      "steps": 150,
+      "ms_per_step": 74.066701,
+      "ms_per_step_stdev": 4.301339,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 9000
+    },
+    "prehash|8|9000": {
+      "n_total": 8906,
+      "steps": 150,
+      "ms_per_step": 40.861897,
+      "ms_per_step_stdev": 1.155039,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 9000
+    },
+    "prehash|16|9000": {
+      "n_total": 8906,
+      "steps": 150,
+      "ms_per_step": 23.460448,
+      "ms_per_step_stdev": 0.808935,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 9000
+    },
+    "prehash|24|9000": {
+      "n_total": 8906,
+      "steps": 150,
+      "ms_per_step": 21.858475,
+      "ms_per_step_stdev": 1.335067,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 9000
+    },
+    "prehash|32|9000": {
+      "n_total": 8906,
+      "steps": 150,
+      "ms_per_step": 22.287893,
+      "ms_per_step_stdev": 0.443442,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 9000
+    },
+    "sequential|1|9250": {
+      "n_total": 9176,
+      "steps": 70,
+      "ms_per_step": 280.641521,
+      "ms_per_step_stdev": 1.465568,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 9250
+    },
+    "prehash|1|9250": {
+      "n_total": 9176,
+      "steps": 70,
+      "ms_per_step": 280.370696,
+      "ms_per_step_stdev": 2.023999,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 9250
+    },
+    "prehash|2|9250": {
+      "n_total": 9176,
+      "steps": 130,
+      "ms_per_step": 145.890078,
+      "ms_per_step_stdev": 2.907166,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 9250
+    },
+    "prehash|4|9250": {
+      "n_total": 9176,
+      "steps": 150,
+      "ms_per_step": 78.399492,
+      "ms_per_step_stdev": 3.875051,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 9250
+    },
+    "prehash|8|9250": {
+      "n_total": 9176,
+      "steps": 150,
+      "ms_per_step": 43.162604,
+      "ms_per_step_stdev": 1.076041,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 9250
+    },
+    "prehash|16|9250": {
+      "n_total": 9176,
+      "steps": 150,
+      "ms_per_step": 24.550903,
+      "ms_per_step_stdev": 0.927772,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 9250
+    },
+    "prehash|24|9250": {
+      "n_total": 9176,
+      "steps": 150,
+      "ms_per_step": 23.072048,
+      "ms_per_step_stdev": 1.389537,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 9250
+    },
+    "prehash|32|9250": {
+      "n_total": 9176,
+      "steps": 150,
+      "ms_per_step": 23.388493,
+      "ms_per_step_stdev": 0.52218,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 9250
+    },
+    "sequential|1|9500": {
+      "n_total": 9576,
+      "steps": 60,
+      "ms_per_step": 309.363347,
+      "ms_per_step_stdev": 3.218582,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 9500
+    },
+    "prehash|1|9500": {
+      "n_total": 9576,
+      "steps": 60,
+      "ms_per_step": 308.202998,
+      "ms_per_step_stdev": 2.103548,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 9500
+    },
+    "prehash|2|9500": {
+      "n_total": 9576,
+      "steps": 120,
+      "ms_per_step": 159.216282,
+      "ms_per_step_stdev": 5.22874,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 9500
+    },
+    "prehash|4|9500": {
+      "n_total": 9576,
+      "steps": 150,
+      "ms_per_step": 86.263527,
+      "ms_per_step_stdev": 3.425357,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 9500
+    },
+    "prehash|8|9500": {
+      "n_total": 9576,
+      "steps": 150,
+      "ms_per_step": 48.88185,
+      "ms_per_step_stdev": 1.29337,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 9500
+    },
+    "prehash|16|9500": {
+      "n_total": 9576,
+      "steps": 150,
+      "ms_per_step": 26.738236,
+      "ms_per_step_stdev": 1.17507,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 9500
+    },
+    "prehash|24|9500": {
+      "n_total": 9576,
+      "steps": 150,
+      "ms_per_step": 25.146491,
+      "ms_per_step_stdev": 2.041705,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 9500
+    },
+    "prehash|32|9500": {
+      "n_total": 9576,
+      "steps": 150,
+      "ms_per_step": 25.400169,
+      "ms_per_step_stdev": 0.559404,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 9500
+    },
+    "sequential|1|9750": {
+      "n_total": 9652,
+      "steps": 60,
+      "ms_per_step": 312.084145,
+      "ms_per_step_stdev": 2.648388,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 9750
+    },
+    "prehash|1|9750": {
+      "n_total": 9652,
+      "steps": 60,
+      "ms_per_step": 308.615722,
+      "ms_per_step_stdev": 1.273758,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 9750
+    },
+    "prehash|2|9750": {
+      "n_total": 9652,
+      "steps": 110,
+      "ms_per_step": 161.548785,
+      "ms_per_step_stdev": 3.733412,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 9750
+    },
+    "prehash|4|9750": {
+      "n_total": 9652,
+      "steps": 150,
+      "ms_per_step": 87.351049,
+      "ms_per_step_stdev": 8.875453,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 9750
+    },
+    "prehash|8|9750": {
+      "n_total": 9652,
+      "steps": 150,
+      "ms_per_step": 50.752891,
+      "ms_per_step_stdev": 2.2257,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 9750
+    },
+    "prehash|16|9750": {
+      "n_total": 9652,
+      "steps": 150,
+      "ms_per_step": 27.296378,
+      "ms_per_step_stdev": 1.501667,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 9750
+    },
+    "prehash|24|9750": {
+      "n_total": 9652,
+      "steps": 150,
+      "ms_per_step": 25.370504,
+      "ms_per_step_stdev": 1.616489,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 9750
+    },
+    "prehash|32|9750": {
+      "n_total": 9652,
+      "steps": 150,
+      "ms_per_step": 25.832286,
+      "ms_per_step_stdev": 0.551908,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 9750
+    },
+    "sequential|1|10000": {
+      "n_total": 9933,
+      "steps": 60,
+      "ms_per_step": 327.258068,
+      "ms_per_step_stdev": 1.72043,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 10000
+    },
+    "prehash|1|10000": {
+      "n_total": 9933,
+      "steps": 60,
+      "ms_per_step": 327.232305,
+      "ms_per_step_stdev": 0.737436,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 10000
+    },
+    "prehash|2|10000": {
+      "n_total": 9933,
+      "steps": 110,
+      "ms_per_step": 172.769222,
+      "ms_per_step_stdev": 3.605519,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 10000
+    },
+    "prehash|4|10000": {
+      "n_total": 9933,
+      "steps": 150,
+      "ms_per_step": 92.968557,
+      "ms_per_step_stdev": 6.01686,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 10000
+    },
+    "prehash|8|10000": {
+      "n_total": 9933,
+      "steps": 150,
+      "ms_per_step": 50.910852,
+      "ms_per_step_stdev": 0.732733,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 10000
+    },
+    "prehash|16|10000": {
+      "n_total": 9933,
+      "steps": 150,
+      "ms_per_step": 28.046742,
+      "ms_per_step_stdev": 0.694879,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 10000
+    },
+    "prehash|24|10000": {
+      "n_total": 9933,
+      "steps": 150,
+      "ms_per_step": 26.904394,
+      "ms_per_step_stdev": 1.991493,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 10000
+    },
+    "prehash|32|10000": {
+      "n_total": 9933,
+      "steps": 150,
+      "ms_per_step": 27.423697,
+      "ms_per_step_stdev": 0.53769,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 10000
+    },
+    "sequential|1|20000": {
+      "n_total": 20130,
+      "steps": 20,
+      "ms_per_step": 1344.218665,
+      "ms_per_step_stdev": 0.568097,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 20000
+    },
+    "prehash|1|20000": {
+      "n_total": 20130,
+      "steps": 20,
+      "ms_per_step": 1346.293525,
+      "ms_per_step_stdev": 3.661618,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 20000
+    },
+    "prehash|2|20000": {
+      "n_total": 20130,
+      "steps": 20,
+      "ms_per_step": 691.68734,
+      "ms_per_step_stdev": 16.435778,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 20000
+    },
+    "prehash|4|20000": {
+      "n_total": 20130,
+      "steps": 50,
+      "ms_per_step": 366.903048,
+      "ms_per_step_stdev": 11.010877,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 20000
+    },
+    "prehash|8|20000": {
+      "n_total": 20130,
+      "steps": 90,
+      "ms_per_step": 198.518753,
+      "ms_per_step_stdev": 1.922281,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 20000
+    },
+    "prehash|16|20000": {
+      "n_total": 20130,
+      "steps": 150,
+      "ms_per_step": 112.72268,
+      "ms_per_step_stdev": 1.171609,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 20000
+    },
+    "prehash|24|20000": {
+      "n_total": 20130,
+      "steps": 150,
+      "ms_per_step": 108.482882,
+      "ms_per_step_stdev": 3.344338,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 20000
+    },
+    "prehash|32|20000": {
+      "n_total": 20130,
+      "steps": 150,
+      "ms_per_step": 103.415203,
+      "ms_per_step_stdev": 0.762674,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 20000
+    },
+    "sequential|1|30000": {
+      "n_total": 30016,
+      "steps": 20,
+      "ms_per_step": 2953.673625,
+      "ms_per_step_stdev": 14.334221,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 30000
+    },
+    "prehash|1|30000": {
+      "n_total": 30016,
+      "steps": 20,
+      "ms_per_step": 2946.404745,
+      "ms_per_step_stdev": 6.596239,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 30000
+    },
+    "prehash|2|30000": {
+      "n_total": 30016,
+      "steps": 20,
+      "ms_per_step": 1563.353105,
+      "ms_per_step_stdev": 10.406554,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 30000
+    },
+    "prehash|4|30000": {
+      "n_total": 30016,
+      "steps": 20,
+      "ms_per_step": 875.18472,
+      "ms_per_step_stdev": 22.798622,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 30000
+    },
+    "prehash|8|30000": {
+      "n_total": 30016,
+      "steps": 40,
+      "ms_per_step": 460.83694,
+      "ms_per_step_stdev": 30.07597,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 30000
+    },
+    "prehash|16|30000": {
+      "n_total": 30016,
+      "steps": 70,
+      "ms_per_step": 254.083569,
+      "ms_per_step_stdev": 4.973046,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 30000
+    },
+    "prehash|24|30000": {
+      "n_total": 30016,
+      "steps": 80,
+      "ms_per_step": 225.063783,
+      "ms_per_step_stdev": 2.214832,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 30000
+    },
+    "prehash|32|30000": {
+      "n_total": 30016,
+      "steps": 80,
+      "ms_per_step": 215.540904,
+      "ms_per_step_stdev": 2.28243,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 30000
+    },
+    "sequential|1|40000": {
+      "n_total": 39990,
+      "steps": 10,
+      "ms_per_step": 5206.94131,
+      "ms_per_step_stdev": 0.0,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 40000
+    },
+    "prehash|1|40000": {
+      "n_total": 39990,
+      "steps": 10,
+      "ms_per_step": 5295.55387,
+      "ms_per_step_stdev": 0.0,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 40000
+    },
+    "prehash|2|40000": {
+      "n_total": 39990,
+      "steps": 20,
+      "ms_per_step": 2804.19102,
+      "ms_per_step_stdev": 22.197044,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 40000
+    },
+    "prehash|4|40000": {
+      "n_total": 39990,
+      "steps": 20,
+      "ms_per_step": 1503.18334,
+      "ms_per_step_stdev": 3.984872,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 40000
+    },
+    "prehash|8|40000": {
+      "n_total": 39990,
+      "steps": 20,
+      "ms_per_step": 762.07241,
+      "ms_per_step_stdev": 6.84601,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 40000
+    },
+    "prehash|16|40000": {
+      "n_total": 39990,
+      "steps": 40,
+      "ms_per_step": 450.314003,
+      "ms_per_step_stdev": 5.751897,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 40000
+    },
+    "prehash|24|40000": {
+      "n_total": 39990,
+      "steps": 40,
+      "ms_per_step": 397.14945,
+      "ms_per_step_stdev": 1.782271,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 40000
+    },
+    "prehash|32|40000": {
+      "n_total": 39990,
+      "steps": 50,
+      "ms_per_step": 377.306344,
+      "ms_per_step_stdev": 1.902362,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 40000
+    },
+    "sequential|1|50000": {
+      "n_total": 49997,
+      "steps": 10,
+      "ms_per_step": 8647.75958,
+      "ms_per_step_stdev": 0.0,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 50000
+    },
+    "prehash|1|50000": {
+      "n_total": 49997,
+      "steps": 10,
+      "ms_per_step": 8694.37513,
+      "ms_per_step_stdev": 0.0,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 50000
+    },
+    "prehash|2|50000": {
+      "n_total": 49997,
+      "steps": 20,
+      "ms_per_step": 4356.63305,
+      "ms_per_step_stdev": 170.399158,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 50000
+    },
+    "prehash|4|50000": {
+      "n_total": 49997,
+      "steps": 20,
+      "ms_per_step": 2265.7441,
+      "ms_per_step_stdev": 3.070244,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 50000
+    },
+    "prehash|8|50000": {
+      "n_total": 49997,
+      "steps": 20,
+      "ms_per_step": 1195.87399,
+      "ms_per_step_stdev": 7.065906,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 50000
+    },
+    "prehash|16|50000": {
+      "n_total": 49997,
+      "steps": 20,
+      "ms_per_step": 684.65751,
+      "ms_per_step_stdev": 12.210956,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 50000
+    },
+    "prehash|24|50000": {
+      "n_total": 49997,
+      "steps": 30,
+      "ms_per_step": 608.395607,
+      "ms_per_step_stdev": 3.75637,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 50000
+    },
+    "prehash|32|50000": {
+      "n_total": 49997,
+      "steps": 30,
+      "ms_per_step": 566.142763,
+      "ms_per_step_stdev": 0.811823,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 50000
+    },
+    "sequential|1|60000": {
+      "n_total": 60040,
+      "steps": 10,
+      "ms_per_step": 15783.33972,
+      "ms_per_step_stdev": 0.0,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 60000
+    },
+    "prehash|1|60000": {
+      "n_total": 60040,
+      "steps": 10,
+      "ms_per_step": 13411.16581,
+      "ms_per_step_stdev": 0.0,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 60000
+    },
+    "prehash|2|60000": {
+      "n_total": 60040,
+      "steps": 10,
+      "ms_per_step": 6859.15055,
+      "ms_per_step_stdev": 0.0,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 60000
+    },
+    "prehash|4|60000": {
+      "n_total": 60040,
+      "steps": 20,
+      "ms_per_step": 3530.86797,
+      "ms_per_step_stdev": 11.571817,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 60000
+    },
+    "prehash|8|60000": {
+      "n_total": 60040,
+      "steps": 20,
+      "ms_per_step": 1845.766485,
+      "ms_per_step_stdev": 66.178583,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 60000
+    },
+    "prehash|16|60000": {
+      "n_total": 60040,
+      "steps": 20,
+      "ms_per_step": 1064.15048,
+      "ms_per_step_stdev": 40.269901,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 60000
+    },
+    "prehash|24|60000": {
+      "n_total": 60040,
+      "steps": 20,
+      "ms_per_step": 869.85656,
+      "ms_per_step_stdev": 1.353798,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 60000
+    },
+    "prehash|32|60000": {
+      "n_total": 60040,
+      "steps": 20,
+      "ms_per_step": 859.793735,
+      "ms_per_step_stdev": 17.239539,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 60000
+    },
+    "sequential|1|70000": {
+      "n_total": 70110,
+      "steps": 10,
+      "ms_per_step": 17664.13629,
+      "ms_per_step_stdev": 0.0,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 70000
+    },
+    "prehash|1|70000": {
+      "n_total": 70110,
+      "steps": 10,
+      "ms_per_step": 17575.65099,
+      "ms_per_step_stdev": 0.0,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 70000
+    },
+    "prehash|2|70000": {
+      "n_total": 70110,
+      "steps": 10,
+      "ms_per_step": 9475.28167,
+      "ms_per_step_stdev": 0.0,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 70000
+    },
+    "prehash|4|70000": {
+      "n_total": 70110,
+      "steps": 20,
+      "ms_per_step": 4947.38888,
+      "ms_per_step_stdev": 199.164559,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 70000
+    },
+    "prehash|8|70000": {
+      "n_total": 70110,
+      "steps": 20,
+      "ms_per_step": 2711.288635,
+      "ms_per_step_stdev": 4.559502,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 70000
+    },
+    "prehash|16|70000": {
+      "n_total": 70110,
+      "steps": 20,
+      "ms_per_step": 1445.679495,
+      "ms_per_step_stdev": 4.811798,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 70000
+    },
+    "prehash|24|70000": {
+      "n_total": 70110,
+      "steps": 20,
+      "ms_per_step": 1185.77514,
+      "ms_per_step_stdev": 19.856548,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 70000
+    },
+    "prehash|32|70000": {
+      "n_total": 70110,
+      "steps": 20,
+      "ms_per_step": 1163.849335,
+      "ms_per_step_stdev": 3.502081,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 70000
+    },
+    "sequential|1|80000": {
+      "n_total": 79935,
+      "steps": 10,
+      "ms_per_step": 24309.50467,
+      "ms_per_step_stdev": 0.0,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 80000
+    },
+    "prehash|1|80000": {
+      "n_total": 79935,
+      "steps": 10,
+      "ms_per_step": 24920.18591,
+      "ms_per_step_stdev": 0.0,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 80000
+    },
+    "prehash|2|80000": {
+      "n_total": 79935,
+      "steps": 10,
+      "ms_per_step": 12361.98365,
+      "ms_per_step_stdev": 0.0,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 80000
+    },
+    "prehash|4|80000": {
+      "n_total": 79935,
+      "steps": 10,
+      "ms_per_step": 6171.78219,
+      "ms_per_step_stdev": 0.0,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 80000
+    },
+    "prehash|8|80000": {
+      "n_total": 79935,
+      "steps": 20,
+      "ms_per_step": 3315.893915,
+      "ms_per_step_stdev": 3.619786,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 80000
+    },
+    "prehash|16|80000": {
+      "n_total": 79935,
+      "steps": 20,
+      "ms_per_step": 1882.890905,
+      "ms_per_step_stdev": 44.118011,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 80000
+    },
+    "prehash|24|80000": {
+      "n_total": 79935,
+      "steps": 20,
+      "ms_per_step": 1543.04717,
+      "ms_per_step_stdev": 5.877995,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 80000
+    },
+    "prehash|32|80000": {
+      "n_total": 79935,
+      "steps": 20,
+      "ms_per_step": 1504.602275,
+      "ms_per_step_stdev": 4.876442,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 80000
+    },
+    "sequential|1|90000": {
+      "n_total": 89784,
+      "steps": 10,
+      "ms_per_step": 30114.18942,
+      "ms_per_step_stdev": 0.0,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 90000
+    },
+    "prehash|1|90000": {
+      "n_total": 89784,
+      "steps": 10,
+      "ms_per_step": 30612.08428,
+      "ms_per_step_stdev": 0.0,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 90000
+    },
+    "prehash|2|90000": {
+      "n_total": 89784,
+      "steps": 10,
+      "ms_per_step": 15376.67252,
+      "ms_per_step_stdev": 0.0,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 90000
+    },
+    "prehash|4|90000": {
+      "n_total": 89784,
+      "steps": 10,
+      "ms_per_step": 7995.0391,
+      "ms_per_step_stdev": 0.0,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 90000
+    },
+    "prehash|8|90000": {
+      "n_total": 89784,
+      "steps": 20,
+      "ms_per_step": 4110.57071,
+      "ms_per_step_stdev": 8.097235,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 90000
+    },
+    "prehash|16|90000": {
+      "n_total": 89784,
+      "steps": 20,
+      "ms_per_step": 2288.413075,
+      "ms_per_step_stdev": 39.111314,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 90000
+    },
+    "prehash|24|90000": {
+      "n_total": 89784,
+      "steps": 20,
+      "ms_per_step": 1934.009635,
+      "ms_per_step_stdev": 11.682316,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 90000
+    },
+    "prehash|32|90000": {
+      "n_total": 89784,
+      "steps": 20,
+      "ms_per_step": 1935.10064,
+      "ms_per_step_stdev": 54.788712,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 90000
+    },
+    "sequential|1|100000": {
+      "n_total": 99960,
+      "steps": 10,
+      "ms_per_step": 37461.02608,
+      "ms_per_step_stdev": 0.0,
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 100000
+    },
+    "prehash|1|100000": {
+      "n_total": 99960,
+      "steps": 10,
+      "ms_per_step": 37795.70722,
+      "ms_per_step_stdev": 0.0,
+      "variant": "prehash",
+      "threads": 1,
+      "particles_requested": 100000
+    },
+    "prehash|2|100000": {
+      "n_total": 99960,
+      "steps": 10,
+      "ms_per_step": 19034.99216,
+      "ms_per_step_stdev": 0.0,
+      "variant": "prehash",
+      "threads": 2,
+      "particles_requested": 100000
+    },
+    "prehash|4|100000": {
+      "n_total": 99960,
+      "steps": 10,
+      "ms_per_step": 9753.98502,
+      "ms_per_step_stdev": 0.0,
+      "variant": "prehash",
+      "threads": 4,
+      "particles_requested": 100000
+    },
+    "prehash|8|100000": {
+      "n_total": 99960,
+      "steps": 10,
+      "ms_per_step": 5136.87283,
+      "ms_per_step_stdev": 0.0,
+      "variant": "prehash",
+      "threads": 8,
+      "particles_requested": 100000
+    },
+    "prehash|16|100000": {
+      "n_total": 99960,
+      "steps": 20,
+      "ms_per_step": 3058.770915,
+      "ms_per_step_stdev": 70.519696,
+      "variant": "prehash",
+      "threads": 16,
+      "particles_requested": 100000
+    },
+    "prehash|24|100000": {
+      "n_total": 99960,
+      "steps": 20,
+      "ms_per_step": 2458.8343,
+      "ms_per_step_stdev": 27.025763,
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 100000
+    },
+    "prehash|32|100000": {
+      "n_total": 99960,
+      "steps": 20,
+      "ms_per_step": 2365.83842,
+      "ms_per_step_stdev": 10.230237,
+      "variant": "prehash",
+      "threads": 32,
+      "particles_requested": 100000
+    }
+  },
+  "timestamp": "2026-09-25T14:39:53"
+}

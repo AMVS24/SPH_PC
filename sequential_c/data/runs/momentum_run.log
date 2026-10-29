@@ -1,0 +1,8 @@
+WARNING: Vec2 const Division close to zero
+WARNING: Vec2 const Division close to zero
+WARNING: Vec2 const Division close to zero
+WARNING: Vec2 const Division close to zero
+WARNING: Vec2 const Division close to zero
+  (further Vec2 const Division warnings suppressed)
+step=0 t=0.000000 dt=0.001008507 amax=2654.644062 vmax=0.500000
+done: n_fluid=125 steps=400 t=0.600000 frames=61

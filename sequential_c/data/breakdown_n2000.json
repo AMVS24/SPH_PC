@@ -1,0 +1,49 @@
+{
+  "metric": "per-stage steady per-step cost, sequential C++ hydrostatic scene, elastic boundary",
+  "source": "sequential_c/validate_main.cpp --breakdown",
+  "max_steps_measured": 150,
+  "hydrostatic_geometry": {
+    "W": 0.5,
+    "fill_height": 0.3
+  },
+  "timestamp": "2026-09-24T21:24:36",
+  "result": {
+    "particles_requested": 2000,
+    "n_total": 2030,
+    "steps": 150,
+    "ms_per_step": 33.772646,
+    "ms_per_step_stdev": 1.59436,
+    "stages": {
+      "A": {
+        "name": "Density NBHD search",
+        "ms": 14.645111,
+        "stdev": 0.682213
+      },
+      "B": {
+        "name": "Density computation",
+        "ms": 0.39429,
+        "stdev": 0.043033
+      },
+      "C": {
+        "name": "Force NBHD search",
+        "ms": 16.952579,
+        "stdev": 0.879159
+      },
+      "D": {
+        "name": "Force computation",
+        "ms": 1.715039,
+        "stdev": 0.186837
+      },
+      "E": {
+        "name": "Pressure computation",
+        "ms": 0.01488,
+        "stdev": 0.002562
+      },
+      "F": {
+        "name": "Boundary condition",
+        "ms": 0.003411,
+        "stdev": 0.000174
+      }
+    }
+  }
+}

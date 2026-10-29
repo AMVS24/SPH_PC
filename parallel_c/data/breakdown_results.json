@@ -1,0 +1,2669 @@
+{
+  "method": "hydrostatic scene via validate.exe --breakdown, 10-step window mean +/- stdev",
+  "results": {
+    "sequential|1|500": {
+      "n_total": 493,
+      "steps": 150,
+      "ms_per_step": 0.950573,
+      "ms_per_step_stdev": 0.033564,
+      "stages": {
+        "A": {
+          "ms": 0.382873,
+          "stdev": 0.0091
+        },
+        "B": {
+          "ms": 0.029865,
+          "stdev": 0.003294
+        },
+        "C": {
+          "ms": 0.394746,
+          "stdev": 0.01045
+        },
+        "D": {
+          "ms": 0.139704,
+          "stdev": 0.01414
+        },
+        "E": {
+          "ms": 0.001012,
+          "stdev": 0.000383
+        },
+        "F": {
+          "ms": 0.00035,
+          "stdev": 3.7e-05
+        }
+      },
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 500
+    },
+    "sequential|1|1000": {
+      "n_total": 1025,
+      "steps": 150,
+      "ms_per_step": 3.301171,
+      "ms_per_step_stdev": 0.056515,
+      "stages": {
+        "A": {
+          "ms": 1.446101,
+          "stdev": 0.015602
+        },
+        "B": {
+          "ms": 0.059704,
+          "stdev": 0.008761
+        },
+        "C": {
+          "ms": 1.507957,
+          "stdev": 0.013758
+        },
+        "D": {
+          "ms": 0.281254,
+          "stdev": 0.025892
+        },
+        "E": {
+          "ms": 0.001581,
+          "stdev": 0.000709
+        },
+        "F": {
+          "ms": 0.000647,
+          "stdev": 2e-05
+        }
+      },
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 1000
+    },
+    "sequential|1|1500": {
+      "n_total": 1500,
+      "steps": 150,
+      "ms_per_step": 6.645647,
+      "ms_per_step_stdev": 0.07624,
+      "stages": {
+        "A": {
+          "ms": 2.994629,
+          "stdev": 0.017727
+        },
+        "B": {
+          "ms": 0.097513,
+          "stdev": 0.018368
+        },
+        "C": {
+          "ms": 3.132981,
+          "stdev": 0.024241
+        },
+        "D": {
+          "ms": 0.410516,
+          "stdev": 0.039528
+        },
+        "E": {
+          "ms": 0.002543,
+          "stdev": 0.001003
+        },
+        "F": {
+          "ms": 0.00094,
+          "stdev": 2.6e-05
+        }
+      },
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 1500
+    },
+    "sequential|1|2000": {
+      "n_total": 2030,
+      "steps": 150,
+      "ms_per_step": 11.732279,
+      "ms_per_step_stdev": 0.18635,
+      "stages": {
+        "A": {
+          "ms": 5.387469,
+          "stdev": 0.06343
+        },
+        "B": {
+          "ms": 0.133695,
+          "stdev": 0.035248
+        },
+        "C": {
+          "ms": 5.646052,
+          "stdev": 0.066528
+        },
+        "D": {
+          "ms": 0.550594,
+          "stdev": 0.051143
+        },
+        "E": {
+          "ms": 0.003344,
+          "stdev": 0.001747
+        },
+        "F": {
+          "ms": 0.001255,
+          "stdev": 3.4e-05
+        }
+      },
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 2000
+    },
+    "sequential|1|2500": {
+      "n_total": 2535,
+      "steps": 150,
+      "ms_per_step": 17.679251,
+      "ms_per_step_stdev": 0.12667,
+      "stages": {
+        "A": {
+          "ms": 8.217027,
+          "stdev": 0.038963
+        },
+        "B": {
+          "ms": 0.141667,
+          "stdev": 0.022263
+        },
+        "C": {
+          "ms": 8.644559,
+          "stdev": 0.048201
+        },
+        "D": {
+          "ms": 0.660429,
+          "stdev": 0.05337
+        },
+        "E": {
+          "ms": 0.003147,
+          "stdev": 0.001203
+        },
+        "F": {
+          "ms": 0.001555,
+          "stdev": 3.2e-05
+        }
+      },
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 2500
+    },
+    "sequential|1|3000": {
+      "n_total": 3053,
+      "steps": 150,
+      "ms_per_step": 25.279564,
+      "ms_per_step_stdev": 0.065811,
+      "stages": {
+        "A": {
+          "ms": 11.846871,
+          "stdev": 0.046701
+        },
+        "B": {
+          "ms": 0.156005,
+          "stdev": 0.012179
+        },
+        "C": {
+          "ms": 12.466139,
+          "stdev": 0.043132
+        },
+        "D": {
+          "ms": 0.790471,
+          "stdev": 0.056321
+        },
+        "E": {
+          "ms": 0.004035,
+          "stdev": 0.00115
+        },
+        "F": {
+          "ms": 0.002063,
+          "stdev": 0.000612
+        }
+      },
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 3000
+    },
+    "sequential|1|3500": {
+      "n_total": 3496,
+      "steps": 150,
+      "ms_per_step": 33.124147,
+      "ms_per_step_stdev": 0.633075,
+      "stages": {
+        "A": {
+          "ms": 15.514523,
+          "stdev": 0.217577
+        },
+        "B": {
+          "ms": 0.217139,
+          "stdev": 0.047715
+        },
+        "C": {
+          "ms": 16.440683,
+          "stdev": 0.352747
+        },
+        "D": {
+          "ms": 0.926718,
+          "stdev": 0.068313
+        },
+        "E": {
+          "ms": 0.005935,
+          "stdev": 0.00192
+        },
+        "F": {
+          "ms": 0.002169,
+          "stdev": 7.2e-05
+        }
+      },
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 3500
+    },
+    "sequential|1|4000": {
+      "n_total": 4018,
+      "steps": 150,
+      "ms_per_step": 43.209749,
+      "ms_per_step_stdev": 0.678327,
+      "stages": {
+        "A": {
+          "ms": 20.347782,
+          "stdev": 0.279663
+        },
+        "B": {
+          "ms": 0.266148,
+          "stdev": 0.059986
+        },
+        "C": {
+          "ms": 21.502188,
+          "stdev": 0.323389
+        },
+        "D": {
+          "ms": 1.059859,
+          "stdev": 0.079005
+        },
+        "E": {
+          "ms": 0.007865,
+          "stdev": 0.00175
+        },
+        "F": {
+          "ms": 0.002433,
+          "stdev": 4.1e-05
+        }
+      },
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 4000
+    },
+    "sequential|1|4500": {
+      "n_total": 4524,
+      "steps": 150,
+      "ms_per_step": 53.977706,
+      "ms_per_step_stdev": 0.610003,
+      "stages": {
+        "A": {
+          "ms": 25.495269,
+          "stdev": 0.284289
+        },
+        "B": {
+          "ms": 0.293522,
+          "stdev": 0.057282
+        },
+        "C": {
+          "ms": 26.947389,
+          "stdev": 0.265355
+        },
+        "D": {
+          "ms": 1.207957,
+          "stdev": 0.083835
+        },
+        "E": {
+          "ms": 0.007969,
+          "stdev": 0.001744
+        },
+        "F": {
+          "ms": 0.003305,
+          "stdev": 0.002033
+        }
+      },
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 4500
+    },
+    "sequential|1|5000": {
+      "n_total": 5005,
+      "steps": 150,
+      "ms_per_step": 65.879149,
+      "ms_per_step_stdev": 0.90022,
+      "stages": {
+        "A": {
+          "ms": 31.138897,
+          "stdev": 0.283818
+        },
+        "B": {
+          "ms": 0.373286,
+          "stdev": 0.093624
+        },
+        "C": {
+          "ms": 32.944006,
+          "stdev": 0.503312
+        },
+        "D": {
+          "ms": 1.382522,
+          "stdev": 0.092993
+        },
+        "E": {
+          "ms": 0.0098,
+          "stdev": 0.002314
+        },
+        "F": {
+          "ms": 0.003044,
+          "stdev": 0.000137
+        }
+      },
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 5000
+    },
+    "sequential|1|5500": {
+      "n_total": 5568,
+      "steps": 150,
+      "ms_per_step": 82.193649,
+      "ms_per_step_stdev": 1.476997,
+      "stages": {
+        "A": {
+          "ms": 38.78749,
+          "stdev": 0.493105
+        },
+        "B": {
+          "ms": 0.454333,
+          "stdev": 0.104693
+        },
+        "C": {
+          "ms": 41.31264,
+          "stdev": 1.017281
+        },
+        "D": {
+          "ms": 1.589297,
+          "stdev": 0.123601
+        },
+        "E": {
+          "ms": 0.012423,
+          "stdev": 0.001947
+        },
+        "F": {
+          "ms": 0.003353,
+          "stdev": 3.7e-05
+        }
+      },
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 5500
+    },
+    "sequential|1|6000": {
+      "n_total": 6000,
+      "steps": 150,
+      "ms_per_step": 95.237012,
+      "ms_per_step_stdev": 1.582569,
+      "stages": {
+        "A": {
+          "ms": 45.05827,
+          "stdev": 0.565232
+        },
+        "B": {
+          "ms": 0.509506,
+          "stdev": 0.105527
+        },
+        "C": {
+          "ms": 47.899987,
+          "stdev": 1.026913
+        },
+        "D": {
+          "ms": 1.715843,
+          "stdev": 0.126173
+        },
+        "E": {
+          "ms": 0.012999,
+          "stdev": 0.002145
+        },
+        "F": {
+          "ms": 0.003606,
+          "stdev": 7.9e-05
+        }
+      },
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 6000
+    },
+    "sequential|1|6500": {
+      "n_total": 6448,
+      "steps": 150,
+      "ms_per_step": 109.399855,
+      "ms_per_step_stdev": 1.517618,
+      "stages": {
+        "A": {
+          "ms": 51.917752,
+          "stdev": 0.536174
+        },
+        "B": {
+          "ms": 0.552422,
+          "stdev": 0.112742
+        },
+        "C": {
+          "ms": 55.047567,
+          "stdev": 0.923837
+        },
+        "D": {
+          "ms": 1.825622,
+          "stdev": 0.153703
+        },
+        "E": {
+          "ms": 0.014042,
+          "stdev": 0.001587
+        },
+        "F": {
+          "ms": 0.003827,
+          "stdev": 5.2e-05
+        }
+      },
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 6500
+    },
+    "sequential|1|7000": {
+      "n_total": 7020,
+      "steps": 150,
+      "ms_per_step": 128.809831,
+      "ms_per_step_stdev": 1.64628,
+      "stages": {
+        "A": {
+          "ms": 61.248874,
+          "stdev": 0.599865
+        },
+        "B": {
+          "ms": 0.664317,
+          "stdev": 0.095429
+        },
+        "C": {
+          "ms": 64.845997,
+          "stdev": 1.059942
+        },
+        "D": {
+          "ms": 1.98791,
+          "stdev": 0.11283
+        },
+        "E": {
+          "ms": 0.015841,
+          "stdev": 0.001402
+        },
+        "F": {
+          "ms": 0.004169,
+          "stdev": 4.9e-05
+        }
+      },
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 7000
+    },
+    "sequential|1|7500": {
+      "n_total": 7504,
+      "steps": 130,
+      "ms_per_step": 146.223544,
+      "ms_per_step_stdev": 1.503702,
+      "stages": {
+        "A": {
+          "ms": 69.476608,
+          "stdev": 0.527631
+        },
+        "B": {
+          "ms": 0.768761,
+          "stdev": 0.072651
+        },
+        "C": {
+          "ms": 73.723768,
+          "stdev": 0.962277
+        },
+        "D": {
+          "ms": 2.189668,
+          "stdev": 0.139912
+        },
+        "E": {
+          "ms": 0.017225,
+          "stdev": 0.001325
+        },
+        "F": {
+          "ms": 0.004522,
+          "stdev": 0.000216
+        }
+      },
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 7500
+    },
+    "sequential|1|8000": {
+      "n_total": 7935,
+      "steps": 120,
+      "ms_per_step": 162.311788,
+      "ms_per_step_stdev": 1.237496,
+      "stages": {
+        "A": {
+          "ms": 77.500772,
+          "stdev": 0.593284
+        },
+        "B": {
+          "ms": 0.817033,
+          "stdev": 0.048445
+        },
+        "C": {
+          "ms": 81.599608,
+          "stdev": 0.815584
+        },
+        "D": {
+          "ms": 2.329487,
+          "stdev": 0.109679
+        },
+        "E": {
+          "ms": 0.017616,
+          "stdev": 0.001768
+        },
+        "F": {
+          "ms": 0.004698,
+          "stdev": 8.3e-05
+        }
+      },
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 8000
+    },
+    "sequential|1|8500": {
+      "n_total": 8449,
+      "steps": 100,
+      "ms_per_step": 183.385808,
+      "ms_per_step_stdev": 1.185881,
+      "stages": {
+        "A": {
+          "ms": 87.663661,
+          "stdev": 0.532902
+        },
+        "B": {
+          "ms": 0.859373,
+          "stdev": 0.072118
+        },
+        "C": {
+          "ms": 92.398924,
+          "stdev": 0.676853
+        },
+        "D": {
+          "ms": 2.395881,
+          "stdev": 0.149765
+        },
+        "E": {
+          "ms": 0.018794,
+          "stdev": 0.002399
+        },
+        "F": {
+          "ms": 0.004956,
+          "stdev": 5.4e-05
+        }
+      },
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 8500
+    },
+    "sequential|1|9000": {
+      "n_total": 8906,
+      "steps": 90,
+      "ms_per_step": 204.42461,
+      "ms_per_step_stdev": 1.827105,
+      "stages": {
+        "A": {
+          "ms": 97.496469,
+          "stdev": 0.753508
+        },
+        "B": {
+          "ms": 0.953996,
+          "stdev": 0.073454
+        },
+        "C": {
+          "ms": 103.37464,
+          "stdev": 1.21011
+        },
+        "D": {
+          "ms": 2.521593,
+          "stdev": 0.089883
+        },
+        "E": {
+          "ms": 0.021564,
+          "stdev": 0.002573
+        },
+        "F": {
+          "ms": 0.00521,
+          "stdev": 6.3e-05
+        }
+      },
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 9000
+    },
+    "sequential|1|9500": {
+      "n_total": 9576,
+      "steps": 80,
+      "ms_per_step": 235.52367,
+      "ms_per_step_stdev": 1.724427,
+      "stages": {
+        "A": {
+          "ms": 112.828118,
+          "stdev": 0.92175
+        },
+        "B": {
+          "ms": 1.044704,
+          "stdev": 0.053639
+        },
+        "C": {
+          "ms": 118.826305,
+          "stdev": 0.869696
+        },
+        "D": {
+          "ms": 2.746018,
+          "stdev": 0.141719
+        },
+        "E": {
+          "ms": 0.021664,
+          "stdev": 0.001994
+        },
+        "F": {
+          "ms": 0.005644,
+          "stdev": 0.000225
+        }
+      },
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 9500
+    },
+    "sequential|1|10000": {
+      "n_total": 9933,
+      "steps": 70,
+      "ms_per_step": 253.65075,
+      "ms_per_step_stdev": 2.019137,
+      "stages": {
+        "A": {
+          "ms": 121.206396,
+          "stdev": 0.609897
+        },
+        "B": {
+          "ms": 1.057186,
+          "stdev": 0.048959
+        },
+        "C": {
+          "ms": 128.479413,
+          "stdev": 1.566099
+        },
+        "D": {
+          "ms": 2.818941,
+          "stdev": 0.126627
+        },
+        "E": {
+          "ms": 0.023277,
+          "stdev": 0.003392
+        },
+        "F": {
+          "ms": 0.005804,
+          "stdev": 4.4e-05
+        }
+      },
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 10000
+    },
+    "sequential|1|30000": {
+      "n_total": 30016,
+      "steps": 20,
+      "ms_per_step": 2275.147665,
+      "ms_per_step_stdev": 1.952555,
+      "stages": {
+        "A": {
+          "ms": 1096.6392,
+          "stdev": 4.259654
+        },
+        "B": {
+          "ms": 3.362945,
+          "stdev": 0.334865
+        },
+        "C": {
+          "ms": 1162.807355,
+          "stdev": 2.823103
+        },
+        "D": {
+          "ms": 12.0757,
+          "stdev": 0.163822
+        },
+        "E": {
+          "ms": 0.06579,
+          "stdev": 0.014255
+        },
+        "F": {
+          "ms": 0.018385,
+          "stdev": 0.00111
+        }
+      },
+      "variant": "sequential",
+      "threads": 1,
+      "particles_requested": 30000
+    },
+    "prehash|24|500": {
+      "n_total": 493,
+      "steps": 150,
+      "ms_per_step": 0.741335,
+      "ms_per_step_stdev": 0.022132,
+      "stages": {
+        "A": {
+          "ms": 0.107149,
+          "stdev": 0.012128
+        },
+        "B": {
+          "ms": 0.075548,
+          "stdev": 0.001795
+        },
+        "C": {
+          "ms": 0.110033,
+          "stdev": 0.005141
+        },
+        "D": {
+          "ms": 0.081122,
+          "stdev": 0.002952
+        },
+        "E": {
+          "ms": 0.147049,
+          "stdev": 0.003781
+        },
+        "F": {
+          "ms": 0.000547,
+          "stdev": 3.4e-05
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 500
+    },
+    "prehash|24|1000": {
+      "n_total": 1025,
+      "steps": 150,
+      "ms_per_step": 0.978209,
+      "ms_per_step_stdev": 0.075621,
+      "stages": {
+        "A": {
+          "ms": 0.208377,
+          "stdev": 0.030685
+        },
+        "B": {
+          "ms": 0.078661,
+          "stdev": 0.002362
+        },
+        "C": {
+          "ms": 0.214349,
+          "stdev": 0.025503
+        },
+        "D": {
+          "ms": 0.096033,
+          "stdev": 0.01079
+        },
+        "E": {
+          "ms": 0.150703,
+          "stdev": 0.003949
+        },
+        "F": {
+          "ms": 0.001045,
+          "stdev": 4.6e-05
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 1000
+    },
+    "prehash|24|1500": {
+      "n_total": 1500,
+      "steps": 150,
+      "ms_per_step": 1.491387,
+      "ms_per_step_stdev": 0.079572,
+      "stages": {
+        "A": {
+          "ms": 0.382465,
+          "stdev": 0.036021
+        },
+        "B": {
+          "ms": 0.099658,
+          "stdev": 0.011349
+        },
+        "C": {
+          "ms": 0.411389,
+          "stdev": 0.021653
+        },
+        "D": {
+          "ms": 0.137985,
+          "stdev": 0.015457
+        },
+        "E": {
+          "ms": 0.183091,
+          "stdev": 0.019053
+        },
+        "F": {
+          "ms": 0.003983,
+          "stdev": 0.001664
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 1500
+    },
+    "prehash|24|2000": {
+      "n_total": 2030,
+      "steps": 150,
+      "ms_per_step": 1.912561,
+      "ms_per_step_stdev": 0.081561,
+      "stages": {
+        "A": {
+          "ms": 0.607215,
+          "stdev": 0.028378
+        },
+        "B": {
+          "ms": 0.096109,
+          "stdev": 0.007805
+        },
+        "C": {
+          "ms": 0.644651,
+          "stdev": 0.02525
+        },
+        "D": {
+          "ms": 0.12454,
+          "stdev": 0.011558
+        },
+        "E": {
+          "ms": 0.174579,
+          "stdev": 0.012367
+        },
+        "F": {
+          "ms": 0.005462,
+          "stdev": 0.002157
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 2000
+    },
+    "prehash|24|2500": {
+      "n_total": 2535,
+      "steps": 150,
+      "ms_per_step": 2.398808,
+      "ms_per_step_stdev": 0.188393,
+      "stages": {
+        "A": {
+          "ms": 0.812767,
+          "stdev": 0.084612
+        },
+        "B": {
+          "ms": 0.097673,
+          "stdev": 0.006789
+        },
+        "C": {
+          "ms": 0.919405,
+          "stdev": 0.096417
+        },
+        "D": {
+          "ms": 0.127055,
+          "stdev": 0.008249
+        },
+        "E": {
+          "ms": 0.174405,
+          "stdev": 0.017246
+        },
+        "F": {
+          "ms": 0.005494,
+          "stdev": 0.002137
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 2500
+    },
+    "prehash|24|3000": {
+      "n_total": 3053,
+      "steps": 150,
+      "ms_per_step": 3.33376,
+      "ms_per_step_stdev": 0.229708,
+      "stages": {
+        "A": {
+          "ms": 1.214796,
+          "stdev": 0.086639
+        },
+        "B": {
+          "ms": 0.105134,
+          "stdev": 0.016788
+        },
+        "C": {
+          "ms": 1.439779,
+          "stdev": 0.110307
+        },
+        "D": {
+          "ms": 0.151538,
+          "stdev": 0.032949
+        },
+        "E": {
+          "ms": 0.167081,
+          "stdev": 0.007853
+        },
+        "F": {
+          "ms": 0.004118,
+          "stdev": 0.001358
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 3000
+    },
+    "prehash|24|3500": {
+      "n_total": 3496,
+      "steps": 150,
+      "ms_per_step": 3.848083,
+      "ms_per_step_stdev": 0.245348,
+      "stages": {
+        "A": {
+          "ms": 1.467717,
+          "stdev": 0.118589
+        },
+        "B": {
+          "ms": 0.100827,
+          "stdev": 0.014513
+        },
+        "C": {
+          "ms": 1.701078,
+          "stdev": 0.104979
+        },
+        "D": {
+          "ms": 0.182405,
+          "stdev": 0.012931
+        },
+        "E": {
+          "ms": 0.155973,
+          "stdev": 0.013945
+        },
+        "F": {
+          "ms": 0.005237,
+          "stdev": 0.003534
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 3500
+    },
+    "prehash|24|4000": {
+      "n_total": 4018,
+      "steps": 150,
+      "ms_per_step": 4.752539,
+      "ms_per_step_stdev": 0.259534,
+      "stages": {
+        "A": {
+          "ms": 1.91561,
+          "stdev": 0.111324
+        },
+        "B": {
+          "ms": 0.114674,
+          "stdev": 0.014632
+        },
+        "C": {
+          "ms": 2.103715,
+          "stdev": 0.104736
+        },
+        "D": {
+          "ms": 0.203542,
+          "stdev": 0.032378
+        },
+        "E": {
+          "ms": 0.16628,
+          "stdev": 0.013004
+        },
+        "F": {
+          "ms": 0.005609,
+          "stdev": 0.003413
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 4000
+    },
+    "prehash|24|4500": {
+      "n_total": 4524,
+      "steps": 150,
+      "ms_per_step": 5.678317,
+      "ms_per_step_stdev": 0.324085,
+      "stages": {
+        "A": {
+          "ms": 2.365421,
+          "stdev": 0.154137
+        },
+        "B": {
+          "ms": 0.124685,
+          "stdev": 0.010746
+        },
+        "C": {
+          "ms": 2.531981,
+          "stdev": 0.15583
+        },
+        "D": {
+          "ms": 0.234297,
+          "stdev": 0.031845
+        },
+        "E": {
+          "ms": 0.168453,
+          "stdev": 0.012381
+        },
+        "F": {
+          "ms": 0.006435,
+          "stdev": 0.004429
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 4500
+    },
+    "prehash|24|5000": {
+      "n_total": 5005,
+      "steps": 150,
+      "ms_per_step": 6.508051,
+      "ms_per_step_stdev": 0.687165,
+      "stages": {
+        "A": {
+          "ms": 2.643331,
+          "stdev": 0.311658
+        },
+        "B": {
+          "ms": 0.16414,
+          "stdev": 0.055394
+        },
+        "C": {
+          "ms": 2.94865,
+          "stdev": 0.30454
+        },
+        "D": {
+          "ms": 0.290366,
+          "stdev": 0.064614
+        },
+        "E": {
+          "ms": 0.180367,
+          "stdev": 0.018117
+        },
+        "F": {
+          "ms": 0.007375,
+          "stdev": 0.004442
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 5000
+    },
+    "prehash|24|5500": {
+      "n_total": 5568,
+      "steps": 150,
+      "ms_per_step": 7.620435,
+      "ms_per_step_stdev": 0.832416,
+      "stages": {
+        "A": {
+          "ms": 3.184962,
+          "stdev": 0.387695
+        },
+        "B": {
+          "ms": 0.184975,
+          "stdev": 0.050712
+        },
+        "C": {
+          "ms": 3.471083,
+          "stdev": 0.383827
+        },
+        "D": {
+          "ms": 0.322562,
+          "stdev": 0.070598
+        },
+        "E": {
+          "ms": 0.183814,
+          "stdev": 0.014761
+        },
+        "F": {
+          "ms": 0.007769,
+          "stdev": 0.003879
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 5500
+    },
+    "prehash|24|6000": {
+      "n_total": 6000,
+      "steps": 150,
+      "ms_per_step": 8.750229,
+      "ms_per_step_stdev": 1.078279,
+      "stages": {
+        "A": {
+          "ms": 3.694423,
+          "stdev": 0.431292
+        },
+        "B": {
+          "ms": 0.239711,
+          "stdev": 0.124492
+        },
+        "C": {
+          "ms": 4.001866,
+          "stdev": 0.472619
+        },
+        "D": {
+          "ms": 0.365556,
+          "stdev": 0.147249
+        },
+        "E": {
+          "ms": 0.181507,
+          "stdev": 0.016091
+        },
+        "F": {
+          "ms": 0.008007,
+          "stdev": 0.002926
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 6000
+    },
+    "prehash|24|6500": {
+      "n_total": 6448,
+      "steps": 150,
+      "ms_per_step": 9.893518,
+      "ms_per_step_stdev": 1.250364,
+      "stages": {
+        "A": {
+          "ms": 4.162681,
+          "stdev": 0.464802
+        },
+        "B": {
+          "ms": 0.292687,
+          "stdev": 0.1988
+        },
+        "C": {
+          "ms": 4.57406,
+          "stdev": 0.453227
+        },
+        "D": {
+          "ms": 0.398597,
+          "stdev": 0.194957
+        },
+        "E": {
+          "ms": 0.184284,
+          "stdev": 0.011056
+        },
+        "F": {
+          "ms": 0.009439,
+          "stdev": 0.004711
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 6500
+    },
+    "prehash|24|7000": {
+      "n_total": 7020,
+      "steps": 150,
+      "ms_per_step": 10.877857,
+      "ms_per_step_stdev": 1.010521,
+      "stages": {
+        "A": {
+          "ms": 4.704953,
+          "stdev": 0.489873
+        },
+        "B": {
+          "ms": 0.186078,
+          "stdev": 0.056575
+        },
+        "C": {
+          "ms": 5.202203,
+          "stdev": 0.512978
+        },
+        "D": {
+          "ms": 0.309573,
+          "stdev": 0.04942
+        },
+        "E": {
+          "ms": 0.190251,
+          "stdev": 0.00871
+        },
+        "F": {
+          "ms": 0.009742,
+          "stdev": 0.00309
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 7000
+    },
+    "prehash|24|7500": {
+      "n_total": 7504,
+      "steps": 150,
+      "ms_per_step": 12.59393,
+      "ms_per_step_stdev": 0.932395,
+      "stages": {
+        "A": {
+          "ms": 5.570822,
+          "stdev": 0.552787
+        },
+        "B": {
+          "ms": 0.206378,
+          "stdev": 0.088042
+        },
+        "C": {
+          "ms": 6.004282,
+          "stdev": 0.482987
+        },
+        "D": {
+          "ms": 0.327359,
+          "stdev": 0.066104
+        },
+        "E": {
+          "ms": 0.198643,
+          "stdev": 0.02102
+        },
+        "F": {
+          "ms": 0.009313,
+          "stdev": 0.001779
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 7500
+    },
+    "prehash|24|8000": {
+      "n_total": 7935,
+      "steps": 150,
+      "ms_per_step": 14.287993,
+      "ms_per_step_stdev": 0.855138,
+      "stages": {
+        "A": {
+          "ms": 6.120403,
+          "stdev": 0.431265
+        },
+        "B": {
+          "ms": 0.222374,
+          "stdev": 0.080698
+        },
+        "C": {
+          "ms": 7.054141,
+          "stdev": 0.463226
+        },
+        "D": {
+          "ms": 0.405156,
+          "stdev": 0.104824
+        },
+        "E": {
+          "ms": 0.188245,
+          "stdev": 0.012802
+        },
+        "F": {
+          "ms": 0.010555,
+          "stdev": 0.003923
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 8000
+    },
+    "prehash|24|8500": {
+      "n_total": 8449,
+      "steps": 150,
+      "ms_per_step": 15.436271,
+      "ms_per_step_stdev": 1.439848,
+      "stages": {
+        "A": {
+          "ms": 6.797151,
+          "stdev": 0.725632
+        },
+        "B": {
+          "ms": 0.215181,
+          "stdev": 0.052663
+        },
+        "C": {
+          "ms": 7.561662,
+          "stdev": 0.704948
+        },
+        "D": {
+          "ms": 0.366868,
+          "stdev": 0.051972
+        },
+        "E": {
+          "ms": 0.201301,
+          "stdev": 0.019056
+        },
+        "F": {
+          "ms": 0.011137,
+          "stdev": 0.003732
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 8500
+    },
+    "prehash|24|9000": {
+      "n_total": 8906,
+      "steps": 150,
+      "ms_per_step": 17.855701,
+      "ms_per_step_stdev": 1.10464,
+      "stages": {
+        "A": {
+          "ms": 7.795041,
+          "stdev": 0.612806
+        },
+        "B": {
+          "ms": 0.229617,
+          "stdev": 0.068949
+        },
+        "C": {
+          "ms": 8.917463,
+          "stdev": 0.543273
+        },
+        "D": {
+          "ms": 0.390561,
+          "stdev": 0.051988
+        },
+        "E": {
+          "ms": 0.209512,
+          "stdev": 0.041049
+        },
+        "F": {
+          "ms": 0.013342,
+          "stdev": 0.005163
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 9000
+    },
+    "prehash|24|9500": {
+      "n_total": 9576,
+      "steps": 150,
+      "ms_per_step": 19.73636,
+      "ms_per_step_stdev": 1.330097,
+      "stages": {
+        "A": {
+          "ms": 8.760277,
+          "stdev": 0.630181
+        },
+        "B": {
+          "ms": 0.223639,
+          "stdev": 0.066319
+        },
+        "C": {
+          "ms": 9.843314,
+          "stdev": 0.703968
+        },
+        "D": {
+          "ms": 0.400233,
+          "stdev": 0.054716
+        },
+        "E": {
+          "ms": 0.207847,
+          "stdev": 0.023188
+        },
+        "F": {
+          "ms": 0.012765,
+          "stdev": 0.00429
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 9500
+    },
+    "prehash|24|10000": {
+      "n_total": 9933,
+      "steps": 150,
+      "ms_per_step": 21.472892,
+      "ms_per_step_stdev": 1.306546,
+      "stages": {
+        "A": {
+          "ms": 9.474295,
+          "stdev": 0.776492
+        },
+        "B": {
+          "ms": 0.251674,
+          "stdev": 0.083405
+        },
+        "C": {
+          "ms": 10.776247,
+          "stdev": 0.518805
+        },
+        "D": {
+          "ms": 0.449677,
+          "stdev": 0.073856
+        },
+        "E": {
+          "ms": 0.209569,
+          "stdev": 0.036703
+        },
+        "F": {
+          "ms": 0.013071,
+          "stdev": 0.003581
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 10000
+    },
+    "prehash|24|20000": {
+      "n_total": 20130,
+      "steps": 150,
+      "ms_per_step": 85.22965,
+      "ms_per_step_stdev": 2.760821,
+      "stages": {
+        "A": {
+          "ms": 38.888679,
+          "stdev": 1.387868
+        },
+        "B": {
+          "ms": 0.558801,
+          "stdev": 0.095669
+        },
+        "C": {
+          "ms": 43.939351,
+          "stdev": 1.36663
+        },
+        "D": {
+          "ms": 0.931153,
+          "stdev": 0.111682
+        },
+        "E": {
+          "ms": 0.373133,
+          "stdev": 0.083002
+        },
+        "F": {
+          "ms": 0.035099,
+          "stdev": 0.007937
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 20000
+    },
+    "prehash|24|30000": {
+      "n_total": 30016,
+      "steps": 100,
+      "ms_per_step": 178.329471,
+      "ms_per_step_stdev": 1.293886,
+      "stages": {
+        "A": {
+          "ms": 81.072267,
+          "stdev": 0.754221
+        },
+        "B": {
+          "ms": 0.961959,
+          "stdev": 0.116867
+        },
+        "C": {
+          "ms": 93.502131,
+          "stdev": 1.26494
+        },
+        "D": {
+          "ms": 1.290605,
+          "stdev": 0.130697
+        },
+        "E": {
+          "ms": 0.676381,
+          "stdev": 0.153033
+        },
+        "F": {
+          "ms": 0.061168,
+          "stdev": 0.013807
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 30000
+    },
+    "prehash|24|40000": {
+      "n_total": 39990,
+      "steps": 60,
+      "ms_per_step": 307.285,
+      "ms_per_step_stdev": 1.311613,
+      "stages": {
+        "A": {
+          "ms": 140.926352,
+          "stdev": 0.73487
+        },
+        "B": {
+          "ms": 1.456423,
+          "stdev": 0.174152
+        },
+        "C": {
+          "ms": 160.904507,
+          "stdev": 1.264615
+        },
+        "D": {
+          "ms": 1.81367,
+          "stdev": 0.121929
+        },
+        "E": {
+          "ms": 0.770467,
+          "stdev": 0.098666
+        },
+        "F": {
+          "ms": 0.163465,
+          "stdev": 0.036109
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 40000
+    },
+    "prehash|24|50000": {
+      "n_total": 49997,
+      "steps": 40,
+      "ms_per_step": 472.500887,
+      "ms_per_step_stdev": 3.982159,
+      "stages": {
+        "A": {
+          "ms": 216.45195,
+          "stdev": 0.944748
+        },
+        "B": {
+          "ms": 1.783353,
+          "stdev": 0.094282
+        },
+        "C": {
+          "ms": 249.18813,
+          "stdev": 4.608368
+        },
+        "D": {
+          "ms": 2.259755,
+          "stdev": 0.085187
+        },
+        "E": {
+          "ms": 0.951377,
+          "stdev": 0.241999
+        },
+        "F": {
+          "ms": 0.2733,
+          "stdev": 0.050927
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 50000
+    },
+    "prehash|24|60000": {
+      "n_total": 60040,
+      "steps": 20,
+      "ms_per_step": 692.202865,
+      "ms_per_step_stdev": 3.024359,
+      "stages": {
+        "A": {
+          "ms": 318.01222,
+          "stdev": 2.693186
+        },
+        "B": {
+          "ms": 1.986245,
+          "stdev": 0.02419
+        },
+        "C": {
+          "ms": 367.34786,
+          "stdev": 0.082675
+        },
+        "D": {
+          "ms": 2.7119,
+          "stdev": 0.129471
+        },
+        "E": {
+          "ms": 0.747195,
+          "stdev": 0.041967
+        },
+        "F": {
+          "ms": 0.285415,
+          "stdev": 0.053563
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 60000
+    },
+    "prehash|24|70000": {
+      "n_total": 70110,
+      "steps": 20,
+      "ms_per_step": 931.42564,
+      "ms_per_step_stdev": 0.911305,
+      "stages": {
+        "A": {
+          "ms": 427.180075,
+          "stdev": 0.512773
+        },
+        "B": {
+          "ms": 2.321325,
+          "stdev": 0.209537
+        },
+        "C": {
+          "ms": 496.85629,
+          "stdev": 0.14722
+        },
+        "D": {
+          "ms": 2.88613,
+          "stdev": 0.052976
+        },
+        "E": {
+          "ms": 0.824165,
+          "stdev": 0.064326
+        },
+        "F": {
+          "ms": 0.26676,
+          "stdev": 0.017833
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 70000
+    },
+    "prehash|24|80000": {
+      "n_total": 79935,
+      "steps": 20,
+      "ms_per_step": 1186.555685,
+      "ms_per_step_stdev": 1.015936,
+      "stages": {
+        "A": {
+          "ms": 549.14797,
+          "stdev": 1.804664
+        },
+        "B": {
+          "ms": 2.605325,
+          "stdev": 0.036607
+        },
+        "C": {
+          "ms": 628.89972,
+          "stdev": 0.550949
+        },
+        "D": {
+          "ms": 3.530085,
+          "stdev": 0.147934
+        },
+        "E": {
+          "ms": 0.87318,
+          "stdev": 0.170441
+        },
+        "F": {
+          "ms": 0.267075,
+          "stdev": 0.011165
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 80000
+    },
+    "prehash|24|90000": {
+      "n_total": 89784,
+      "steps": 20,
+      "ms_per_step": 1491.59209,
+      "ms_per_step_stdev": 2.243763,
+      "stages": {
+        "A": {
+          "ms": 689.79089,
+          "stdev": 3.607913
+        },
+        "B": {
+          "ms": 3.00381,
+          "stdev": 0.090835
+        },
+        "C": {
+          "ms": 792.721655,
+          "stdev": 5.905989
+        },
+        "D": {
+          "ms": 3.644695,
+          "stdev": 0.170462
+        },
+        "E": {
+          "ms": 0.90382,
+          "stdev": 0.054461
+        },
+        "F": {
+          "ms": 0.3031,
+          "stdev": 0.020605
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 90000
+    },
+    "prehash|24|100000": {
+      "n_total": 99960,
+      "steps": 20,
+      "ms_per_step": 1828.993125,
+      "ms_per_step_stdev": 0.391362,
+      "stages": {
+        "A": {
+          "ms": 844.954185,
+          "stdev": 0.400767
+        },
+        "B": {
+          "ms": 3.11837,
+          "stdev": 0.047178
+        },
+        "C": {
+          "ms": 974.484395,
+          "stdev": 0.04331
+        },
+        "D": {
+          "ms": 4.02888,
+          "stdev": 0.01451
+        },
+        "E": {
+          "ms": 0.82174,
+          "stdev": 0.052609
+        },
+        "F": {
+          "ms": 0.323435,
+          "stdev": 0.07209
+        }
+      },
+      "variant": "prehash",
+      "threads": 24,
+      "particles_requested": 100000
+    },
+    "hash|24|4000": {
+      "n_total": 4018,
+      "steps": 150,
+      "ms_per_step": 1.097139,
+      "ms_per_step_stdev": 0.054835,
+      "stages": {
+        "A": {
+          "ms": 0.245673,
+          "stdev": 0.034397
+        },
+        "B": {
+          "ms": 0.104573,
+          "stdev": 0.009174
+        },
+        "C": {
+          "ms": 0.164761,
+          "stdev": 0.012565
+        },
+        "D": {
+          "ms": 0.183027,
+          "stdev": 0.01939
+        },
+        "E": {
+          "ms": 0.159037,
+          "stdev": 0.004953
+        },
+        "F": {
+          "ms": 0.004593,
+          "stdev": 0.000592
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 4000
+    },
+    "hash|24|8000": {
+      "n_total": 7935,
+      "steps": 150,
+      "ms_per_step": 1.447631,
+      "ms_per_step_stdev": 0.074746,
+      "stages": {
+        "A": {
+          "ms": 0.352002,
+          "stdev": 0.045343
+        },
+        "B": {
+          "ms": 0.119899,
+          "stdev": 0.0092
+        },
+        "C": {
+          "ms": 0.241064,
+          "stdev": 0.016095
+        },
+        "D": {
+          "ms": 0.311313,
+          "stdev": 0.024211
+        },
+        "E": {
+          "ms": 0.16713,
+          "stdev": 0.009161
+        },
+        "F": {
+          "ms": 0.01141,
+          "stdev": 0.00202
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 8000
+    },
+    "hash|24|12000": {
+      "n_total": 11985,
+      "steps": 150,
+      "ms_per_step": 1.882523,
+      "ms_per_step_stdev": 0.158313,
+      "stages": {
+        "A": {
+          "ms": 0.465796,
+          "stdev": 0.09631
+        },
+        "B": {
+          "ms": 0.15397,
+          "stdev": 0.012564
+        },
+        "C": {
+          "ms": 0.348823,
+          "stdev": 0.025228
+        },
+        "D": {
+          "ms": 0.435521,
+          "stdev": 0.036142
+        },
+        "E": {
+          "ms": 0.180847,
+          "stdev": 0.014485
+        },
+        "F": {
+          "ms": 0.03381,
+          "stdev": 0.018848
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 12000
+    },
+    "hash|24|16000": {
+      "n_total": 15974,
+      "steps": 150,
+      "ms_per_step": 2.055577,
+      "ms_per_step_stdev": 0.184174,
+      "stages": {
+        "A": {
+          "ms": 0.49076,
+          "stdev": 0.099841
+        },
+        "B": {
+          "ms": 0.17265,
+          "stdev": 0.011524
+        },
+        "C": {
+          "ms": 0.394287,
+          "stdev": 0.043962
+        },
+        "D": {
+          "ms": 0.508967,
+          "stdev": 0.050698
+        },
+        "E": {
+          "ms": 0.184303,
+          "stdev": 0.008694
+        },
+        "F": {
+          "ms": 0.040787,
+          "stdev": 0.012389
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 16000
+    },
+    "hash|24|20000": {
+      "n_total": 20130,
+      "steps": 150,
+      "ms_per_step": 2.83275,
+      "ms_per_step_stdev": 0.170002,
+      "stages": {
+        "A": {
+          "ms": 0.700116,
+          "stdev": 0.104027
+        },
+        "B": {
+          "ms": 0.249625,
+          "stdev": 0.021043
+        },
+        "C": {
+          "ms": 0.547749,
+          "stdev": 0.025405
+        },
+        "D": {
+          "ms": 0.682145,
+          "stdev": 0.042259
+        },
+        "E": {
+          "ms": 0.238714,
+          "stdev": 0.034785
+        },
+        "F": {
+          "ms": 0.116985,
+          "stdev": 0.043189
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 20000
+    },
+    "hash|24|24000": {
+      "n_total": 24000,
+      "steps": 150,
+      "ms_per_step": 2.746986,
+      "ms_per_step_stdev": 0.353392,
+      "stages": {
+        "A": {
+          "ms": 0.691373,
+          "stdev": 0.142388
+        },
+        "B": {
+          "ms": 0.236907,
+          "stdev": 0.046849
+        },
+        "C": {
+          "ms": 0.549151,
+          "stdev": 0.063268
+        },
+        "D": {
+          "ms": 0.722114,
+          "stdev": 0.058019
+        },
+        "E": {
+          "ms": 0.204296,
+          "stdev": 0.039217
+        },
+        "F": {
+          "ms": 0.057144,
+          "stdev": 0.045395
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 24000
+    },
+    "hash|24|28000": {
+      "n_total": 28080,
+      "steps": 150,
+      "ms_per_step": 3.699805,
+      "ms_per_step_stdev": 0.168254,
+      "stages": {
+        "A": {
+          "ms": 0.903161,
+          "stdev": 0.1039
+        },
+        "B": {
+          "ms": 0.300675,
+          "stdev": 0.029503
+        },
+        "C": {
+          "ms": 0.708922,
+          "stdev": 0.044324
+        },
+        "D": {
+          "ms": 1.027571,
+          "stdev": 0.104051
+        },
+        "E": {
+          "ms": 0.273612,
+          "stdev": 0.028131
+        },
+        "F": {
+          "ms": 0.164329,
+          "stdev": 0.04492
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 28000
+    },
+    "hash|24|32000": {
+      "n_total": 32109,
+      "steps": 150,
+      "ms_per_step": 3.630451,
+      "ms_per_step_stdev": 0.187966,
+      "stages": {
+        "A": {
+          "ms": 0.932533,
+          "stdev": 0.124305
+        },
+        "B": {
+          "ms": 0.337817,
+          "stdev": 0.061298
+        },
+        "C": {
+          "ms": 0.744312,
+          "stdev": 0.036687
+        },
+        "D": {
+          "ms": 0.939111,
+          "stdev": 0.085382
+        },
+        "E": {
+          "ms": 0.248062,
+          "stdev": 0.030147
+        },
+        "F": {
+          "ms": 0.126137,
+          "stdev": 0.03878
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 32000
+    },
+    "hash|24|36000": {
+      "n_total": 36015,
+      "steps": 150,
+      "ms_per_step": 4.017237,
+      "ms_per_step_stdev": 0.42091,
+      "stages": {
+        "A": {
+          "ms": 0.968065,
+          "stdev": 0.146266
+        },
+        "B": {
+          "ms": 0.375915,
+          "stdev": 0.082384
+        },
+        "C": {
+          "ms": 0.77975,
+          "stdev": 0.084575
+        },
+        "D": {
+          "ms": 1.245451,
+          "stdev": 0.176082
+        },
+        "E": {
+          "ms": 0.23268,
+          "stdev": 0.018505
+        },
+        "F": {
+          "ms": 0.101651,
+          "stdev": 0.023218
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 36000
+    },
+    "hash|24|40000": {
+      "n_total": 39990,
+      "steps": 150,
+      "ms_per_step": 4.35391,
+      "ms_per_step_stdev": 0.387913,
+      "stages": {
+        "A": {
+          "ms": 1.112103,
+          "stdev": 0.186423
+        },
+        "B": {
+          "ms": 0.455454,
+          "stdev": 0.137206
+        },
+        "C": {
+          "ms": 0.879775,
+          "stdev": 0.06515
+        },
+        "D": {
+          "ms": 1.167693,
+          "stdev": 0.085267
+        },
+        "E": {
+          "ms": 0.273337,
+          "stdev": 0.063571
+        },
+        "F": {
+          "ms": 0.1422,
+          "stdev": 0.093042
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 40000
+    },
+    "hash|24|44000": {
+      "n_total": 44173,
+      "steps": 150,
+      "ms_per_step": 4.877292,
+      "ms_per_step_stdev": 0.307464,
+      "stages": {
+        "A": {
+          "ms": 1.222079,
+          "stdev": 0.174152
+        },
+        "B": {
+          "ms": 0.572211,
+          "stdev": 0.06979
+        },
+        "C": {
+          "ms": 0.934643,
+          "stdev": 0.091794
+        },
+        "D": {
+          "ms": 1.222293,
+          "stdev": 0.106882
+        },
+        "E": {
+          "ms": 0.350009,
+          "stdev": 0.039547
+        },
+        "F": {
+          "ms": 0.222586,
+          "stdev": 0.054158
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 44000
+    },
+    "hash|24|48000": {
+      "n_total": 48110,
+      "steps": 150,
+      "ms_per_step": 5.565511,
+      "ms_per_step_stdev": 0.357645,
+      "stages": {
+        "A": {
+          "ms": 1.384017,
+          "stdev": 0.203693
+        },
+        "B": {
+          "ms": 0.763829,
+          "stdev": 0.083772
+        },
+        "C": {
+          "ms": 1.088598,
+          "stdev": 0.074182
+        },
+        "D": {
+          "ms": 1.435233,
+          "stdev": 0.112295
+        },
+        "E": {
+          "ms": 0.337163,
+          "stdev": 0.057161
+        },
+        "F": {
+          "ms": 0.195383,
+          "stdev": 0.061767
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 48000
+    },
+    "hash|24|52000": {
+      "n_total": 51744,
+      "steps": 150,
+      "ms_per_step": 5.768435,
+      "ms_per_step_stdev": 0.397975,
+      "stages": {
+        "A": {
+          "ms": 1.395085,
+          "stdev": 0.178422
+        },
+        "B": {
+          "ms": 0.900465,
+          "stdev": 0.113769
+        },
+        "C": {
+          "ms": 1.15906,
+          "stdev": 0.081509
+        },
+        "D": {
+          "ms": 1.589329,
+          "stdev": 0.167077
+        },
+        "E": {
+          "ms": 0.266942,
+          "stdev": 0.04337
+        },
+        "F": {
+          "ms": 0.117618,
+          "stdev": 0.066073
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 52000
+    },
+    "hash|24|56000": {
+      "n_total": 56304,
+      "steps": 150,
+      "ms_per_step": 6.645392,
+      "ms_per_step_stdev": 0.738032,
+      "stages": {
+        "A": {
+          "ms": 1.662669,
+          "stdev": 0.272298
+        },
+        "B": {
+          "ms": 1.150646,
+          "stdev": 0.21507
+        },
+        "C": {
+          "ms": 1.325357,
+          "stdev": 0.180448
+        },
+        "D": {
+          "ms": 1.787938,
+          "stdev": 0.251571
+        },
+        "E": {
+          "ms": 0.269499,
+          "stdev": 0.056977
+        },
+        "F": {
+          "ms": 0.108745,
+          "stdev": 0.077373
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 56000
+    },
+    "hash|24|60000": {
+      "n_total": 60040,
+      "steps": 150,
+      "ms_per_step": 7.183499,
+      "ms_per_step_stdev": 0.509207,
+      "stages": {
+        "A": {
+          "ms": 1.768082,
+          "stdev": 0.248189
+        },
+        "B": {
+          "ms": 1.289111,
+          "stdev": 0.130523
+        },
+        "C": {
+          "ms": 1.459939,
+          "stdev": 0.097304
+        },
+        "D": {
+          "ms": 2.003505,
+          "stdev": 0.139793
+        },
+        "E": {
+          "ms": 0.244059,
+          "stdev": 0.033042
+        },
+        "F": {
+          "ms": 0.080365,
+          "stdev": 0.030464
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 60000
+    },
+    "hash|24|64000": {
+      "n_total": 64092,
+      "steps": 150,
+      "ms_per_step": 8.000865,
+      "ms_per_step_stdev": 0.717356,
+      "stages": {
+        "A": {
+          "ms": 1.982064,
+          "stdev": 0.262846
+        },
+        "B": {
+          "ms": 1.447937,
+          "stdev": 0.212863
+        },
+        "C": {
+          "ms": 1.604431,
+          "stdev": 0.155839
+        },
+        "D": {
+          "ms": 2.156863,
+          "stdev": 0.193619
+        },
+        "E": {
+          "ms": 0.284766,
+          "stdev": 0.05948
+        },
+        "F": {
+          "ms": 0.121987,
+          "stdev": 0.051821
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 64000
+    },
+    "hash|24|68000": {
+      "n_total": 68074,
+      "steps": 150,
+      "ms_per_step": 8.848401,
+      "ms_per_step_stdev": 0.775143,
+      "stages": {
+        "A": {
+          "ms": 2.281585,
+          "stdev": 0.322369
+        },
+        "B": {
+          "ms": 1.661172,
+          "stdev": 0.191883
+        },
+        "C": {
+          "ms": 1.798162,
+          "stdev": 0.143558
+        },
+        "D": {
+          "ms": 2.383839,
+          "stdev": 0.146577
+        },
+        "E": {
+          "ms": 0.260928,
+          "stdev": 0.047
+        },
+        "F": {
+          "ms": 0.088453,
+          "stdev": 0.029681
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 68000
+    },
+    "hash|24|72000": {
+      "n_total": 71968,
+      "steps": 150,
+      "ms_per_step": 9.94423,
+      "ms_per_step_stdev": 1.078749,
+      "stages": {
+        "A": {
+          "ms": 2.447985,
+          "stdev": 0.416952
+        },
+        "B": {
+          "ms": 1.805319,
+          "stdev": 0.235297
+        },
+        "C": {
+          "ms": 1.981829,
+          "stdev": 0.187028
+        },
+        "D": {
+          "ms": 2.679028,
+          "stdev": 0.2325
+        },
+        "E": {
+          "ms": 0.355213,
+          "stdev": 0.100463
+        },
+        "F": {
+          "ms": 0.133873,
+          "stdev": 0.031946
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 72000
+    },
+    "hash|24|76000": {
+      "n_total": 76184,
+      "steps": 150,
+      "ms_per_step": 10.511253,
+      "ms_per_step_stdev": 1.274418,
+      "stages": {
+        "A": {
+          "ms": 2.712186,
+          "stdev": 0.408006
+        },
+        "B": {
+          "ms": 1.900325,
+          "stdev": 0.161007
+        },
+        "C": {
+          "ms": 2.148966,
+          "stdev": 0.241155
+        },
+        "D": {
+          "ms": 2.697068,
+          "stdev": 0.349322
+        },
+        "E": {
+          "ms": 0.357139,
+          "stdev": 0.121213
+        },
+        "F": {
+          "ms": 0.141579,
+          "stdev": 0.059184
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 76000
+    },
+    "hash|24|80000": {
+      "n_total": 79935,
+      "steps": 150,
+      "ms_per_step": 11.062812,
+      "ms_per_step_stdev": 0.959125,
+      "stages": {
+        "A": {
+          "ms": 2.848515,
+          "stdev": 0.411524
+        },
+        "B": {
+          "ms": 2.072929,
+          "stdev": 0.196944
+        },
+        "C": {
+          "ms": 2.286854,
+          "stdev": 0.253405
+        },
+        "D": {
+          "ms": 2.869273,
+          "stdev": 0.189599
+        },
+        "E": {
+          "ms": 0.325713,
+          "stdev": 0.062054
+        },
+        "F": {
+          "ms": 0.123388,
+          "stdev": 0.043512
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 80000
+    },
+    "hash|24|84000": {
+      "n_total": 83776,
+      "steps": 150,
+      "ms_per_step": 12.283192,
+      "ms_per_step_stdev": 1.507539,
+      "stages": {
+        "A": {
+          "ms": 3.119426,
+          "stdev": 0.473364
+        },
+        "B": {
+          "ms": 2.163603,
+          "stdev": 0.258048
+        },
+        "C": {
+          "ms": 2.547389,
+          "stdev": 0.299673
+        },
+        "D": {
+          "ms": 3.011479,
+          "stdev": 0.418223
+        },
+        "E": {
+          "ms": 0.486722,
+          "stdev": 0.165144
+        },
+        "F": {
+          "ms": 0.143555,
+          "stdev": 0.036094
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 84000
+    },
+    "hash|24|88000": {
+      "n_total": 88090,
+      "steps": 150,
+      "ms_per_step": 13.666597,
+      "ms_per_step_stdev": 0.960323,
+      "stages": {
+        "A": {
+          "ms": 3.502833,
+          "stdev": 0.423991
+        },
+        "B": {
+          "ms": 2.39553,
+          "stdev": 0.20437
+        },
+        "C": {
+          "ms": 2.879191,
+          "stdev": 0.276544
+        },
+        "D": {
+          "ms": 3.160756,
+          "stdev": 0.23344
+        },
+        "E": {
+          "ms": 0.617833,
+          "stdev": 0.093098
+        },
+        "F": {
+          "ms": 0.170948,
+          "stdev": 0.053024
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 88000
+    },
+    "hash|24|92000": {
+      "n_total": 92120,
+      "steps": 150,
+      "ms_per_step": 14.285391,
+      "ms_per_step_stdev": 1.633486,
+      "stages": {
+        "A": {
+          "ms": 3.801336,
+          "stdev": 0.463914
+        },
+        "B": {
+          "ms": 2.531141,
+          "stdev": 0.312
+        },
+        "C": {
+          "ms": 3.110928,
+          "stdev": 0.371317
+        },
+        "D": {
+          "ms": 3.281723,
+          "stdev": 0.372814
+        },
+        "E": {
+          "ms": 0.545449,
+          "stdev": 0.236326
+        },
+        "F": {
+          "ms": 0.173174,
+          "stdev": 0.044767
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 92000
+    },
+    "hash|24|96000": {
+      "n_total": 96000,
+      "steps": 150,
+      "ms_per_step": 14.992547,
+      "ms_per_step_stdev": 1.828146,
+      "stages": {
+        "A": {
+          "ms": 4.116369,
+          "stdev": 0.443772
+        },
+        "B": {
+          "ms": 2.742922,
+          "stdev": 0.302873
+        },
+        "C": {
+          "ms": 3.537068,
+          "stdev": 0.475992
+        },
+        "D": {
+          "ms": 3.539149,
+          "stdev": 0.490227
+        },
+        "E": {
+          "ms": 0.379918,
+          "stdev": 0.224258
+        },
+        "F": {
+          "ms": 0.120507,
+          "stdev": 0.058045
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 96000
+    },
+    "hash|24|100000": {
+      "n_total": 99960,
+      "steps": 150,
+      "ms_per_step": 15.147392,
+      "ms_per_step_stdev": 1.951534,
+      "stages": {
+        "A": {
+          "ms": 4.139371,
+          "stdev": 0.540857
+        },
+        "B": {
+          "ms": 2.724547,
+          "stdev": 0.241183
+        },
+        "C": {
+          "ms": 3.54076,
+          "stdev": 0.44558
+        },
+        "D": {
+          "ms": 3.669473,
+          "stdev": 0.57188
+        },
+        "E": {
+          "ms": 0.366693,
+          "stdev": 0.19057
+        },
+        "F": {
+          "ms": 0.161255,
+          "stdev": 0.03941
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 100000
+    },
+    "hash|24|30000": {
+      "n_total": 30016,
+      "steps": 150,
+      "ms_per_step": 3.330525,
+      "ms_per_step_stdev": 0.421321,
+      "stages": {
+        "A": {
+          "ms": 0.779499,
+          "stdev": 0.148102
+        },
+        "B": {
+          "ms": 0.286172,
+          "stdev": 0.068036
+        },
+        "C": {
+          "ms": 0.637731,
+          "stdev": 0.072323
+        },
+        "D": {
+          "ms": 1.088002,
+          "stdev": 0.126116
+        },
+        "E": {
+          "ms": 0.198868,
+          "stdev": 0.034701
+        },
+        "F": {
+          "ms": 0.049193,
+          "stdev": 0.028857
+        }
+      },
+      "variant": "hash",
+      "threads": 24,
+      "particles_requested": 30000
+    }
+  },
+  "singles": [
+    30000
+  ],
+  "timestamp": "2026-09-25T13:02:39"
+}

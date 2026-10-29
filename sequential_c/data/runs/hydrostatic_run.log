@@ -1,0 +1,18 @@
+WARNING: Vec2 const Division close to zero
+WARNING: Vec2 const Division close to zero
+WARNING: Vec2 const Division close to zero
+WARNING: Vec2 const Division close to zero
+WARNING: Vec2 const Division close to zero
+  (further Vec2 const Division warnings suppressed)
+step=0 t=0.000000 dt=0.000207833 amax=62507.876890 vmax=0.000000
+step=500 t=0.170360 dt=0.000361154 amax=391.514166 vmax=0.659014
+step=1000 t=0.349154 dt=0.000359522 amax=170.349609 vmax=0.772131
+step=1500 t=0.532106 dt=0.000367884 amax=113.974086 vmax=0.203139
+step=2000 t=0.715956 dt=0.000368498 amax=102.449265 vmax=0.162365
+step=2500 t=0.900695 dt=0.000369385 amax=101.035393 vmax=0.103723
+step=3000 t=1.085553 dt=0.000370303 amax=100.711239 vmax=0.043312
+step=3500 t=1.270834 dt=0.000370469 amax=100.371199 vmax=0.032483
+step=4000 t=1.456104 dt=0.000370631 amax=100.796479 vmax=0.021859
+step=4500 t=1.641382 dt=0.000370681 amax=101.200017 vmax=0.018553
+step=5000 t=1.826761 dt=0.000370819 amax=101.445415 vmax=0.009538
+done: n_fluid=375 steps=5468 t=2.000000 frames=101

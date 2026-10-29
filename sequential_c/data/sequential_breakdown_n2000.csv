@@ -1,0 +1,8 @@
+stage,median_ms,percent_of_total,samples
+A) Density NBHD search,10.2634,46.84,300
+B) Density computation,0.2240,1.02,300
+C) Force NBHD search,10.7632,49.12,300
+D) Force computation,0.5779,2.64,300
+E) Pressure computation,0.0074,0.03,300
+F) Boundary condition,0.0024,0.01,300
+G) Total timestep,21.9107,100.00,300

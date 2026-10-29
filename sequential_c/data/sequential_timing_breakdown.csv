@@ -1,0 +1,6 @@
+particles,samples,A) Density NBHD search (ms),B) Density computation (ms),C) Force NBHD search (ms),D) Force computation (ms),E) Pressure computation (ms),F) Boundary condition (ms),G) Total timestep (ms)
+100,300,0.0148,0.0004,0.0143,0.0019,0.0003,0.0001,0.0324
+500,300,0.3324,0.0114,0.3448,0.0363,0.0006,0.0003,0.7288
+1000,300,1.2949,0.0370,1.3579,0.1026,0.0012,0.0006,2.8438
+2000,300,5.1150,0.0947,5.3923,0.2622,0.0030,0.0012,11.2604
+3000,300,12.2123,0.1947,12.8029,0.5258,0.0092,0.0021,25.8486

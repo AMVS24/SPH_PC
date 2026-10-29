@@ -1,0 +1,18 @@
+{
+  "scene": "hydrostatic",
+  "dx": 0.02,
+  "domain": [
+    0,
+    0,
+    0.5,
+    0.6
+  ],
+  "fill_height": 0.3,
+  "t_end": 2.0,
+  "snapshot_dt": 0.02,
+  "g": 9.81,
+  "dx_requested": 0.02,
+  "rho0": 1000.0,
+  "n": 375,
+  "mass": 0.4
+}
