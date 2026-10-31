@@ -221,6 +221,168 @@ static void gpu_stages(double dt, double* t){
     t0 = clk::now(); gpuKick(dt); gpuSync(); t[5] = ms_since(t0);
 }
 
+static long long g_sink = 0;
+
+static void cpu_grid_build(Sim& s){
+    int n = s.n;
+    int num_cells = grid_w*grid_h*grid_d;
+    #pragma omp parallel for schedule(static)
+    for(int i = 0; i < n; i++){
+        int cx = (int)((s.pos[i].x - grid_min_x)/(2*H));
+        int cy = (int)((s.pos[i].y - grid_min_y)/(2*H));
+        int cz = (int)((s.pos[i].z - grid_min_z)/(2*H));
+        if(cx < 0) cx = 0; else if(cx >= grid_w) cx = grid_w-1;
+        if(cy < 0) cy = 0; else if(cy >= grid_h) cy = grid_h-1;
+        if(cz < 0) cz = 0; else if(cz >= grid_d) cz = grid_d-1;
+        s.cid[i] = cx + cy*grid_w + cz*grid_w*grid_h;
+    }
+    for(int c = 0; c < num_cells; c++) s.cc[c] = 0;
+    for(int i = 0; i < n; i++) s.cc[s.cid[i]]++;
+    s.cs[0] = 0;
+    for(int c = 0; c < num_cells; c++) s.cs[c+1] = s.cs[c] + s.cc[c];
+    vector<int> cursor(s.cs.begin(), s.cs.begin() + num_cells);
+    for(int i = 0; i < n; i++) s.cp[cursor[s.cid[i]]++] = i;
+}
+
+static long long cpu_density_search(Sim& s){
+    int n = s.n;
+    long long total = 0;
+    #pragma omp parallel for schedule(static) reduction(+:total)
+    for(int i = 0; i < n; i++){
+        int cx = s.cid[i] % grid_w;
+        int cy = (s.cid[i] / grid_w) % grid_h;
+        int cz = s.cid[i] / (grid_w*grid_h);
+        for(int dz = -1; dz <= 1; dz++){
+            int nz = cz + dz;
+            if(nz < 0 || nz >= grid_d) continue;
+            for(int dy = -1; dy <= 1; dy++){
+                int ny = cy + dy;
+                if(ny < 0 || ny >= grid_h) continue;
+                for(int dx = -1; dx <= 1; dx++){
+                    int nx = cx + dx;
+                    if(nx < 0 || nx >= grid_w) continue;
+                    int c = nx + ny*grid_w + nz*grid_w*grid_h;
+                    for(int k = s.cs[c]; k < s.cs[c+1]; k++){
+                        vec3 d = s.pos[s.cp[k]] - s.pos[i];
+                        if(d.x*d.x + d.y*d.y + d.z*d.z < 4*H*H) total++;
+                    }
+                }
+            }
+        }
+    }
+    return total;
+}
+
+static void cpu_density_full(Sim& s){
+    int n = s.n;
+    #pragma omp parallel for schedule(static)
+    for(int i = 0; i < n; i++){
+        int cx = s.cid[i] % grid_w;
+        int cy = (s.cid[i] / grid_w) % grid_h;
+        int cz = s.cid[i] / (grid_w*grid_h);
+        double sum = 0;
+        for(int dz = -1; dz <= 1; dz++){
+            int nz = cz + dz;
+            if(nz < 0 || nz >= grid_d) continue;
+            for(int dy = -1; dy <= 1; dy++){
+                int ny = cy + dy;
+                if(ny < 0 || ny >= grid_h) continue;
+                for(int dx = -1; dx <= 1; dx++){
+                    int nx = cx + dx;
+                    if(nx < 0 || nx >= grid_w) continue;
+                    int c = nx + ny*grid_w + nz*grid_w*grid_h;
+                    for(int k = s.cs[c]; k < s.cs[c+1]; k++) sum += density_at(s.pos[i], s.pos.data(), n, s.cp[k]);
+                }
+            }
+        }
+        s.density[i] = sum;
+    }
+}
+
+static long long cpu_force_search(Sim& s){
+    int n = s.n;
+    long long total = 0;
+    #pragma omp parallel for schedule(static) reduction(+:total)
+    for(int i = 0; i < n; i++){
+        int cx = s.cid[i] % grid_w;
+        int cy = (s.cid[i] / grid_w) % grid_h;
+        int cz = s.cid[i] / (grid_w*grid_h);
+        for(int dz = -1; dz <= 1; dz++){
+            int nz = cz + dz;
+            if(nz < 0 || nz >= grid_d) continue;
+            for(int dy = -1; dy <= 1; dy++){
+                int ny = cy + dy;
+                if(ny < 0 || ny >= grid_h) continue;
+                for(int dx = -1; dx <= 1; dx++){
+                    int nx = cx + dx;
+                    if(nx < 0 || nx >= grid_w) continue;
+                    int c = nx + ny*grid_w + nz*grid_w*grid_h;
+                    for(int k = s.cs[c]; k < s.cs[c+1]; k++){
+                        int j = s.cp[k];
+                        if(i == j || s.density[j] == 0) continue;
+                        vec3 d = s.pos[j] - s.pos[i];
+                        double r2 = d.x*d.x + d.y*d.y + d.z*d.z;
+                        if(r2 != 0 && r2 < 4*H*H) total++;
+                    }
+                }
+            }
+        }
+    }
+    return total;
+}
+
+static void cpu_force_full(Sim& s){
+    int n = s.n;
+    double c0 = sqrt(PRESSURE_MULTIPLIER);
+    #pragma omp parallel for schedule(static)
+    for(int i = 0; i < n; i++){
+        int cx = s.cid[i] % grid_w;
+        int cy = (s.cid[i] / grid_w) % grid_h;
+        int cz = s.cid[i] / (grid_w*grid_h);
+        vec3 a = vec3{0, 0, 0};
+        for(int dz = -1; dz <= 1; dz++){
+            int nz = cz + dz;
+            if(nz < 0 || nz >= grid_d) continue;
+            for(int dy = -1; dy <= 1; dy++){
+                int ny = cy + dy;
+                if(ny < 0 || ny >= grid_h) continue;
+                for(int dx = -1; dx <= 1; dx++){
+                    int nx = cx + dx;
+                    if(nx < 0 || nx >= grid_w) continue;
+                    int c = nx + ny*grid_w + nz*grid_w*grid_h;
+                    for(int k = s.cs[c]; k < s.cs[c+1]; k++) force_pair(s, i, s.cp[k], c0, a);
+                }
+            }
+        }
+        a.y -= GRAVITY;
+        s.acc[i] = a;
+    }
+}
+
+static void cpu_hash_stages2(Sim& s, double dt, double* t){
+    clk::time_point t0;
+    t0 = clk::now(); drift(s, dt, true); enforce_boundary(s.pos.data(), s.vel.data(), s.n); t[0] = ms_since(t0);
+    t0 = clk::now(); cpu_grid_build(s); t[1] = ms_since(t0);
+    t0 = clk::now(); g_sink += cpu_density_search(s); t[2] = ms_since(t0);
+    t0 = clk::now(); cpu_density_full(s); t[3] = ms_since(t0);
+    t0 = clk::now(); s.pressure = (s.density - TARGET_DENSITY)*PRESSURE_MULTIPLIER; t[4] = ms_since(t0);
+    t0 = clk::now(); g_sink += cpu_force_search(s); t[5] = ms_since(t0);
+    t0 = clk::now(); cpu_force_full(s); t[6] = ms_since(t0);
+    t0 = clk::now(); kick(s, dt, true); t[7] = ms_since(t0);
+}
+
+static void gpu_stages2(double dt, double* t){
+    clk::time_point t0;
+    t0 = clk::now(); gpuDrift(dt); gpuEnforceBoundary(); gpuSync(); t[0] = ms_since(t0);
+    t0 = clk::now(); gpuBuildGrid(); gpuSync(); t[1] = ms_since(t0);
+    t0 = clk::now(); gpuDensitySearchOnly(); gpuSync(); t[2] = ms_since(t0);
+    t0 = clk::now(); gpuDensity(); gpuSync(); t[3] = ms_since(t0);
+    t0 = clk::now(); gpuPressure(); gpuSync(); t[4] = ms_since(t0);
+    t0 = clk::now(); gpuForcesSearchOnly(); gpuSync(); t[5] = ms_since(t0);
+    t0 = clk::now(); gpuForces(); gpuSync(); t[6] = ms_since(t0);
+    t0 = clk::now(); gpuKick(dt); gpuSync(); t[7] = ms_since(t0);
+}
+
 static void mean_stdev(const vector<double>& v, double& mean, double& sd){
     mean = 0;
     for(double x : v) mean += x;
@@ -233,7 +395,7 @@ static void mean_stdev(const vector<double>& v, double& mean, double& sd){
 int main(int argc, char** argv){
     string variant_name = "gpu";
     int n = 10000, threads = 1, steps = 100;
-    bool breakdown = false, checksum = false;
+    bool breakdown = false, checksum = false, breakdown2 = false, mem = false, transfer = false;
     for(int i = 1; i < argc; i++){
         if(!strcmp(argv[i], "--variant") && i + 1 < argc) variant_name = argv[++i];
         else if(!strcmp(argv[i], "--n") && i + 1 < argc) n = atoi(argv[++i]);
@@ -241,6 +403,9 @@ int main(int argc, char** argv){
         else if(!strcmp(argv[i], "--steps") && i + 1 < argc) steps = atoi(argv[++i]);
         else if(!strcmp(argv[i], "--breakdown")) breakdown = true;
         else if(!strcmp(argv[i], "--checksum")) checksum = true;
+        else if(!strcmp(argv[i], "--breakdown2")) breakdown2 = true;
+        else if(!strcmp(argv[i], "--mem")) mem = true;
+        else if(!strcmp(argv[i], "--transfer")) transfer = true;
     }
     Variant v = variant_name == "sequential" ? SEQ : variant_name == "prehash" ? PREHASH : variant_name == "hash" ? HASH : GPU;
     if(v == SEQ) threads = 1;
@@ -255,8 +420,56 @@ int main(int argc, char** argv){
         else step_cpu(*s, v, dt);
     };
 
+    clk::time_point first_t0 = clk::now();
     step();
+    double first_ms = ms_since(first_t0);
     step();
+
+    if(mem){
+        if(v != GPU){ fprintf(stderr, "mem only for gpu\n"); return 1; }
+        printf("MEM variant=%s n=%d device_bytes=%zu\n", variant_name.c_str(), n, gpuAllocatedBytes());
+        return 0;
+    }
+
+    if(transfer){
+        if(v != GPU){ fprintf(stderr, "transfer only for gpu\n"); return 1; }
+        const int reps = 5;
+        double step_ms = 0, fetch_ms = 0;
+        for(int r = 0; r < reps; r++){ clk::time_point t0 = clk::now(); step(); step_ms += ms_since(t0); }
+        fetch_positions(s->pos.data(), n);
+        for(int r = 0; r < reps; r++){ clk::time_point t0 = clk::now(); fetch_positions(s->pos.data(), n); fetch_ms += ms_since(t0); }
+        printf("TRANSFER variant=%s n=%d first_step_ms=%.4f step_ms=%.4f fetch_ms=%.4f\n", variant_name.c_str(), n, first_ms, step_ms/reps, fetch_ms/reps);
+        return 0;
+    }
+
+    if(breakdown2){
+        if(v != HASH && v != GPU){ fprintf(stderr, "breakdown2 only for hash and gpu\n"); return 1; }
+        int windows = max(1, steps/(int)WINDOW);
+        vector<vector<double>> win(6);
+        for(int w = 0; w < windows; w++){
+            double acc_d[6] = {0, 0, 0, 0, 0, 0};
+            for(int k = 0; k < (int)WINDOW; k++){
+                double t[8];
+                if(v == GPU) gpu_stages2(dt, t); else cpu_hash_stages2(*s, dt, t);
+                acc_d[0] += t[1] + t[2];
+                acc_d[1] += max(0.0, t[3] - t[2]);
+                acc_d[2] += t[5];
+                acc_d[3] += max(0.0, t[6] - t[5]);
+                acc_d[4] += t[4];
+                acc_d[5] += t[0] + t[7];
+            }
+            for(int q = 0; q < 6; q++) win[q].push_back(acc_d[q]/WINDOW);
+        }
+        printf("STAGES2 variant=%s n=%d threads=%d", variant_name.c_str(), n, threads);
+        const char* names2[6] = {"A", "B", "C", "D", "E", "F"};
+        for(int q = 0; q < 6; q++){
+            double m, sd;
+            mean_stdev(win[q], m, sd);
+            printf(" %s_mean=%.6f %s_stdev=%.6f", names2[q], m, names2[q], sd);
+        }
+        printf("\n");
+        return 0;
+    }
 
     if(breakdown){
         if(v != HASH && v != GPU){ fprintf(stderr, "breakdown only for hash and gpu\n"); return 1; }

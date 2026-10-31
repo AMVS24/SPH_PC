@@ -1313,143 +1313,360 @@
       "threads": 24,
       "n": 8000000
     },
-    "gpu|1|1000": {
+    "gpu_fp64|1|1000": {
       "steps": 150,
-      "ms_per_step": 3.865218,
-      "ms_per_step_stdev": 0.369045,
-      "variant": "gpu",
+      "ms_per_step": 3.436402,
+      "ms_per_step_stdev": 0.25874,
+      "variant": "gpu_fp64",
       "threads": 1,
       "n": 1000
     },
-    "gpu|1|2000": {
+    "gpu_fp32|1|1000": {
       "steps": 150,
-      "ms_per_step": 3.427986,
-      "ms_per_step_stdev": 0.193301,
-      "variant": "gpu",
+      "ms_per_step": 0.362138,
+      "ms_per_step_stdev": 0.020248,
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 1000
+    },
+    "gpu_fp64|1|2000": {
+      "steps": 150,
+      "ms_per_step": 3.149961,
+      "ms_per_step_stdev": 0.252141,
+      "variant": "gpu_fp64",
       "threads": 1,
       "n": 2000
     },
-    "gpu|1|5000": {
+    "gpu_fp32|1|2000": {
       "steps": 150,
-      "ms_per_step": 3.677113,
-      "ms_per_step_stdev": 0.206999,
-      "variant": "gpu",
+      "ms_per_step": 0.397059,
+      "ms_per_step_stdev": 0.019583,
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 2000
+    },
+    "gpu_fp64|1|5000": {
+      "steps": 150,
+      "ms_per_step": 3.397329,
+      "ms_per_step_stdev": 0.263297,
+      "variant": "gpu_fp64",
       "threads": 1,
       "n": 5000
     },
-    "gpu|1|10000": {
+    "gpu_fp32|1|5000": {
       "steps": 150,
-      "ms_per_step": 3.666608,
-      "ms_per_step_stdev": 0.238546,
-      "variant": "gpu",
+      "ms_per_step": 0.575912,
+      "ms_per_step_stdev": 0.072411,
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 5000
+    },
+    "gpu_fp64|1|10000": {
+      "steps": 150,
+      "ms_per_step": 3.380066,
+      "ms_per_step_stdev": 0.297758,
+      "variant": "gpu_fp64",
       "threads": 1,
       "n": 10000
     },
-    "gpu|1|20000": {
+    "gpu_fp32|1|10000": {
       "steps": 150,
-      "ms_per_step": 7.046995,
-      "ms_per_step_stdev": 0.533182,
-      "variant": "gpu",
+      "ms_per_step": 0.602876,
+      "ms_per_step_stdev": 0.080192,
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 10000
+    },
+    "gpu_fp64|1|20000": {
+      "steps": 150,
+      "ms_per_step": 6.390953,
+      "ms_per_step_stdev": 0.629863,
+      "variant": "gpu_fp64",
       "threads": 1,
       "n": 20000
     },
-    "gpu|1|50000": {
+    "gpu_fp32|1|20000": {
       "steps": 150,
-      "ms_per_step": 15.465955,
-      "ms_per_step_stdev": 1.703613,
-      "variant": "gpu",
+      "ms_per_step": 0.696236,
+      "ms_per_step_stdev": 0.087511,
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 20000
+    },
+    "gpu_fp64|1|50000": {
+      "steps": 150,
+      "ms_per_step": 13.731583,
+      "ms_per_step_stdev": 1.89932,
+      "variant": "gpu_fp64",
       "threads": 1,
       "n": 50000
     },
-    "gpu|1|100000": {
+    "gpu_fp32|1|50000": {
       "steps": 150,
-      "ms_per_step": 26.829728,
-      "ms_per_step_stdev": 2.449746,
-      "variant": "gpu",
+      "ms_per_step": 0.817626,
+      "ms_per_step_stdev": 0.10386,
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 50000
+    },
+    "gpu_fp64|1|100000": {
+      "steps": 150,
+      "ms_per_step": 23.285946,
+      "ms_per_step_stdev": 2.784537,
+      "variant": "gpu_fp64",
       "threads": 1,
       "n": 100000
     },
-    "gpu|1|200000": {
+    "gpu_fp32|1|100000": {
       "steps": 150,
-      "ms_per_step": 48.780652,
-      "ms_per_step_stdev": 5.973815,
-      "variant": "gpu",
+      "ms_per_step": 1.369925,
+      "ms_per_step_stdev": 0.159204,
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 100000
+    },
+    "gpu_fp64|1|200000": {
+      "steps": 150,
+      "ms_per_step": 41.407096,
+      "ms_per_step_stdev": 6.344496,
+      "variant": "gpu_fp64",
       "threads": 1,
       "n": 200000
     },
-    "gpu|1|500000": {
+    "gpu_fp32|1|200000": {
       "steps": 150,
-      "ms_per_step": 109.571239,
-      "ms_per_step_stdev": 11.196049,
-      "variant": "gpu",
+      "ms_per_step": 2.221289,
+      "ms_per_step_stdev": 0.295683,
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 200000
+    },
+    "gpu_fp64|1|500000": {
+      "steps": 150,
+      "ms_per_step": 89.473393,
+      "ms_per_step_stdev": 11.657846,
+      "variant": "gpu_fp64",
       "threads": 1,
       "n": 500000
     },
-    "gpu|1|1000000": {
-      "steps": 90,
-      "ms_per_step": 199.942346,
-      "ms_per_step_stdev": 8.244738,
-      "variant": "gpu",
+    "gpu_fp32|1|500000": {
+      "steps": 150,
+      "ms_per_step": 4.469938,
+      "ms_per_step_stdev": 0.538647,
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 500000
+    },
+    "gpu_fp64|1|1000000": {
+      "steps": 110,
+      "ms_per_step": 160.93444,
+      "ms_per_step_stdev": 11.31525,
+      "variant": "gpu_fp64",
       "threads": 1,
       "n": 1000000
     },
-    "gpu|1|2000000": {
-      "steps": 50,
-      "ms_per_step": 381.416332,
-      "ms_per_step_stdev": 3.746876,
-      "variant": "gpu",
+    "gpu_fp32|1|1000000": {
+      "steps": 150,
+      "ms_per_step": 8.606807,
+      "ms_per_step_stdev": 1.058802,
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 1000000
+    },
+    "gpu_fp64|1|2000000": {
+      "steps": 60,
+      "ms_per_step": 294.157663,
+      "ms_per_step_stdev": 4.071096,
+      "variant": "gpu_fp64",
       "threads": 1,
       "n": 2000000
     },
-    "gpu|1|4000000": {
-      "steps": 20,
-      "ms_per_step": 753.392495,
-      "ms_per_step_stdev": 5.180908,
-      "variant": "gpu",
+    "gpu_fp32|1|2000000": {
+      "steps": 150,
+      "ms_per_step": 16.943778,
+      "ms_per_step_stdev": 1.40758,
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 2000000
+    },
+    "gpu_fp64|1|4000000": {
+      "steps": 30,
+      "ms_per_step": 573.425213,
+      "ms_per_step_stdev": 4.642574,
+      "variant": "gpu_fp64",
       "threads": 1,
       "n": 4000000
     },
-    "gpu|1|8000000": {
+    "gpu_fp32|1|4000000": {
+      "steps": 150,
+      "ms_per_step": 33.643941,
+      "ms_per_step_stdev": 1.752077,
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 4000000
+    },
+    "gpu_fp64|1|8000000": {
       "steps": 20,
-      "ms_per_step": 1500.86135,
-      "ms_per_step_stdev": 9.457539,
-      "variant": "gpu",
+      "ms_per_step": 1144.11237,
+      "ms_per_step_stdev": 10.522088,
+      "variant": "gpu_fp64",
       "threads": 1,
       "n": 8000000
+    },
+    "gpu_fp32|1|8000000": {
+      "steps": 150,
+      "ms_per_step": 67.279145,
+      "ms_per_step_stdev": 2.207765,
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 8000000
+    },
+    "gpu_fp64|1|10000000": {
+      "steps": 20,
+      "ms_per_step": 1427.85001,
+      "ms_per_step_stdev": 17.131529,
+      "variant": "gpu_fp64",
+      "threads": 1,
+      "n": 10000000
+    },
+    "gpu_fp32|1|10000000": {
+      "steps": 150,
+      "ms_per_step": 84.800395,
+      "ms_per_step_stdev": 1.802394,
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 10000000
+    },
+    "hash|24|10000000": {
+      "steps": 20,
+      "ms_per_step": 3109.493895,
+      "ms_per_step_stdev": 32.270084,
+      "variant": "hash",
+      "threads": 24,
+      "n": 10000000
+    },
+    "gpu_fp32|1|3000000": {
+      "steps": 150,
+      "ms_per_step": 25.587529,
+      "ms_per_step_stdev": 1.453844,
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 3000000
+    },
+    "gpu_fp32|1|5000000": {
+      "steps": 150,
+      "ms_per_step": 42.386632,
+      "ms_per_step_stdev": 2.294286,
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 5000000
+    },
+    "gpu_fp32|1|6000000": {
+      "steps": 150,
+      "ms_per_step": 51.245582,
+      "ms_per_step_stdev": 2.599746,
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 6000000
+    },
+    "gpu_fp32|1|7000000": {
+      "steps": 150,
+      "ms_per_step": 56.963617,
+      "ms_per_step_stdev": 2.586452,
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 7000000
+    },
+    "gpu_fp32|1|9000000": {
+      "steps": 150,
+      "ms_per_step": 78.261217,
+      "ms_per_step_stdev": 3.327878,
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 9000000
+    },
+    "gpu_fp32|1|12000000": {
+      "steps": 150,
+      "ms_per_step": 104.377616,
+      "ms_per_step_stdev": 1.853929,
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 12000000
+    },
+    "gpu_fp32|1|14000000": {
+      "steps": 150,
+      "ms_per_step": 123.876549,
+      "ms_per_step_stdev": 4.201273,
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 14000000
+    },
+    "gpu_fp32|1|16000000": {
+      "steps": 140,
+      "ms_per_step": 141.183003,
+      "ms_per_step_stdev": 4.100933,
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 16000000
+    },
+    "gpu_fp32|1|18000000": {
+      "steps": 120,
+      "ms_per_step": 157.084107,
+      "ms_per_step_stdev": 2.453072,
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 18000000
+    },
+    "gpu_fp32|1|20000000": {
+      "steps": 110,
+      "ms_per_step": 176.979466,
+      "ms_per_step_stdev": 1.920745,
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 20000000
+    },
+    "gpu_fp64|1|3000000": {
+      "steps": 40,
+      "ms_per_step": 428.980728,
+      "ms_per_step_stdev": 4.476598,
+      "variant": "gpu_fp64",
+      "threads": 1,
+      "n": 3000000
+    },
+    "gpu_fp64|1|5000000": {
+      "steps": 20,
+      "ms_per_step": 720.713785,
+      "ms_per_step_stdev": 11.796613,
+      "variant": "gpu_fp64",
+      "threads": 1,
+      "n": 5000000
+    },
+    "gpu_fp64|1|6000000": {
+      "steps": 20,
+      "ms_per_step": 858.172185,
+      "ms_per_step_stdev": 12.898441,
+      "variant": "gpu_fp64",
+      "threads": 1,
+      "n": 6000000
+    },
+    "gpu_fp64|1|7000000": {
+      "steps": 20,
+      "ms_per_step": 1005.322585,
+      "ms_per_step_stdev": 19.630409,
+      "variant": "gpu_fp64",
+      "threads": 1,
+      "n": 7000000
+    },
+    "gpu_fp64|1|9000000": {
+      "steps": 20,
+      "ms_per_step": 1287.46055,
+      "ms_per_step_stdev": 18.38916,
+      "variant": "gpu_fp64",
+      "threads": 1,
+      "n": 9000000
     }
   },
   "breakdown": {
-    "gpu|1|10000": {
-      "stages": {
-        "drift_boundary": {
-          "ms": 0.01376,
-          "stdev": 0.000226
-        },
-        "grid_build": {
-          "ms": 0.163405,
-          "stdev": 0.055543
-        },
-        "density": {
-          "ms": 1.01336,
-          "stdev": 0.036798
-        },
-        "pressure": {
-          "ms": 0.012845,
-          "stdev": 0.003571
-        },
-        "forces": {
-          "ms": 2.04925,
-          "stdev": 0.309713
-        },
-        "kick": {
-          "ms": 0.011385,
-          "stdev": 0.000177
-        }
-      },
-      "variant": "gpu",
-      "threads": 1,
-      "n": 10000
-    },
     "hash|24|10000": {
       "stages": {
         "drift_boundary": {
@@ -1480,37 +1697,6 @@
       "variant": "hash",
       "threads": 24,
       "n": 10000
-    },
-    "gpu|1|30000": {
-      "stages": {
-        "drift_boundary": {
-          "ms": 0.016165,
-          "stdev": 2.1e-05
-        },
-        "grid_build": {
-          "ms": 0.13225,
-          "stdev": 0.003154
-        },
-        "density": {
-          "ms": 2.41038,
-          "stdev": 0.096039
-        },
-        "pressure": {
-          "ms": 0.013125,
-          "stdev": 0.003896
-        },
-        "forces": {
-          "ms": 4.51921,
-          "stdev": 0.319146
-        },
-        "kick": {
-          "ms": 0.01463,
-          "stdev": 0.001457
-        }
-      },
-      "variant": "gpu",
-      "threads": 1,
-      "n": 30000
     },
     "hash|24|30000": {
       "stages": {
@@ -1543,37 +1729,6 @@
       "threads": 24,
       "n": 30000
     },
-    "gpu|1|100000": {
-      "stages": {
-        "drift_boundary": {
-          "ms": 0.023205,
-          "stdev": 0.000318
-        },
-        "grid_build": {
-          "ms": 0.173045,
-          "stdev": 0.019905
-        },
-        "density": {
-          "ms": 8.887395,
-          "stdev": 0.23133
-        },
-        "pressure": {
-          "ms": 0.012735,
-          "stdev": 0.000573
-        },
-        "forces": {
-          "ms": 16.373225,
-          "stdev": 0.532925
-        },
-        "kick": {
-          "ms": 0.02112,
-          "stdev": 0.006166
-        }
-      },
-      "variant": "gpu",
-      "threads": 1,
-      "n": 100000
-    },
     "hash|24|100000": {
       "stages": {
         "drift_boundary": {
@@ -1604,37 +1759,6 @@
       "variant": "hash",
       "threads": 24,
       "n": 100000
-    },
-    "gpu|1|300000": {
-      "stages": {
-        "drift_boundary": {
-          "ms": 0.043135,
-          "stdev": 0.000191
-        },
-        "grid_build": {
-          "ms": 0.177355,
-          "stdev": 0.009256
-        },
-        "density": {
-          "ms": 23.10642,
-          "stdev": 0.821092
-        },
-        "pressure": {
-          "ms": 0.01523,
-          "stdev": 0.001131
-        },
-        "forces": {
-          "ms": 40.50244,
-          "stdev": 2.233934
-        },
-        "kick": {
-          "ms": 0.03216,
-          "stdev": 0.000354
-        }
-      },
-      "variant": "gpu",
-      "threads": 1,
-      "n": 300000
     },
     "hash|24|300000": {
       "stages": {
@@ -1667,37 +1791,6 @@
       "threads": 24,
       "n": 300000
     },
-    "gpu|1|1000000": {
-      "stages": {
-        "drift_boundary": {
-          "ms": 0.15097,
-          "stdev": 0.002899
-        },
-        "grid_build": {
-          "ms": 0.297275,
-          "stdev": 0.003203
-        },
-        "density": {
-          "ms": 70.261525,
-          "stdev": 0.156023
-        },
-        "pressure": {
-          "ms": 0.03949,
-          "stdev": 0.002135
-        },
-        "forces": {
-          "ms": 121.320815,
-          "stdev": 1.153751
-        },
-        "kick": {
-          "ms": 0.134735,
-          "stdev": 2.1e-05
-        }
-      },
-      "variant": "gpu",
-      "threads": 1,
-      "n": 1000000
-    },
     "hash|24|1000000": {
       "stages": {
         "drift_boundary": {
@@ -1728,7 +1821,317 @@
       "variant": "hash",
       "threads": 24,
       "n": 1000000
+    },
+    "gpu_fp64|1|10000": {
+      "stages": {
+        "drift_boundary": {
+          "ms": 0.01311,
+          "stdev": 0.000283
+        },
+        "grid_build": {
+          "ms": 0.114745,
+          "stdev": 0.004504
+        },
+        "density": {
+          "ms": 0.720705,
+          "stdev": 0.103457
+        },
+        "pressure": {
+          "ms": 0.00918,
+          "stdev": 1.4e-05
+        },
+        "forces": {
+          "ms": 1.90979,
+          "stdev": 0.349608
+        },
+        "kick": {
+          "ms": 0.009905,
+          "stdev": 0.000106
+        }
+      },
+      "variant": "gpu_fp64",
+      "threads": 1,
+      "n": 10000
+    },
+    "gpu_fp32|1|10000": {
+      "stages": {
+        "drift_boundary": {
+          "ms": 0.011435,
+          "stdev": 0.000106
+        },
+        "grid_build": {
+          "ms": 0.120295,
+          "stdev": 0.003528
+        },
+        "density": {
+          "ms": 0.1201,
+          "stdev": 0.017437
+        },
+        "pressure": {
+          "ms": 0.008005,
+          "stdev": 0.000191
+        },
+        "forces": {
+          "ms": 0.229655,
+          "stdev": 0.028786
+        },
+        "kick": {
+          "ms": 0.00815,
+          "stdev": 0.0
+        }
+      },
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 10000
+    },
+    "gpu_fp64|1|30000": {
+      "stages": {
+        "drift_boundary": {
+          "ms": 0.016675,
+          "stdev": 0.000332
+        },
+        "grid_build": {
+          "ms": 0.128535,
+          "stdev": 0.004844
+        },
+        "density": {
+          "ms": 1.589395,
+          "stdev": 0.104348
+        },
+        "pressure": {
+          "ms": 0.016625,
+          "stdev": 0.001096
+        },
+        "forces": {
+          "ms": 4.114445,
+          "stdev": 0.346504
+        },
+        "kick": {
+          "ms": 0.02174,
+          "stdev": 0.002645
+        }
+      },
+      "variant": "gpu_fp64",
+      "threads": 1,
+      "n": 30000
+    },
+    "gpu_fp32|1|30000": {
+      "stages": {
+        "drift_boundary": {
+          "ms": 0.013225,
+          "stdev": 0.00012
+        },
+        "grid_build": {
+          "ms": 0.11471,
+          "stdev": 4.2e-05
+        },
+        "density": {
+          "ms": 0.126765,
+          "stdev": 0.007913
+        },
+        "pressure": {
+          "ms": 0.0078,
+          "stdev": 5.7e-05
+        },
+        "forces": {
+          "ms": 0.260385,
+          "stdev": 0.032308
+        },
+        "kick": {
+          "ms": 0.008575,
+          "stdev": 0.000276
+        }
+      },
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 30000
+    },
+    "gpu_fp64|1|100000": {
+      "stages": {
+        "drift_boundary": {
+          "ms": 0.022285,
+          "stdev": 0.000163
+        },
+        "grid_build": {
+          "ms": 0.137355,
+          "stdev": 0.009581
+        },
+        "density": {
+          "ms": 5.16483,
+          "stdev": 0.242085
+        },
+        "pressure": {
+          "ms": 0.01162,
+          "stdev": 0.000141
+        },
+        "forces": {
+          "ms": 13.181675,
+          "stdev": 0.547562
+        },
+        "kick": {
+          "ms": 0.019005,
+          "stdev": 0.001605
+        }
+      },
+      "variant": "gpu_fp64",
+      "threads": 1,
+      "n": 100000
+    },
+    "gpu_fp32|1|100000": {
+      "stages": {
+        "drift_boundary": {
+          "ms": 0.016115,
+          "stdev": 0.000148
+        },
+        "grid_build": {
+          "ms": 0.134025,
+          "stdev": 0.002355
+        },
+        "density": {
+          "ms": 0.29749,
+          "stdev": 0.021425
+        },
+        "pressure": {
+          "ms": 0.008465,
+          "stdev": 0.000445
+        },
+        "forces": {
+          "ms": 0.67958,
+          "stdev": 0.031339
+        },
+        "kick": {
+          "ms": 0.01098,
+          "stdev": 0.000396
+        }
+      },
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 100000
+    },
+    "gpu_fp64|1|300000": {
+      "stages": {
+        "drift_boundary": {
+          "ms": 0.041995,
+          "stdev": 0.00087
+        },
+        "grid_build": {
+          "ms": 0.155055,
+          "stdev": 0.000827
+        },
+        "density": {
+          "ms": 13.116035,
+          "stdev": 0.322674
+        },
+        "pressure": {
+          "ms": 0.018365,
+          "stdev": 0.005777
+        },
+        "forces": {
+          "ms": 33.14924,
+          "stdev": 0.040164
+        },
+        "kick": {
+          "ms": 0.042835,
+          "stdev": 0.008068
+        }
+      },
+      "variant": "gpu_fp64",
+      "threads": 1,
+      "n": 300000
+    },
+    "gpu_fp32|1|300000": {
+      "stages": {
+        "drift_boundary": {
+          "ms": 0.022945,
+          "stdev": 0.000148
+        },
+        "grid_build": {
+          "ms": 0.14603,
+          "stdev": 0.006647
+        },
+        "density": {
+          "ms": 0.66599,
+          "stdev": 0.050205
+        },
+        "pressure": {
+          "ms": 0.013635,
+          "stdev": 0.003401
+        },
+        "forces": {
+          "ms": 1.649515,
+          "stdev": 0.076657
+        },
+        "kick": {
+          "ms": 0.022265,
+          "stdev": 0.006541
+        }
+      },
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 300000
+    },
+    "gpu_fp64|1|1000000": {
+      "stages": {
+        "drift_boundary": {
+          "ms": 0.14675,
+          "stdev": 0.001655
+        },
+        "grid_build": {
+          "ms": 0.294695,
+          "stdev": 0.002595
+        },
+        "density": {
+          "ms": 41.456235,
+          "stdev": 0.520098
+        },
+        "pressure": {
+          "ms": 0.034575,
+          "stdev": 0.001591
+        },
+        "forces": {
+          "ms": 105.430335,
+          "stdev": 0.956284
+        },
+        "kick": {
+          "ms": 0.124825,
+          "stdev": 0.008591
+        }
+      },
+      "variant": "gpu_fp64",
+      "threads": 1,
+      "n": 1000000
+    },
+    "gpu_fp32|1|1000000": {
+      "stages": {
+        "drift_boundary": {
+          "ms": 0.04982,
+          "stdev": 0.000184
+        },
+        "grid_build": {
+          "ms": 0.173745,
+          "stdev": 0.006314
+        },
+        "density": {
+          "ms": 2.00893,
+          "stdev": 0.065054
+        },
+        "pressure": {
+          "ms": 0.01553,
+          "stdev": 0.000976
+        },
+        "forces": {
+          "ms": 5.059905,
+          "stdev": 0.096739
+        },
+        "kick": {
+          "ms": 0.043675,
+          "stdev": 0.000262
+        }
+      },
+      "variant": "gpu_fp32",
+      "threads": 1,
+      "n": 1000000
     }
   },
-  "timestamp": "2026-10-31T06:25:09"
+  "timestamp": "2026-10-31T18:21:30"
 }

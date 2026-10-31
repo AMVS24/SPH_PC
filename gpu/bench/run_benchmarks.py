@@ -1,15 +1,18 @@
 """
-3D benchmark sweep: sequential all-pairs vs OpenMP all-pairs vs OpenMP + spatial hash vs GPU (CUDA).
+3D benchmark sweep: sequential all-pairs vs OpenMP all-pairs vs OpenMP + spatial hash vs GPU (CUDA, FP64 and FP32).
 
-All four variants run the same physics on the same scene (a cubic lattice at rest density, see
+All variants run the same physics on the same scene (a cubic lattice at rest density, see
 bench/bench_main.cpp). ms/step is the mean +/- stdev of 10-step window averages after a 2-step
 warm-up. Steps per run adapt to cost (as in parallel_c/scaling/bench_common.py), and a CPU series
 stops growing N once a step costs more than --cap-ms. Results are written to data/bench_results.json
 after every run, so an interrupted sweep resumes where it left off.
 
+The two GPU series come from the same cudaPhysics.cu: gpu_fp32 uses bench/build (float, the default
+build) and gpu_fp64 uses bench/fp64/build (compiled with -DGPU_DOUBLE, see bench/build_fp64.bat).
+
 Usage:
     python gpu/bench/run_benchmarks.py
-    python gpu/bench/run_benchmarks.py --variants gpu,hash --threads 1,24
+    python gpu/bench/run_benchmarks.py --variants gpu_fp32,gpu_fp64 --no-breakdown
     python gpu/bench/run_benchmarks.py --replot
 """
 
@@ -23,19 +26,24 @@ import time
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
 EXE = os.path.join(HERE, "build", "bench.exe")
+EXES = {"gpu_fp64": os.path.join(HERE, "fp64", "build", "bench.exe")}
 DEFAULT_JSON = os.path.join(DATA, "bench_results.json")
 
 LABELS = {
     "sequential": "Sequential, all-pairs",
     "prehash": "OpenMP, all-pairs",
     "hash": "OpenMP + spatial hash",
-    "gpu": "GPU (CUDA) + spatial hash",
+    "gpu_fp64": "GPU (CUDA), FP64",
+    "gpu_fp32": "GPU (CUDA), FP32",
 }
-ORDER = {"sequential": 2, "prehash": 2, "hash": 1, "gpu": 1}
+ORDER = {"sequential": 2, "prehash": 2, "hash": 1, "gpu_fp64": 1, "gpu_fp32": 1}
+SORT = {"sequential": 0, "prehash": 1, "hash": 2, "gpu_fp64": 3, "gpu_fp32": 4}
+GPU_COLOURS = {"gpu_fp64": "#7B3294", "gpu_fp32": "#C44E52"}
 
 ALLPAIRS_COUNTS = [1000, 2000, 3000, 4000, 6000, 8000, 10000, 15000, 20000, 30000, 40000, 60000, 80000, 100000]
 FAST_COUNTS = [1000, 2000, 5000, 10000, 20000, 50000, 100000, 200000, 500000, 1000000, 2000000, 4000000, 8000000]
-COUNTS = {"sequential": ALLPAIRS_COUNTS, "prehash": ALLPAIRS_COUNTS, "hash": FAST_COUNTS, "gpu": FAST_COUNTS}
+COUNTS = {"sequential": ALLPAIRS_COUNTS, "prehash": ALLPAIRS_COUNTS, "hash": FAST_COUNTS,
+          "gpu_fp64": FAST_COUNTS, "gpu_fp32": FAST_COUNTS}
 DEFAULT_THREADS = [1, 2, 4, 8, 16, 24]
 BREAKDOWN_COUNTS = [10000, 30000, 100000, 300000, 1000000]
 STAGES = ["drift_boundary", "grid_build", "density", "pressure", "forces", "kick"]
@@ -49,6 +57,14 @@ SLOW_STEP_MS = 5000.0
 DEFAULT_CAP_MS = 5000.0
 
 COLOURS = ["#4C72B0", "#DD8452", "#55A868", "#C44E52", "#8172B3", "#937860", "#DA8BC3", "#8C8C8C"]
+
+
+def is_gpu(v):
+    return v.startswith("gpu")
+
+
+def exe_for(v):
+    return EXES.get(v, EXE)
 
 
 def steps_for(est_ms):
@@ -71,7 +87,7 @@ def parse_fields(line):
 
 
 def run_bench(variant, n, threads, steps, breakdown=False):
-    cmd = [EXE, "--variant", variant, "--n", str(n), "--threads", str(threads), "--steps", str(steps)]
+    cmd = [exe_for(variant), "--variant", variant, "--n", str(n), "--threads", str(threads), "--steps", str(steps)]
     if breakdown:
         cmd.append("--breakdown")
     proc = subprocess.run(cmd, capture_output=True, text=True, timeout=7200)
@@ -109,7 +125,7 @@ def key(v, t, n):
 def series_list(variants, thread_counts):
     out = []
     for v in variants:
-        if v in ("sequential", "gpu"):
+        if v == "sequential" or is_gpu(v):
             out.append((v, 1))
         else:
             out += [(v, t) for t in thread_counts]
@@ -117,8 +133,9 @@ def series_list(variants, thread_counts):
 
 
 def sweep(variants, thread_counts, cap_ms, json_path, counts_override):
-    if not os.path.exists(EXE):
-        raise SystemExit(f"binary not found: {EXE}  (run: mingw32-make bench)")
+    for v in variants:
+        if not os.path.exists(exe_for(v)):
+            raise SystemExit(f"binary not found: {exe_for(v)}  (run: mingw32-make bench, and bench/build_fp64.bat for gpu_fp64)")
     doc = load_json(json_path) or {"method": "3D lattice at rest density, 10-step window mean +/- stdev, 2-step warm-up", "results": {}, "breakdown": {}}
     results = doc["results"]
     series = series_list(variants, thread_counts)
@@ -129,7 +146,7 @@ def sweep(variants, thread_counts, cap_ms, json_path, counts_override):
         prev = sorted((r for r in results.values() if (r["variant"], r["threads"]) == s and "error" not in r), key=lambda r: r["n"])
         if prev:
             last[s] = (prev[-1]["n"], prev[-1]["ms_per_step"])
-            if prev[-1]["ms_per_step"] > cap_ms and s[0] != "gpu":
+            if prev[-1]["ms_per_step"] > cap_ms and not is_gpu(s[0]):
                 active[s] = False
 
     all_counts = sorted(set(n for v in variants for n in counts[v]))
@@ -155,17 +172,17 @@ def sweep(variants, thread_counts, cap_ms, json_path, counts_override):
                 continue
             last[s] = (n, r["ms_per_step"])
             print(f"{v:>10} {t:>4} {n:>9} {r['steps']:>6} {r['ms_per_step']:>11.4f} {r['ms_per_step_stdev']:>9.4f}", flush=True)
-            if r["ms_per_step"] > cap_ms and v != "gpu":
+            if r["ms_per_step"] > cap_ms and not is_gpu(v):
                 active[s] = False
     return doc
 
 
-def breakdown_sweep(json_path, cpu_threads):
+def breakdown_sweep(json_path, cpu_threads, gpu_variants):
     doc = load_json(json_path)
     bd = doc.setdefault("breakdown", {})
     print("\nstage breakdown", flush=True)
     for n in BREAKDOWN_COUNTS:
-        for v, t in (("gpu", 1), ("hash", cpu_threads)):
+        for v, t in [(g, 1) for g in gpu_variants] + [("hash", cpu_threads)]:
             k = key(v, t, n)
             if k in bd and "error" not in bd[k]:
                 continue
@@ -174,10 +191,10 @@ def breakdown_sweep(json_path, cpu_threads):
             bd[k] = r
             save_json(json_path, doc)
             if "error" in r:
-                print(f"{v:>6} n={n}: FAILED", flush=True)
+                print(f"{v:>9} n={n}: FAILED", flush=True)
             else:
                 total = sum(x["ms"] for x in r["stages"].values())
-                print(f"{v:>6} t={t:<2} n={n:>8}: total {total:9.3f} ms  " + "  ".join(f"{s}={r['stages'][s]['ms']:.3f}" for s in STAGES), flush=True)
+                print(f"{v:>9} t={t:<2} n={n:>8}: total {total:9.3f} ms  " + "  ".join(f"{s}={r['stages'][s]['ms']:.3f}" for s in STAGES), flush=True)
     return doc
 
 
@@ -189,7 +206,7 @@ def pts(results, v, t):
 
 
 def label(v, t):
-    if v in ("sequential", "gpu"):
+    if v == "sequential" or is_gpu(v):
         return LABELS[v]
     return f"{LABELS[v]}, {t} thread{'s' if t > 1 else ''}"
 
@@ -223,14 +240,18 @@ def make_plots(doc, out_dir):
     tcol = {t: COLOURS[i % len(COLOURS)] for i, t in enumerate(threads)}
 
     def colour(v, t):
-        return "#1f1f1f" if v == "sequential" else "#C44E52" if v == "gpu" else tcol[t]
+        if v == "sequential":
+            return "#1f1f1f"
+        if is_gpu(v):
+            return GPU_COLOURS[v]
+        return tcol[t]
 
     fig, ax = plt.subplots(figsize=(9.5, 6), dpi=140)
-    series = sorted({(r["variant"], r["threads"]) for r in results.values()}, key=lambda s: ({"sequential": 0, "prehash": 1, "hash": 2, "gpu": 3}[s[0]], s[1]))
+    series = sorted({(r["variant"], r["threads"]) for r in results.values()}, key=lambda s: (SORT[s[0]], s[1]))
     for v, t in series:
         x, y, _ = pts(results, v, t)
         if len(x):
-            ax.plot(x, y, color=colour(v, t), linewidth=3.0 if v == "gpu" else 1.8, linestyle="--" if v == "prehash" else "-", alpha=0.9, label=label(v, t))
+            ax.plot(x, y, color=colour(v, t), linewidth=3.0 if is_gpu(v) else 1.8, linestyle="--" if v == "prehash" else "-", alpha=0.9, label=label(v, t))
     ax.set_xscale("log")
     ax.set_yscale("log")
     finish(fig, ax, os.path.join(out_dir, "scaling_loglog.png"), legend_size=7)
@@ -238,10 +259,12 @@ def make_plots(doc, out_dir):
 
     def comparison(selection, name, loglog):
         fig, ax = plt.subplots(figsize=(9, 5.5), dpi=140)
-        for i, (v, t) in enumerate(selection):
+        for v, t in selection:
             x, y, e = pts(results, v, t)
             if len(x):
-                c = ["#1f1f1f", "#4C72B0", "#55A868", "#C44E52"][i]
+                c = "#1f1f1f" if v == "sequential" else GPU_COLOURS[v] if is_gpu(v) else {"prehash": "#4C72B0", "hash": "#55A868"}.get(v, "#8C8C8C")
+                if v == "hash" and t == 1:
+                    c = "#8DB596"
                 ax.plot(x, y, color=c, linewidth=2.0, alpha=0.9)
                 ax.scatter(x, y, color=c, s=14, label=label(v, t))
         if loglog:
@@ -251,12 +274,12 @@ def make_plots(doc, out_dir):
         plt.close(fig)
 
     ref_t = 16 if 16 in threads else (threads[-1] if threads else 1)
-    sel = [("sequential", 1), ("prehash", ref_t), ("hash", ref_t), ("gpu", 1)]
+    sel = [("sequential", 1), ("prehash", ref_t), ("hash", ref_t), ("gpu_fp64", 1), ("gpu_fp32", 1)]
     comparison(sel, "comparison_all.png", False)
     comparison(sel, "comparison_all_loglog.png", True)
-    comparison([("hash", 1), ("hash", ref_t), ("gpu", 1)], "comparison_hash_vs_gpu_loglog.png", True)
+    comparison([("hash", 1), ("hash", ref_t), ("gpu_fp64", 1), ("gpu_fp32", 1)], "comparison_hash_vs_gpu_loglog.png", True)
 
-    for variants, order, name in (({"sequential", "prehash"}, 2, "scaling_all_pairs.png"), ({"hash", "gpu"}, 1, "scaling_spatial_hash.png")):
+    for variants, order, name in (({"sequential", "prehash"}, 2, "scaling_all_pairs.png"), ({"hash", "gpu_fp64", "gpu_fp32"}, 1, "scaling_spatial_hash.png")):
         fig, ax = plt.subplots(figsize=(9, 5.5), dpi=140)
         for v, t in series:
             if v not in variants:
@@ -297,10 +320,10 @@ def make_plots(doc, out_dir):
         plt.close(fig)
 
     bd = doc.get("breakdown", {})
-    sets = sorted({r["n"] for r in bd.values() if "error" not in r})
-    if sets:
-        fig, axes = plt.subplots(1, 2, figsize=(13, 5.2), dpi=140, sharey=False)
-        for ax, (v, t, ttl) in zip(axes, (("hash", None, "OpenMP + spatial hash"), ("gpu", 1, "GPU (CUDA)"))):
+    panels = [("hash", None, "OpenMP + spatial hash"), ("gpu_fp64", 1, "GPU (CUDA), FP64"), ("gpu_fp32", 1, "GPU (CUDA), FP32")]
+    if any("error" not in r for r in bd.values()):
+        fig, axes = plt.subplots(1, 3, figsize=(18, 5.2), dpi=140)
+        for ax, (v, t, ttl) in zip(axes, panels):
             rows = [r for r in bd.values() if r["variant"] == v and "error" not in r and (t is None or r["threads"] == t)]
             rows.sort(key=lambda r: r["n"])
             if not rows:
@@ -313,8 +336,7 @@ def make_plots(doc, out_dir):
                 bottoms += vals
             ax.set_xticks(xs)
             ax.set_xticklabels([f"{r['n']:,}" for r in rows], fontsize=9)
-            thr = rows[0]["threads"]
-            ax.set_title(f"{ttl}" + (f", {thr} threads" if v == "hash" else ""), fontsize=12)
+            ax.set_title(ttl + (f", {rows[0]['threads']} threads" if v == "hash" else ""), fontsize=12)
             ax.set_xlabel("Particle count", fontsize=11)
             ax.set_ylabel("ms per step", fontsize=11)
             style(ax)
@@ -328,22 +350,23 @@ def print_table(doc):
     results = doc["results"]
     threads = sorted({r["threads"] for r in results.values() if r["variant"] == "hash"})
     ref = 24 if 24 in threads else (threads[-1] if threads else 1)
-    ns = sorted({r["n"] for r in results.values() if r["variant"] == "gpu"})
+    ns = sorted({r["n"] for r in results.values() if is_gpu(r["variant"])})
 
     def ms(v, t, n):
         r = results.get(key(v, t, n))
         return r["ms_per_step"] if r and "error" not in r else None
 
-    print(f"\n{'N':>9} {'seq':>11} {'omp all-pairs':>14} {'omp hash':>11} {'gpu':>10} {'gpu vs hash':>12} {'gpu vs seq':>11}   (omp rows use {ref} threads; ms/step)")
+    f = lambda x: f"{x:>11.3f}" if x is not None else f"{'-':>11}"
+    print(f"\n{'N':>9} {'seq':>11} {'omp all-pairs':>14} {'omp hash':>11} {'gpu fp64':>10} {'gpu fp32':>10} {'fp32/hash':>10} {'fp32/fp64':>10}   (omp rows use {ref} threads; ms/step)")
     for n in ns:
-        g, h, p, s = ms("gpu", 1, n), ms("hash", ref, n), ms("prehash", ref, n), ms("sequential", 1, n)
-        f = lambda x: f"{x:>11.3f}" if x is not None else f"{'-':>11}"
-        print(f"{n:>9} {f(s)} {f(p):>14} {f(h)} {g:>10.3f} " + (f"{h/g:>11.1f}x" if h else f"{'-':>12}") + (f"{s/g:>10.1f}x" if s else f"{'-':>11}"))
+        g64, g32, h, p, s = ms("gpu_fp64", 1, n), ms("gpu_fp32", 1, n), ms("hash", ref, n), ms("prehash", ref, n), ms("sequential", 1, n)
+        print(f"{n:>9} {f(s)} {f(p):>14} {f(h)} {f(g64):>10} {f(g32):>10} " +
+              (f"{h/g32:>9.1f}x" if h and g32 else f"{'-':>10}") + (f"{g64/g32:>9.1f}x" if g64 and g32 else f"{'-':>10}"))
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--variants", default="sequential,prehash,hash,gpu")
+    ap.add_argument("--variants", default="sequential,prehash,hash,gpu_fp64,gpu_fp32")
     ap.add_argument("--threads", help="comma-separated OpenMP thread counts (default 1,2,4,8,16,24)")
     ap.add_argument("--counts", help="comma-separated particle counts (overrides the per-variant defaults)")
     ap.add_argument("--cap-ms", type=float, default=DEFAULT_CAP_MS, help="stop growing a CPU series once a step costs more than this")
@@ -361,7 +384,8 @@ def main():
         counts = [int(c) for c in args.counts.split(",")] if args.counts else None
         doc = sweep(variants, thread_counts, args.cap_ms, args.json, counts)
         if not args.no_breakdown:
-            doc = breakdown_sweep(args.json, 24 if 24 in thread_counts else thread_counts[-1])
+            gpu_variants = [v for v in variants if is_gpu(v)]
+            doc = breakdown_sweep(args.json, 24 if 24 in thread_counts else thread_counts[-1], gpu_variants)
     os.makedirs(args.out_dir, exist_ok=True)
     make_plots(doc, args.out_dir)
     print_table(doc)

@@ -7,3 +7,5 @@ build/
 # Generated simulation output (position dumps, rendered video)
 *.bin
 *.mp4
+__pycache__/
+*.pyc

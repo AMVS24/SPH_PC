@@ -1,5 +1,6 @@
 #pragma once
 
+#include <stddef.h>
 #include <backend/linalg.h>
 
 #ifdef BUILDING_CUDAPHYSICS
@@ -34,6 +35,10 @@ GPU_API void gpuPressure();
 GPU_API void gpuForces();
 GPU_API void gpuKick(double dt);
 GPU_API void gpuSync();
+
+GPU_API void gpuDensitySearchOnly();
+GPU_API void gpuForcesSearchOnly();
+GPU_API size_t gpuAllocatedBytes();
 
 GPU_API void gpuDownloadPositions(vec3* position_array);
 GPU_API void gpuDownloadVelocities(vec3* velocity_array);
