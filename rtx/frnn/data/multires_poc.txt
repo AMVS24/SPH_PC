@@ -1,0 +1,14 @@
+Multi-resolution SPH proof of concept (density stage), RTX 5000 Ada, N = 1,000,000, box 100, frozen particles.
+Coarse particles fill the box except a central fine region (1/8 of the volume); fine particles have h smaller by `ratio`.
+Both populations are spaced for ~80 neighbours. Density uses the scatter form: rho_i = sum_j m_j W(r_ij, h_j).
+Grid = one uniform grid with cells sized for the coarse support radius. RT = Morton reorder + BVH rebuild + trace.
+Every run cross-checked per particle (grid vs RT density, relative tolerance 1e-3; worst observed ~1e-6).
+
+ratio=1.00 count   grid=    1.634 ms  rt=   7.084 ms  RT speedup=  0.23x  valid=1  mean_nbrs=78.608 max_nbrs=124
+ratio=1.00 density grid=    2.063 ms  rt=   7.243 ms  RT speedup=  0.28x  valid=1  mean_density=1.11551 worst_rel_diff=1.090e-06
+ratio=2.00 count   grid=    4.883 ms  rt=   7.368 ms  RT speedup=  0.66x  valid=1  mean_nbrs=80.759 max_nbrs=146
+ratio=2.00 density grid=    5.384 ms  rt=   7.612 ms  RT speedup=  0.71x  valid=1  mean_density=1.13167 worst_rel_diff=1.082e-06
+ratio=4.00 count   grid=   38.912 ms  rt=   8.824 ms  RT speedup=  4.41x  valid=1  mean_nbrs=86.799 max_nbrs=172
+ratio=4.00 density grid=   41.847 ms  rt=   8.967 ms  RT speedup=  4.67x  valid=1  mean_density=1.17711 worst_rel_diff=1.005e-06
+ratio=8.00 count   grid=  279.504 ms  rt=   8.906 ms  RT speedup= 31.38x  valid=1  mean_nbrs=95.972 max_nbrs=180
+ratio=8.00 density grid=  351.337 ms  rt=   8.809 ms  RT speedup= 39.88x  valid=1  mean_density=1.24716 worst_rel_diff=1.131e-06

@@ -130,8 +130,46 @@ __global__ void statsKernel(const int* counts, int n, unsigned long long* sum, i
 struct Args {
     std::string dist = "disordered", radius = "const:1";
     int n = 50000, cap = 128, seed = 1, clusters = 4;
-    double box = 103.0, budget_s = 15.0, sigma = 25.0;
+    double box = 103.0, budget_s = 15.0, sigma = 25.0, ratio = 1.0;
+    bool density = false;
 };
+
+__global__ void gridDensityKernel(const float3* pos, const float* rad, const int* cell_id, const int* cell_start, const int* cell_particles,
+                                  int gdim, int offset, int count, int* out_bits){
+    int t = blockIdx.x*blockDim.x + threadIdx.x;
+    if(t >= count) return;
+    int i = offset + t;
+    int cid = cell_id[i];
+    int cx = cid % gdim, cy = (cid / gdim) % gdim, cz = cid / (gdim*gdim);
+    float xi = pos[i].x, yi = pos[i].y, zi = pos[i].z;
+    float sum = 0.f;
+    for(int dz = -1; dz <= 1; dz++){
+        int nz = cz + dz;
+        if(nz < 0 || nz >= gdim) continue;
+        for(int dy = -1; dy <= 1; dy++){
+            int ny = cy + dy;
+            if(ny < 0 || ny >= gdim) continue;
+            for(int dx = -1; dx <= 1; dx++){
+                int nx = cx + dx;
+                if(nx < 0 || nx >= gdim) continue;
+                int c = nx + ny*gdim + nz*gdim*gdim;
+                for(int m = cell_start[c]; m < cell_start[c+1]; m++){
+                    int j = cell_particles[m];
+                    float rx = pos[j].x - xi, ry = pos[j].y - yi, rz = pos[j].z - zi;
+                    float r = rad[j];
+                    float d2 = rx*rx + ry*ry + rz*rz;
+                    if(d2 < r*r){
+                        float h = 0.5f*r;
+                        float q = sqrtf(d2)/h;
+                        float w = q < 1.f ? 1.f - 1.5f*q*q + 0.75f*q*q*q : 0.25f*(2.f - q)*(2.f - q)*(2.f - q);
+                        sum += r*r*r*0.05236f*w/(3.14159265f*h*h*h);
+                    }
+                }
+            }
+        }
+    }
+    out_bits[i] = __float_as_int(sum);
+}
 
 static void scene(const Args& a, std::vector<float3>& pos, std::vector<float>& rad, double& rmin, double& rmax){
     std::mt19937_64 rng((unsigned long long)a.seed*7919ull + (unsigned long long)a.n);
@@ -149,6 +187,27 @@ static void scene(const Args& a, std::vector<float3>& pos, std::vector<float>& r
     }
     else if(a.dist == "disordered"){
         for(auto& p : pos) p = make_float3((float)(u01(rng)*L), (float)(u01(rng)*L), (float)(u01(rng)*L));
+    }
+    else if(a.dist == "multires"){
+        double R3 = a.ratio*a.ratio*a.ratio;
+        double dxc = L*cbrt((7.0/8.0 + R3/8.0)/a.n);
+        double rc = 2.673*dxc, rf = rc/a.ratio;
+        int nc = (int)llround(a.n*(7.0/8.0)/(7.0/8.0 + R3/8.0));
+        double lo = 0.25*L, hi = 0.75*L;
+        for(int idx = 0; idx < a.n; idx++){
+            double x, y, z;
+            if(idx < nc){
+                do { x = u01(rng)*L; y = u01(rng)*L; z = u01(rng)*L; } while(x >= lo && x < hi && y >= lo && y < hi && z >= lo && z < hi);
+                rad[idx] = (float)rc;
+            }
+            else {
+                x = lo + u01(rng)*(hi - lo); y = lo + u01(rng)*(hi - lo); z = lo + u01(rng)*(hi - lo);
+                rad[idx] = (float)rf;
+            }
+            pos[idx] = make_float3((float)x, (float)y, (float)z);
+        }
+        rmin = rf; rmax = rc;
+        return;
     }
     else if(a.dist == "cluster"){
         std::vector<double> cx(a.clusters), cy(a.clusters), cz(a.clusters);
@@ -225,6 +284,8 @@ int main(int argc, char** argv){
         else if(k == "--box") a.box = atof(val().c_str());
         else if(k == "--budget-s") a.budget_s = atof(val().c_str());
         else if(k == "--clusters") a.clusters = atoi(val().c_str());
+        else if(k == "--ratio") a.ratio = atof(val().c_str());
+        else if(k == "--density") a.density = true;
         else { fprintf(stderr, "unknown option %s\n", k.c_str()); return 1; }
     }
     const int n = a.n;
@@ -356,7 +417,8 @@ int main(int argc, char** argv){
         cellStartKernel<<<blocksFor(num_cells + 1), BLOCK>>>(d_sorted_keys, d_cell_start, n, num_cells);
         t[0] = tm.stop();
         t[1] = chunked(n, chunk_grid, [&](int off, int cnt){
-            gridCountKernel<<<blocksFor(cnt), BLOCK>>>(d_pos, d_rad, d_cell_id, d_cell_start, d_cell_particles, gdim, off, cnt, d_counts_grid);
+            if(a.density) gridDensityKernel<<<blocksFor(cnt), BLOCK>>>(d_pos, d_rad, d_cell_id, d_cell_start, d_cell_particles, gdim, off, cnt, d_counts_grid);
+            else gridCountKernel<<<blocksFor(cnt), BLOCK>>>(d_pos, d_rad, d_cell_id, d_cell_start, d_cell_particles, gdim, off, cnt, d_counts_grid);
         });
         CK(cudaGetLastError());
     };
@@ -394,13 +456,14 @@ int main(int argc, char** argv){
     };
 
     double tg[2], tr[3], tl[3];
+    const int rt_mode = a.density ? 2 : 0;
     grid_call(tg);
-    rt_call(0, tr);
+    rt_call(rt_mode, tr);
     unsigned long long sum_g, sum_r;
     int max_g, max_r;
     stats(d_counts_grid, sum_g, max_g);
     stats(d_counts_rt, sum_r, max_r);
-    bool do_list = max_r <= a.cap;
+    bool do_list = !a.density && max_r <= a.cap;
     unsigned long long sum_l = 0;
     std::vector<int> cg(n), cr(n), cl;
     CK(cudaMemcpy(cg.data(), d_counts_grid, n*sizeof(int), cudaMemcpyDeviceToHost));
@@ -414,12 +477,27 @@ int main(int argc, char** argv){
         CK(cudaMemcpy(cl.data(), d_counts_rt, n*sizeof(int), cudaMemcpyDeviceToHost));
     }
     int mismatched = 0, worst = 0, list_mismatched = 0;
-    for(int i = 0; i < n; i++){
-        if(cr[i] != cg[i]) mismatched++;
-        worst = std::max(worst, abs(cr[i] - cg[i]));
-        if(do_list && cl[i] != cr[i]) list_mismatched++;
+    double worst_rel = 0, rho_sum = 0;
+    bool valid;
+    if(a.density){
+        for(int i = 0; i < n; i++){
+            float g, r;
+            memcpy(&g, &cg[i], 4); memcpy(&r, &cr[i], 4);
+            double rel = fabs((double)r - g)/std::max(1e-12, fabs((double)g));
+            worst_rel = std::max(worst_rel, rel);
+            if(rel > 1e-3) mismatched++;
+            rho_sum += r;
+        }
+        valid = mismatched <= std::max(1, n/1000);
     }
-    bool valid = worst <= 1 && mismatched <= std::max(1, n/1000) && list_mismatched == 0;
+    else {
+        for(int i = 0; i < n; i++){
+            if(cr[i] != cg[i]) mismatched++;
+            worst = std::max(worst, abs(cr[i] - cg[i]));
+            if(do_list && cl[i] != cr[i]) list_mismatched++;
+        }
+        valid = worst <= 1 && mismatched <= std::max(1, n/1000) && list_mismatched == 0;
+    }
 
     double first = tg[0] + tg[1] + tr[0] + tr[1] + tr[2] + (do_list ? tl[0] + tl[1] + tl[2] : 0);
     std::vector<double> G0, G1, R0, R1, R2, L2;
@@ -432,7 +510,7 @@ int main(int argc, char** argv){
     double spent = first;
     while(!warm_counts && (G1.size() < 3 || (spent < a.budget_s*1000.0 && G1.size() < 10))){
         grid_call(tg);
-        rt_call(0, tr);
+        rt_call(rt_mode, tr);
         G0.push_back(tg[0]); G1.push_back(tg[1]);
         R0.push_back(tr[0]); R1.push_back(tr[1]); R2.push_back(tr[2]);
         spent += tg[0] + tg[1] + tr[0] + tr[1] + tr[2];
@@ -444,7 +522,8 @@ int main(int argc, char** argv){
     std::vector<double> grid_tot, rt_tot;
     for(size_t k = 0; k < G1.size(); k++){ grid_tot.push_back(G0[k] + G1[k]); rt_tot.push_back(R0[k] + R1[k] + R2[k]); }
 
-    printf("FRNN mismatched_queries=%d worst_count_diff=%d list_mismatched=%d sum_grid=%llu sum_rt=%llu ", mismatched, worst, list_mismatched, sum_g, sum_r);
+    printf("FRNN mode=%s ratio=%.2f mean_density=%.5f worst_rel_density_diff=%.3e mismatched_queries=%d worst_count_diff=%d list_mismatched=%d sum_grid=%llu sum_rt=%llu ",
+           a.density ? "density" : "count", a.ratio, a.density ? rho_sum/n : -1.0, worst_rel, mismatched, worst, list_mismatched, sum_g, sum_r);
     printf("dist=%s radius=%s n=%d box=%.1f rmin=%.4f rmax=%.4f gdim=%d cap=%d reps=%zu valid=%d "
            "mean_nbrs=%.3f max_nbrs=%d grid_build_ms=%.4f grid_pass_ms=%.4f rt_sched_ms=%.4f rt_bvh_ms=%.4f rt_trace_count_ms=%.4f rt_trace_list_ms=%.4f "
            "grid_total_ms=%.4f grid_total_sd=%.4f rt_total_ms=%.4f rt_total_sd=%.4f\n",
