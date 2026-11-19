@@ -147,12 +147,10 @@ def our_figure(path):
             return None
         return doc.get(f"{n}|{dist}|{spec}")
 
-    methods = [("search", "RT search vs grid search (count only; grid build + 1 pass vs RT sort + BVH + trace)", ORANGE),
-               ("sph", "SPH-style: RT neighbour list vs grid build + 2 passes (only where every count fits the 128-entry list)", BLUE)]
     ns = [(50000, "N = 50,000"), (200000, "N = 200,000"), (1000000, "N = 1,000,000")]
-    fig, axes = plt.subplots(3, 1, figsize=(12, 12), dpi=150)
+    fig, axes = plt.subplots(3, 1, figsize=(12, 11.5), dpi=150)
     fig.patch.set_facecolor(SURFACE)
-    w = 0.34
+    w = 0.55
     for ax, (n, nlabel) in zip(axes, ns):
         style_axis(ax)
         xs = group_axis(ax, OUR_RADII, len(OUR_RADII))
@@ -161,24 +159,17 @@ def our_figure(path):
             for spec, _ in OUR_RADII:
                 r = find(n, dist, spec)
                 if r is not None:
-                    ratio_bar(ax, xs[k] - w/2, r["grid_total_ms"]/r["rt_total_ms"], w, ORANGE)
-                    if r["rt_trace_list_ms"] >= 0:
-                        grid_sph = r["grid_build_ms"] + 2*r["grid_pass_ms"]
-                        rt_sph = r["rt_sched_ms"] + r["rt_bvh_ms"] + r["rt_trace_list_ms"]
-                        ratio_bar(ax, xs[k] + w/2, grid_sph/rt_sph, w, BLUE)
-                    else:
-                        note(ax, xs[k] + w/2, "no list")
+                    ratio_bar(ax, xs[k], r["grid_total_ms"]/r["rt_total_ms"], w, ORANGE)
                 k += 1
         ax.set_title(nlabel, loc="left", fontsize=10.5, color=INK)
         ax.set_ylabel("RT speedup over grid", fontsize=9, color=INK2)
-    handles = [plt.Rectangle((0, 0), 1, 1, color=c, ec=SURFACE) for _, _, c in methods]
-    fig.legend(handles, [lab for _, lab, _ in methods], loc="upper center", ncol=1, frameon=False, fontsize=9,
-               bbox_to_anchor=(0.5, 0.965))
     fig.suptitle("Ours: RT-core vs uniform-grid neighbour search on ORCS's scenarios — neighbour search only (frozen particles), box 1000, RTX 5000 Ada",
                  fontsize=11.5, color=INK, y=0.995)
-    fig.text(0.5, 0.005, "Speedup = grid ms / RT ms, mean of 3-10 repetitions. Every run checked per particle against the grid's neighbour counts. "
-             "No list = more than 128 neighbours for some particle.", ha="center", fontsize=8.5, color=INK2)
-    fig.tight_layout(rect=(0, 0.015, 1, 0.925))
+    fig.text(0.5, 0.965, "Each bar: grid time (build cell index + one search pass) ÷ RT time (Morton reorder + BVH rebuild + one trace)",
+             ha="center", fontsize=9.5, color=INK2)
+    fig.text(0.5, 0.005, "Mean of 3-10 repetitions. Every run checked per particle against the grid's neighbour counts.",
+             ha="center", fontsize=8.5, color=INK2)
+    fig.tight_layout(rect=(0, 0.015, 1, 0.95))
     fig.subplots_adjust(hspace=0.38)
     fig.savefig(path, facecolor=SURFACE)
     plt.close(fig)

@@ -383,6 +383,44 @@ static void gpu_stages2(double dt, double* t){
     t0 = clk::now(); gpuKick(dt); gpuSync(); t[7] = ms_since(t0);
 }
 
+static long long allpairs_density_search(Sim& s, bool par){
+    long long total = 0;
+    #pragma omp parallel for schedule(static) reduction(+:total) if(par)
+    for(int i = 0; i < s.n; i++){
+        for(int j = 0; j < s.n; j++){
+            vec3 d = s.pos[j] - s.pos[i];
+            if(d.x*d.x + d.y*d.y + d.z*d.z < 4*H*H) total++;
+        }
+    }
+    return total;
+}
+
+static long long allpairs_force_search(Sim& s, bool par){
+    long long total = 0;
+    #pragma omp parallel for schedule(static) reduction(+:total) if(par)
+    for(int i = 0; i < s.n; i++){
+        for(int j = 0; j < s.n; j++){
+            if(i == j || s.density[j] == 0) continue;
+            vec3 d = s.pos[j] - s.pos[i];
+            double r2 = d.x*d.x + d.y*d.y + d.z*d.z;
+            if(r2 != 0 && r2 < 4*H*H) total++;
+        }
+    }
+    return total;
+}
+
+static void cpu_allpairs_stages2(Sim& s, double dt, bool par, double* t){
+    clk::time_point t0;
+    t[1] = 0;
+    t0 = clk::now(); drift(s, dt, par); enforce_boundary(s.pos.data(), s.vel.data(), s.n); t[0] = ms_since(t0);
+    t0 = clk::now(); g_sink += allpairs_density_search(s, par); t[2] = ms_since(t0);
+    t0 = clk::now(); density_allpairs(s, par); t[3] = ms_since(t0);
+    t0 = clk::now(); pressure_loop(s, par); t[4] = ms_since(t0);
+    t0 = clk::now(); g_sink += allpairs_force_search(s, par); t[5] = ms_since(t0);
+    t0 = clk::now(); forces_allpairs(s, par); t[6] = ms_since(t0);
+    t0 = clk::now(); kick(s, dt, par); t[7] = ms_since(t0);
+}
+
 static void mean_stdev(const vector<double>& v, double& mean, double& sd){
     mean = 0;
     for(double x : v) mean += x;
@@ -443,14 +481,15 @@ int main(int argc, char** argv){
     }
 
     if(breakdown2){
-        if(v != HASH && v != GPU){ fprintf(stderr, "breakdown2 only for hash and gpu\n"); return 1; }
         int windows = max(1, steps/(int)WINDOW);
         vector<vector<double>> win(6);
         for(int w = 0; w < windows; w++){
             double acc_d[6] = {0, 0, 0, 0, 0, 0};
             for(int k = 0; k < (int)WINDOW; k++){
                 double t[8];
-                if(v == GPU) gpu_stages2(dt, t); else cpu_hash_stages2(*s, dt, t);
+                if(v == GPU) gpu_stages2(dt, t);
+                else if(v == HASH) cpu_hash_stages2(*s, dt, t);
+                else cpu_allpairs_stages2(*s, dt, v != SEQ, t);
                 acc_d[0] += t[1] + t[2];
                 acc_d[1] += max(0.0, t[3] - t[2]);
                 acc_d[2] += t[5];

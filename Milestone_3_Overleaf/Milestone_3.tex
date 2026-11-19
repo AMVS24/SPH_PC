@@ -1,0 +1,275 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs,array}
+\usepackage{fvextra}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}
+\def\fps@figure{htbp}
+\captionsetup{justification=raggedright,singlelinecheck=false}
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{breaklines=true,breakanywhere=true,fontsize=\small}
+
+\title{Milestone 3: Moving SPH Neighbourhood Search to the GPU with CUDA}
+\author{Aditya Melinkeri \and Ria Arora \and Anirban Deshmukh \and Prajakta Bandgar}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This milestone ports the three-dimensional SPH solver, including its uniform-grid neighbour search, to a CUDA GPU. The report records the design decisions that the port required: where data lives and when it crosses the PCIe bus, how work is split into kernels and synchronised, how threads and blocks are chosen, and how the grid is built in parallel. On the same laptop used for the earlier milestones, the GPU solver runs 11--14$\times$ faster than the 24-thread OpenMP spatial-hash solver at small particle counts and 30--42$\times$ faster from $10^5$ particles upward (8.6\,ms against 343\,ms at one million particles), using single precision. The same kernels in double precision are only about 2$\times$ faster than the CPU, because this consumer GPU executes 64-bit arithmetic at 1/64 of its 32-bit rate. We state the limits of these comparisons and what the final milestone must change.
+\end{abstract}
+
+\section{Introduction and scope}
+
+Milestone~2 took the CPU solver from a sequential all-pairs baseline to OpenMP multithreading and then to a uniform grid with CSR-like cell storage. Its main finding was that neighbour search dominates the step (93.6\% of the time at 2,030 particles and 99.3\% at 30,016 particles) and that restricting each particle's search to nearby cells removes most of that cost. This milestone carries the same algorithm to the GPU (SPH itself is described in~\cite{mueller2003}), following the progression set out in the literature review: sequential, spatial grid, CUDA, and (in the final stage) RT-core search~\cite{green2010,zhu2022}.
+
+Two things differ from Milestone~2 and the reader should keep them in mind when comparing numbers. First, the solver is now \emph{three-dimensional}, so a particle's neighbourhood is 27 cells rather than 9. Second, all CPU baselines were re-measured in 3D, on a new test scene (Section~\ref{sec:setup}). The times in this report are therefore not comparable to the 2D times in Milestone~2, but they are comparable to each other: every variant runs the same physics on the same scene on the same machine.
+
+Sections~\ref{sec:decisions} and~\ref{sec:precision} describe the implementation. Section~\ref{sec:results} presents measurements, Section~\ref{sec:issues} discusses the bottlenecks and GPU-specific problems we met, and Section~\ref{sec:future} lists the remaining work.
+
+\section{Implementation decisions}\label{sec:decisions}
+
+Porting an SPH step to a GPU is mostly a sequence of design decisions rather than a rewrite of the physics. This section collects them in the order in which they arise.
+
+\subsection{From 2D to 3D}
+
+The GPU port was done on the 3D solver, so the CPU code was converted first. The changes were mechanical:
+\begin{itemize}
+\item a \texttt{vec3} type with the same operator set as \texttt{vec2}, a $z$ component in spawning, boundaries and the cell index, and a 3D grid of $125\times125\times125$ cells (cell side $2H$, as before);
+\item the kernel normalisations are dimension-dependent, so the density and gradient constants became $1/(\pi H^3)$ and $1/(\pi H^4)$ for the cubic-spline kernel used in the code;
+\item the neighbour query now scans a $3\times3\times3$ block of cells. The Milestone~2 code enumerated neighbours by adding offsets to the flattened cell index, which wraps across row edges. The 3D version computes $(c_x,c_y,c_z)$ and bounds-checks each axis, which removes that wrap-around.
+\end{itemize}
+Gravity still acts along $-y$. The 2D-tuned constants (target density, pressure multiplier, gravity) were not retuned, so the 3D dynamics have not been physically validated; see Section~\ref{sec:future}.
+
+\subsection{Data residency and CPU--GPU transfers}\label{sec:residency}
+
+The central decision is to keep the simulation state on the device. Positions, velocities, accelerations, densities, pressures and all grid arrays are allocated once with \texttt{cudaMalloc}. The first call to \texttt{integrate()} uploads positions and velocities with a single \texttt{cudaMemcpy} per array; after that, no timestep touches host memory (Figure~\ref{fig:pipeline}). Scalar parameters (smoothing length, masses, wall positions, grid dimensions) are passed to each kernel by value in a small struct, so they cost no memory copy either.
+
+Positions are copied back to the host only on demand, by \texttt{fetch\_positions()}, which is called by the renderer or when a frame is saved. The benchmarks never call it. This matters because a step is cheap relative to a copy at large $N$ (Section~\ref{sec:transfer}) and because saving frames is limited by the disk, not the GPU.
+
+The host interface keeps \texttt{double} arrays, and conversion happens at the upload and download boundary. This let the rest of the program (rendering, headless runner, benchmarks) stay unchanged and made precision a switch inside the CUDA file (Section~\ref{sec:precision}).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{figures/gpu_pipeline.pdf}
+\caption{One GPU timestep. State is uploaded once and stays in device memory. Each box is one kernel launch; launches in the same stream run in order, so no explicit barrier is needed between them. A single \texttt{cudaDeviceSynchronize} closes the step. Positions return to the host only when they are saved or rendered.}\label{fig:pipeline}
+\end{figure}
+
+\subsection{Kernel decomposition and synchronisation}\label{sec:sync}
+
+The OpenMP version expressed each stage as a \texttt{parallel for} whose implicit barrier ordered the stages. The CUDA analogue is one kernel per stage. Kernels launched into the same stream execute in launch order and each starts only when the previous one has finished, so the kernel boundary is the barrier. \texttt{\_\_syncthreads()}, which only synchronises threads inside one block, is not used anywhere.
+
+Stages are \emph{not} fused wherever fusing would create a race:
+\begin{itemize}
+\item density and force are separate kernels because a force thread reads the \emph{final} density of every neighbour;
+\item force and kick are separate kernels because force reads neighbours' velocities while kick overwrites them;
+\item drift and boundary are separate launches in the code (they could be fused; the saving is small).
+\end{itemize}
+A step is eight kernel launches plus the sort (which itself issues several kernels). The host calls \texttt{cudaDeviceSynchronize()} once, at the end of \texttt{integrate()}. Launches are asynchronous, so without that call an error in a kernel would surface at some later, unrelated call. Every CUDA call is wrapped in an error-checking macro, and every launch is followed by \texttt{cudaGetLastError()}.
+
+\subsection{Launch configuration: threads, blocks and grid}\label{sec:launch}
+
+Every stage uses the same mapping: \textbf{one thread per particle}, with the thread computing a result that belongs only to its own particle. This is the GPU form of the ownership rule that made the OpenMP loops race-free, and it means no kernel needs atomics (Figure~\ref{fig:launch}).
+
+\begin{verbatim}
+static const int BLOCK = 256;
+int blocksFor(int count){ return (count + BLOCK - 1) / BLOCK; }
+densityKernel<<<blocksFor(n), BLOCK>>>(params, pos, cell_id, cell_start,
+                                       cell_particles, density, n);
+\end{verbatim}
+
+The block size is 256 threads (eight warps of 32) and the grid size is $\lceil N/256\rceil$ blocks, with the last block's surplus threads returning at the first line (\texttt{if (i >= n) return}). We chose 256 as a conventional multiple of the warp size and did \emph{not} tune it. The one hardware constraint we examined is registers: in the profile of the first (FP64) kernels, the density kernel used 47 registers per thread and the force kernel 79, which limits residency to five and three 256-thread blocks per SM, i.e.\ 83\% and 50\% theoretical occupancy. A block-size and register-limit sweep is future work.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{figures/gpu_launch.pdf}
+\caption{Left: thread-to-particle mapping. Right: the work of one thread in the density and force kernels. The radius test happens before the square root and the divisions.}\label{fig:launch}
+\end{figure}
+
+\subsection{Building the grid on the GPU}\label{sec:grid}
+
+On the CPU, grid construction was a counting sort: count particles per cell, prefix-sum the counts, scatter indices with a running cursor. Those three steps are serial there, and a direct GPU port would need atomic increments on the shared counts and cursors. We instead followed the sort-based construction described by Green~\cite{green2010}, which was identified in the literature review as the faster option on most hardware:
+\begin{enumerate}
+\item \texttt{cellIdKernel}: each thread computes its particle's flattened cell index, clamped to the grid;
+\item sort the (cell index, particle index) pairs with the CUB radix sort, using only the 21 key bits needed for $125^3 = 1{,}953{,}125$ cells. The sorted particle indices are exactly \texttt{cell\_particles};
+\item \texttt{cellStartKernel}: one thread per cell binary-searches the sorted keys for the first key $\ge c$, giving \texttt{cell\_start}. An extra thread produces the end sentinel.
+\end{enumerate}
+Figure~\ref{fig:grid} repeats the seven-particle example from Milestone~2. The result is identical to the CPU arrays. Because the radix sort is stable, even the order of particles \emph{within} a cell matches the CPU scatter, which is why the GPU and CPU results agree so closely (Section~\ref{sec:verify}). The whole construction takes 0.17\,ms at one million particles in FP32, compared with about 6\,ms for the serial CPU construction. We did not benchmark the atomic alternative ourselves, so the choice rests on the literature and on the sort's determinism.
+
+State arrays (positions, velocities) are \emph{not} reordered by cell; neighbour reads therefore gather through \texttt{cell\_particles}. Reordering is a known optimisation~\cite{green2010} that we have not yet applied.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{figures/gpu_gridbuild.pdf}
+\caption{Parallel grid construction on the example from Milestone~2: seven particles in four cells. Colours mark cells.}\label{fig:grid}
+\end{figure}
+
+\subsection{Neighbour traversal inside the kernels}
+
+Each density or force thread loops over its 27 neighbouring cells and over each cell's range in \texttt{cell\_particles}. Three details matter for speed. The squared distance is tested against $(2H)^2$ \emph{before} the square root and the divisions, so most of the roughly 520 candidates a particle visits cost only a few multiplications (for the benchmark lattice, about 80 of them lie inside the kernel support). Sums are accumulated in registers and written once, instead of read-modify-writing global memory per neighbour. And the 27-cell scan is read-only on the grid arrays, so no synchronisation is needed inside a kernel.
+
+\subsection{Toolchain and verification}\label{sec:verify}
+
+\texttt{nvcc} on Windows requires the MSVC host compiler, whereas the rest of the project is built with MinGW. The CUDA code is therefore compiled into a DLL with a C interface (\texttt{cudaPhysics.dll}) and linked into the MinGW executables through its import library. This also keeps the GPU code separate from \texttt{physics.cpp}, whose \texttt{integrate()} now only issues the sequence of calls in Figure~\ref{fig:pipeline}.
+
+We verified the port in three ways. (i)~In double precision the GPU matches the CPU reference to $10^{-10}$ in position after 60 steps on a dense, high-force test (20,000 particles, random velocities, viscosity and pressure active). (ii)~\texttt{compute-sanitizer} memcheck reported no errors. (iii)~On the benchmark scene, the sequential, OpenMP and GPU variants agree on the summed density to 14 digits after 10 steps (in double). Sections~\ref{sec:precision} and~\ref{sec:future} describe what this does \emph{not} establish.
+
+\section{Single versus double precision}\label{sec:precision}
+
+The first CUDA implementation was entirely double precision, to match the CPU. It was only about 2$\times$ faster than the 24-thread CPU spatial-hash solver. Profiling with Nsight Compute at one million particles showed why (Table~\ref{tab:ncu}): the FP64 pipeline was 88\% utilised in both hot kernels while DRAM and cache traffic were negligible. The kernels were limited by arithmetic throughput, not by memory. Nsight reports the device's FP32:FP64 peak ratio as 64:1, which is typical of GeForce-class silicon: graphics and machine-learning workloads use 32-bit and lower precision, so the vendor provides only a few 64-bit units on these parts. Data-centre and some workstation GPUs include much more FP64 hardware.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lrr}
+\toprule
+Nsight Compute, 1M particles (first FP64 kernels) & Density & Force \\
+\midrule
+FP64 pipe utilisation (\%) & 88.3 & 88.6 \\
+DRAM throughput (\% of peak) & 0.05 & 0.08 \\
+Memory throughput (\% of peak) & 3.4 & 3.0 \\
+Active threads per warp (of 32) & 26.1 & 18.0 \\
+Registers per thread & 47 & 79 \\
+Theoretical / achieved occupancy (\%) & 83 / 76 & 50 / 40 \\
+\bottomrule
+\end{tabular}
+\caption{Profile of the first double-precision kernels. The FP64 pipeline is the limiter in both.}\label{tab:ncu}
+\end{table}
+
+We therefore converted the whole GPU pipeline to single precision: storage, parameters and arithmetic, with a \texttt{real} type alias in the CUDA file so that precision is a compile-time switch (\texttt{-DGPU\_DOUBLE} restores double). The effect is large: at one million particles a step falls from 148\,ms to 7.4\,ms in the stage-timed path, and both precisions are reported throughout this document.
+
+\textbf{Accuracy.} Single precision changes results by rounding. On the benchmark scene (50,000 particles, 3,000 steps) the mean height agrees to about $4\times10^{-5}$ (relative) and the mean density to about $1.5\times10^{-4}$ between the two precisions; the kinetic energy agrees to $4\times10^{-4}$ during the free fall and to about 4\% after the splash, where the flow is chaotic and individual particle trajectories diverge. In a deliberately violent dense test the worst-particle position differs by 0.75 length units after 60 steps. We have not tested much longer runs or low-velocity regimes, where float resolution could matter more.
+
+\textbf{Why we stay on this GPU, and what changes later.} A workstation GPU would avoid most of this problem, because it provides far more FP64 throughput. We deliberately kept the same laptop (RTX 5070 Ti Laptop GPU) for this milestone so that all measurements, CPU and GPU, come from one machine and are fair to compare with Milestones~1 and~2. Moving to a workstation GPU is planned for the final milestone, at which point the FP64 series in this report becomes the like-for-like comparison with the CPU solver.
+
+\section{Results}\label{sec:results}
+
+\subsection{Setup}\label{sec:setup}
+
+\textbf{Hardware and software.} All numbers come from one laptop: NVIDIA GeForce RTX 5070 Ti Laptop GPU (12\,GB, compute capability 12.0), 24 logical CPU threads (2.7\,GHz as reported by Windows), CUDA 12.8, Windows~11. Measurements were taken on AC power in the Windows ``Performance'' mode with Energy Saver off. One batch of 10M-particle timings was taken accidentally on battery in ``Silent'' mode; it was detected from a 1.5$\times$ slowdown and discarded and re-measured.
+
+\textbf{Scene and protocol.} All variants run the same 3D scene: particles on a cubic lattice whose spacing (1.4925 for $H=2$) gives the target rest density, with gravity and wall collisions. Each point is the mean of 10-step window averages after two warm-up steps, with the standard deviation over windows. The number of steps adapts to cost (up to 150). CPU series stop growing once a step exceeds 5\,s. Timings cover the physics update only: no rendering, no output. Variants are: \emph{Sequential} (all-pairs, 1 thread), \emph{OpenMP all-pairs} (24 threads), \emph{OpenMP hash} (24 threads, the Milestone~2 grid with serial construction), and the \emph{GPU} in FP64 and FP32.
+
+\subsection{Scaling across implementations}
+
+Figures~\ref{fig:throughput} and~\ref{fig:scaling} show the same data as steps per second (higher is better, as the earlier plots made small differences hard to see) and as milliseconds per step. Table~\ref{tab:main} gives representative values.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.88\linewidth]{figures/throughput_vs_particles.png}
+\caption{Timesteps per second against particle count for all variants (OpenMP at 24 threads). The GPU in FP32 sustains 11.8 steps per second at 10 million particles, against 0.32 for the 24-thread CPU spatial hash.}\label{fig:throughput}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.88\linewidth]{figures/scaling_ms_loglog.pdf}
+\caption{Time per step against particle count (log--log). The all-pairs variants grow quadratically, the grid-based variants linearly. At small $N$ the GPU curves are flat: a fixed per-step cost dominates.}\label{fig:scaling}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{rrrrrrr}
+\toprule
+$N$ & Sequential & OMP all-pairs & OMP hash & GPU FP64 & GPU FP32 & FP32 vs hash \\
+\midrule
+1,000 & 7.43 & 1.07 & 4.48 & 3.44 & 0.36 & 12$\times$ \\
+10,000 & 590 & 40.1 & 8.56 & 3.38 & 0.60 & 14$\times$ \\
+100,000 & -- & 3,534 & 41.7 & 23.3 & 1.37 & 30$\times$ \\
+1,000,000 & -- & -- & 343 & 161 & 8.61 & 40$\times$ \\
+10,000,000 & -- & -- & 3,109 & 1,428 & 84.8 & 37$\times$ \\
+\bottomrule
+\end{tabular}
+\caption{Milliseconds per step. OpenMP columns use 24 threads. Dashes: the series was stopped at the 5\,s per step cap.}\label{tab:main}
+\end{table}
+
+Three observations follow. (i)~Against the sequential baseline the GPU is several hundred times faster once the problem is non-trivial (about 980$\times$ at 10,000 particles). (ii)~Against the strongest CPU variant, the 24-thread spatial hash, FP32 is 11--14$\times$ faster at small $N$ and settles at 37--40$\times$ for $N\ge10^6$. FP64 on the GPU is only about 2$\times$ faster than that CPU variant. (iii)~At 1,000 particles the CPU all-pairs variant is competitive with the FP64 GPU; this is the fixed-cost floor discussed below.
+
+\subsection{Where the time goes at 10 million particles}
+
+Figure~\ref{fig:bd10m} uses the six stages of Milestone~2. As before, stage~A includes grid construction, and search is separated from arithmetic by timing a search-only kernel and subtracting. The diagnostic path's totals are close to, but not identical with, the normal-path totals (3,906 against 3,109\,ms for the CPU hash; 85.1 against 84.8\,ms for the FP32 GPU).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{figures/breakdown_10M.png}
+\caption{Stage breakdown at 10,000,000 particles. Left: 24-thread OpenMP hash. Middle: GPU FP64. Right: GPU FP32. Note the different vertical scales.}\label{fig:bd10m}
+\end{figure}
+
+In FP64 the force \emph{computation} (stage~D) is 56\% of the step, which is the arithmetic bottleneck of Section~\ref{sec:precision}. In FP32 the arithmetic shrinks by 26--33$\times$ (stages B and D) while neighbour search (A and C) shrinks by about 8--10$\times$. Neighbour search is therefore 55\% of the FP32 step (46.9 of 85.1\,ms), against 43\% on the CPU. The bottleneck of the original problem, neighbour search, has returned as the dominant GPU cost once arithmetic is cheap.
+
+\subsection{Time and space complexity}
+
+Figures~\ref{fig:time} and~\ref{fig:space} test linearity directly. A straight-line fit over $N\ge 2\times10^5$ gives 8.8\,ns per particle for FP32 ($R^2=0.9993$, up to 20 million particles) and 141\,ns per particle for FP64 ($R^2=0.9999$, up to 10 million). Time is therefore $O(N)$, as the bounded-occupancy argument of Milestone~2 predicts. The CPU hash costs about 310\,ns per particle at 10 million, so the FP32 GPU is about 35$\times$ cheaper per particle.
+
+Memory is linear as well and fits exactly (Figure~\ref{fig:space}): the allocated device memory is $72.1\,N$ bytes plus 7.8\,MB in FP32 and $116.1\,N$ bytes plus 7.8\,MB in FP64. The fixed 7.8\,MB is the \texttt{cell\_start} array, which depends on the domain and not on $N$. In FP32 the per-particle cost is 36\,B for position, velocity and acceleration, 8\,B for density and pressure, 20\,B for the five integer index/scratch arrays, and about 8\,B (by subtraction) for the sort workspace. At these rates the 12\,GB card could in principle hold roughly 178 million FP32 particles or 110 million FP64 particles; this ignores the CUDA context and the host copies, so it is an upper bound, not a tested figure. We measured only the bytes our code allocates.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{figures/gpu_time_complexity.png}
+\caption{GPU time per step against particle count on linear axes, with a straight-line fit over $N\ge 2\times10^5$. Error bars show the standard deviation over 10-step windows. FP32 reaches 20 million particles; FP64 stops at 10 million because each step takes over a second.}\label{fig:time}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{figures/gpu_space_complexity.png}
+\caption{Device memory allocated by the solver against particle count. The relationship is exactly linear (fitted $R^2>0.999999$).}\label{fig:space}
+\end{figure}
+
+\section{Bottlenecks and GPU-specific issues}\label{sec:issues}
+
+\textbf{Arithmetic precision.} On this GPU, FP64 arithmetic limits the solver (Section~\ref{sec:precision}). This is a property of the hardware class and the main reason the FP64 series is slower than the CPU-comparable target.
+
+\textbf{Neighbour-search efficiency.} Each thread examines roughly 520 candidates to find about 80 true neighbours, so about 85\% of the distance tests fail. Warps also diverge: in the FP64 profile only 26 of 32 lanes were active on average in the density kernel and 18 in the force kernel, because neighbouring threads can have different numbers of candidates and the radius test is data-dependent. Because particles are not reordered by cell, neighbour positions are gathered rather than read contiguously. Cache hit rates were already high in the profile (L1 79--86\%, L2 98--99\%), so we expect reordering to help mainly at very large $N$, but we have not measured it.
+
+\textbf{Occupancy.} The force kernel's register pressure limits it to three resident blocks per SM (50\% theoretical occupancy). This was measured on the FP64 kernels; the FP32 kernels have not been profiled.
+
+\textbf{Fixed cost at small $N$.} For $N\lesssim 10^4$ the FP32 step is flat at 0.36--0.6\,ms: eight launches plus the sort, and a grid construction that costs about 0.12\,ms even at small $N$ (it includes a pass over the 1.95 million cell entries, whose number does not depend on $N$). The GPU is under-filled and per-launch overhead dominates. Small simulations are the one regime where the CPU remains competitive, and where fusing kernels or recording the step as a CUDA graph would be worth doing.
+
+\subsection{CPU--GPU transfers}\label{sec:transfer}
+
+In the simulation loop there are no transfers, by design (Section~\ref{sec:residency}). Transfers still matter in three situations, shown in Figure~\ref{fig:transfer}. The upload happens once; at ten million particles it takes about 34\,ms (computed from the measured PCIe bandwidth of 7--14\,GB/s for ordinary, pageable host memory), which is less than half of one step and is paid once. A download of positions costs 0.2, 1.5 and 14.7\,ms at $10^5$, $10^6$ and $10^7$ particles, i.e.\ 14--17\% of a step. So even \emph{if} positions were copied every step, PCIe would not be the dominant cost for our scene, though it is not negligible.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\linewidth]{figures/transfer_overhead.png}
+\caption{GPU step time (FP32) against the one-time upload and the on-demand download. Upload and download times are computed from measured PCIe bandwidth (bytes divided by bandwidth); step times are measured.}\label{fig:transfer}
+\end{figure}
+
+Three practical points go with this. (i)~Our \texttt{fetch\_positions()} is slower than a raw copy (0.57, 6.1 and 64\,ms for the same three sizes), which we attribute to the host-side float-to-double conversion and an intermediate buffer; we did not profile it. (ii)~Pinned host memory measured 23--28\,GB/s against 7--14\,GB/s for pageable memory in our bandwidth test, so pinned buffers would shorten both copies by roughly 3$\times$. (iii)~The first call to \texttt{integrate()} also pays CUDA context creation and allocation: 91\,ms at one million and 346\,ms at ten million particles in our measurements, with one cold-start case of 2.4\,s. The timing loops exclude this through warm-up steps.
+
+\textbf{Saving frames is disk-bound, not PCIe-bound.} When positions were written to disk on every step, Task Manager showed the disk saturating at about 250\,MB/s and GPU utilisation falling to roughly 9\% in a sawtooth pattern, because each step then waits for a blocking write. For that reason saving is an opt-in flag in the headless runner (off by default), and all benchmarks run with it off. Saving every $K$-th step, or writing on a separate thread, would recover most of the lost throughput.
+
+\subsection{Limits of this comparison}
+
+The headline GPU numbers are single precision, whereas the CPU baselines are double. The FP64 GPU series is provided for the like-for-like comparison. The comparisons also use one machine, one particle layout, and a lattice scene at rest density; a splashing or heavily clustered scene would have uneven cell occupancy, which affects both the CPU and the GPU grid. The CPU model name, compiler version and thread-affinity settings were not recorded, as noted in Milestone~2, and the CPU hash's grid construction is still serial. A defensible final comparison should fix these.
+
+\section{Remaining work}\label{sec:future}
+
+\begin{enumerate}
+\item \textbf{Workstation GPU for the final milestone}, with real FP64 throughput, so that the FP64 solver can be compared with the CPU directly. Repeat the sweep with the same protocol and record full hardware metadata.
+\item \textbf{Physical validation in 3D.} The CPU--GPU agreement shown here is a numerical check. The 3D solver still needs hydrostatic, dam-break and momentum tests, and its constants (target density, pressure multiplier, gravity) need retuning from their 2D values.
+\item \textbf{Reorder particle state by cell} after each sort so neighbour reads are contiguous, and measure the effect.
+\item \textbf{Profile and tune the FP32 kernels}: block size and register limits, occupancy, and whether fusing the density and force loops or building a neighbour list reduces the repeated candidate scans.
+\item \textbf{Mixed precision}: FP32 pair arithmetic with higher-precision accumulation or cell-relative coordinates, as in the mixed-precision NNPS work of Mao et al.~\cite{mao2024}.
+\item \textbf{Small-$N$ efficiency}: fuse small kernels or record the step as a CUDA graph; use pinned memory and asynchronous copies where frames are saved.
+\item \textbf{RT-core neighbour search}, the extension that motivated the project: formulating the fixed-radius query as a BVH ray-tracing problem~\cite{zhu2022,meneses2026} and comparing it with the grid on the same scene.
+\end{enumerate}
+
+\begin{thebibliography}{9}
+\bibitem{mueller2003} M.~M\"uller, D.~Charypar, and M.~Gross, ``Particle-based fluid simulation for interactive applications,'' in \emph{Proc.\ ACM SIGGRAPH/Eurographics Symp.\ Computer Animation}, 2003, pp.~154--159.
+\bibitem{green2010} S.~Green, ``Particle simulation using CUDA,'' NVIDIA Corporation, technical report, 2010.
+\bibitem{mao2024} Z.~Mao, X.~Li, S.~Hu, G.~Gopalakrishnan, and A.~Li, ``A GPU accelerated mixed-precision smoothed particle hydrodynamics framework with cell-based relative coordinates,'' \emph{Engineering Analysis with Boundary Elements}, vol.~161, pp.~113--125, 2024.
+\bibitem{zhu2022} Y.~Zhu, ``RTNN: Accelerating neighbor search using hardware ray tracing,'' in \emph{Proc.\ 27th ACM SIGPLAN Symp.\ Principles and Practice of Parallel Programming}, 2022, pp.~76--89.
+\bibitem{meneses2026} E.~Meneses \emph{et al.}, ``Advancing RT core-accelerated fixed-radius nearest neighbor search,'' arXiv:2601.15633, 2026.
+\end{thebibliography}
+
+\end{document}
