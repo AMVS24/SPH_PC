@@ -1,0 +1,10 @@
+date: 2026-11-20T19:44:14+05:30
+name, driver_version, compute_cap, memory.total [MiB], power.limit [W]
+NVIDIA RTX 5000 Ada Generation, 595.84, 8.9, 32760 MiB, 250.00 W
+Cuda compilation tools, release 13.2, V13.2.86
+Build cuda_13.2.r13.2/compiler.37953736_0
+ARCH=sm_89 CUDA_HOME=/usr/local/cuda
+pid, process_name, used_gpu_memory [MiB]
+1638537, sunshine, 325 MiB
+1407010, ./tridiag_save_q, 3068 MiB
+1090076, ./skqd/bin/python, 12070 MiB

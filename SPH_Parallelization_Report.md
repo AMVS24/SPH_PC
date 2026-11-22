@@ -1,10 +1,10 @@
 # Accelerating Neighbourhood Search in Smoothed Particle Hydrodynamics
 
-**Preliminary project report — 30 September 2026**
+**Final project report — 20 November 2026**
 
-This report follows the development of the CPU solver from the sequential C++ baseline to OpenMP multithreading and then to spatial hashing. The starting observation is that the baseline spends most of a physics step finding neighbouring particles. The work therefore proceeds in two stages: distribute particle calculations across CPU threads, then reduce the number of candidate particles that those calculations examine.
+This report follows the project from the sequential C++ SPH baseline through OpenMP multithreading and spatial hashing, then evaluates GPU spatial-grid and ray-tracing-core searches. The starting observation is that the baseline spends most of a physics step finding neighbouring particles. The work first distributes particle calculations across CPU threads, then reduces the number of candidate particles examined, and finally tests whether GPU ray-tracing traversal is a competitive alternative for SPH workloads.
 
-The discussion uses the existing source code, benchmark data, and figures in the project. The earlier sequential measurements establish where the project left off; the later comparison measurements evaluate the sequential, OpenMP all-pairs, and OpenMP spatial-hash variants. Results from separate measurement campaigns are identified where they appear. All times are in milliseconds unless stated otherwise.
+The discussion uses the existing source code, benchmark data, and figures in the project. The earlier sequential measurements establish where the project left off; later campaigns evaluate the sequential, OpenMP all-pairs, and OpenMP spatial-hash variants, as well as GPU grid and OptiX implementations. Results from separate measurement campaigns are identified where they appear. All times are in milliseconds unless stated otherwise.
 
 ## 1. Where we left off: sequential scaling and the neighbourhood-search bottleneck
 
@@ -592,4 +592,63 @@ The figures above are embedded from the existing project data folders. The follo
 | Integration, timing boundaries, and diagnostic stages | [parallel validation driver](C:/Users/Aditya/Documents/Projects/SPH_PC/parallel_c/validate_main.cpp) |
 | Threaded elementwise vector operations | [parallel vector operations](C:/Users/Aditya/Documents/Projects/SPH_PC/parallel_c/backend/linalg.cpp) |
 | Existing physical-validation observations | [sequential validation report](C:/Users/Aditya/Documents/Projects/SPH_PC/sequential_c/data/validation_report.md) |
+
+## 7. GPU ray-tracing cores: a controlled comparison with spatial grids
+
+The CPU results show the value of reducing candidate interactions. The final milestone also evaluated whether GPU ray-tracing (RT) hardware could accelerate this search. The experiment compared an OptiX 9.1 bounding-volume hierarchy (BVH) against a CUDA sort-based uniform grid, using FP32 positions and complete fixed-radius neighbour sets. The grid sorts cell identifiers, builds cell ranges, and tests candidates in a 27-cell stencil. Both paths use the same particle data and query order. The RT timing includes BVH construction or refit and traversal, while the grid timing includes sorting, cell-range construction, and the search pass. The RT timing excludes the Morton reorder, which makes the RT comparison favourable.
+
+The RT microbenchmarks ran on an NVIDIA GeForce RTX 5070 Ti Laptop (Blackwell, 46 SMs) and a shared NVIDIA RTX 5000 Ada Generation workstation GPU (100 SMs). Unless stated otherwise, N is one million. Each configuration had a one-second warm-up, five repetitions per process, and three independent process launches. Reported values are the minimum over launches to reduce the effect of background interference on the shared Ada system. The laptop timing coefficient of variation was below 3%. Count, density, and force outputs were checked against the grid: observed worst relative errors were approximately 10⁻⁶ for density and 10⁻⁵ for force, with at most two count mismatches attributed to floating-point comparisons at the radius boundary.
+
+### 7.1 Fixed-radius SPH workloads
+
+At approximately 80 neighbours per query, the base RT path was consistently slower than the uniform grid on both GPU generations. The table reports total grid and RT times, including their respective construction costs.
+
+| Workload (N = 1M, k ≈ 80) | RTX 5070 Ti Laptop: grid / RT (RT ÷ grid) | RTX 5000 Ada: grid / RT (RT ÷ grid) |
+|---|---:|---:|
+| Count | 3.26 / 11.85 ms (3.64×) | 1.71 / 6.17 ms (3.60×) |
+| SPH density | 3.38 / 12.74 ms (3.77×) | 1.87 / 6.70 ms (3.58×) |
+| Pressure and viscosity force | 5.68 / 17.63 ms (3.11×) | 3.08 / 9.06 ms (2.94×) |
+
+These results cover the relevant SPH workload directly, not just a count-only proxy. The trend persisted for lattice data and across a neighbour-count sweep from approximately 1 to 512. Refit reduced construction cost but did not change the outcome at typical SPH density: at k ≈ 80, RT with refit remained about 3.0–3.1× slower than the grid. The RT trace alone crossed the grid only at extremely sparse counts; including BVH construction or refit moved the crossover to approximately one neighbour per query.
+
+The invocation measurements help explain the gap. At k ≈ 80, RT made about 181 intersection calls per query (2.30 per true neighbour), while the grid made about 506 distance tests (6.43 per neighbour). Despite making fewer candidate checks, the RT path's programmable intersection call cost approximately eight times as much as a grid distance test on both GPUs. A minimal empty intersection program still cost about 5.5 times as much per call. The BVH's reduction in candidate count therefore did not offset the cost of invoking the intersection program for every candidate.
+
+Several ablations reinforce this interpretation. Morton-ordered queries were materially faster than randomly ordered queries. The `PREFER_FAST_TRACE` setting did not improve the baseline. Reporting each intersection to an any-hit shader, as used by the current SPH solver, was 23–32% slower than accumulating in the intersection program. A Blackwell hardware-sphere path required a segment query because built-in spheres did not report a hit when the query ray began inside the sphere. At k ≈ 80, hardware spheres reduced invocation count but made traversal 16% slower than the custom-box segment path; their total time was 7.1–10.3× the grid time in the measured configurations. Thus, the tested hardware primitive did not provide a useful replacement for the custom intersection path.
+
+### 7.2 Adaptive radii and grid design
+
+For spatially varying smoothing lengths, the comparison used a multi-level grid with a separate bounded grid for each power-of-two radius level. This is a stronger baseline than a single grid sized for the largest radius. On an RTX 5000 Ada, the multi-level grid was 1.35–1.98× faster than RT across the tested adaptive profiles and two-level scenes at N = 1M. The old proof-of-concept comparison against only a largest-radius grid had suggested large RT wins; with the multi-level baseline, those results did not hold.
+
+The stress test increased the radius range from 100 to nearly 10,000 while maintaining approximately 81 neighbours per query. Multi-level-grid time stayed near 4.9–5.4 ms, while RT time rose from 7.28 to 9.12 ms. RT therefore fell from 1.35× to 1.84× the multi-level-grid time as the radius range grew. Instrumentation showed that calls per query remained near 189, while the measured cost per RT call increased. This is consistent with traversal becoming less effective in a BVH containing primitives with widely differing sizes. The multi-level grid avoids the same global size disparity by assigning particles to radius levels.
+
+### 7.3 Interpreting published RT wins
+
+The study also reproduced comparison conditions that can make RT appear faster. In a bridge experiment on identical inputs, changing the grid's distance arithmetic from FP32 to FP64 made it 12.3–12.9× slower at k ≈ 79, enough by itself to reverse the comparison in favour of RT. Re-uploading particle positions and copying full neighbour lists to the host increased grid-side time further. A K = 50 early-termination mode likewise reduced RT work by returning only about 63% of neighbours at the SPH-like radius. Such conditions do not represent a complete, GPU-resident, FP32 SPH neighbour search and should not be presented as equivalent workloads.
+
+This finding is consistent with source inspection of RTNN and cuNSearch: the tested RTNN code uses a default neighbour cap of 50 and includes result-list transfer in its timed search, while cuNSearch defaults to double precision and copies particle and result data through the host. The precise precision used in the RTNN paper is unverified, and the inference that ORCS's GPU-CELL timings reflect FP64 arithmetic remains an inference rather than a confirmed implementation detail. Consequently, these observations explain plausible sources of apparent speedup but do not establish that any particular published result used every identified condition.
+
+Sparse empty-domain tests are a separate regime. At approximately one neighbour per query, a compact grid was faster than rebuilt-BVH RT by 1.4–4.3×. With refit, RT is estimated to be 1.5–2.5× faster in this ultra-sparse case, but that figure is an extrapolation combining measured trace and refit times. SPH workloads in this study had substantially higher neighbour counts, so this narrow sparse regime does not alter the SPH conclusion.
+
+### 7.4 Scope and reproducibility limits
+
+The GPU results use one RT API (OptiX 9.1) and NVIDIA hardware. The Ada workstation was shared, and minimum-over-launch reporting reduces but does not remove the consequences of contention. The refit tests use frozen particles, favouring refit quality; the reported RT total also omits Morton reorder time. Conversely, the multi-level grid implementation includes a small device-to-host copy and is not fully optimized. These choices should be considered when interpreting the measured margins. Direct head-to-head runs of RTNN and cuNSearch were not completed, and no energy measurements or non-NVIDIA RT APIs were evaluated. The conclusions are therefore about the controlled implementations and workloads tested here, not every possible RT architecture or search design.
+
+The RT experiment harness, raw logs, and analysis scripts are listed in [the RT investigation handoff](C:/Users/Aditya/Documents/Projects/SPH_PC/RT_SPH_Investigation_Handoff.md). In particular, the raw benchmark files are in the `rtx/frnn/data` directories identified there.
+
+## 8. Conclusions
+
+This project began with a clear cost in the sequential SPH solver: finding candidate neighbours dominates the physics update and grows quadratically under all-pairs search. OpenMP lowers the cost of the existing loops, but leaves that quadratic search intact. Adding a spatial grid changes the amount of work itself. In the measured CPU comparison, a 24-thread grid was about 56× faster than 24-thread all-pairs at 30,016 particles and about 229× faster at 99,960 particles. Its memory use grows with particles and occupied grid structure rather than requiring an all-pairs neighbour matrix.
+
+The GPU experiments tested a second candidate accelerator, RT-core traversal. For complete FP32 searches at SPH-like densities, the tested OptiX implementation was about 3–4× slower than a sort-based uniform grid on both Ada and Blackwell GPUs. The cost model and invocation counts point to the programmable intersection cost as the main constraint. Under adaptive smoothing lengths, a multi-level grid remained faster and its advantage increased as the radius range widened. The study therefore finds no performance case for replacing the tested grid-based SPH search with RT traversal in the measured regimes. The RT results also show why baseline precision, host transfers, neighbour caps, and sparse-domain structure must be controlled before interpreting cross-paper speedups.
+
+These are performance findings, not a complete validation of physical accuracy. CPU timing runs use the hydrostatic benchmark, while the RT microbenchmarks compare neighbour-search outputs and SPH density/force workloads. The existing validation notes report pressure-gradient and free-surface discrepancies and an initial dam-break energy spike; a digitized experimental front curve and a final cross-implementation state comparison are not available in this report. Accordingly, the measured speedups establish computational improvement for the tested workloads, but do not establish agreement with experimental dam-break behaviour or full numerical equivalence among implementations.
+
+The main practical conclusion is to keep the spatial grid as the search structure for this solver and direct further optimization toward its construction, query cost, GPU implementation, and end-to-end validation. RT traversal remains a candidate only for sufficiently sparse searches or workloads with different update and query characteristics. A stronger follow-up evaluation would use a common repeated timing protocol, record complete hardware and compiler metadata, compare numerical states over matched trajectories, and include external reference data for the physical validation cases.
+
+## 9. References
+
+1. T. Green, “Particle Simulation using CUDA,” NVIDIA, 2010.
+2. C. Zhu, “RTNN: Accelerating Neighbor Search Using Hardware Ray Tracing,” Proceedings of the ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming (PPoPP), 2022. [arXiv:2201.01366](https://arxiv.org/abs/2201.01366).
+3. J. Zhao et al., “Leveraging ray tracing cores for particle-based simulations on GPUs,” *International Journal for Numerical Methods in Engineering*, vol. 124, p. 696, 2023. [doi:10.1002/nme.7139](https://doi.org/10.1002/nme.7139).
+4. J. Meneses et al., “Advancing RT Core-Accelerated Fixed-Radius Nearest Neighbor Search,” *Future Generation Computer Systems*, vol. 183, article 108555, 2026. [arXiv:2601.15633](https://arxiv.org/abs/2601.15633).
 

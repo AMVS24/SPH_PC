@@ -1,0 +1,74 @@
+done --variant base --mode count --n 1000000 --k 80
+done --variant report --mode count --n 1000000 --k 80
+done --variant fasttrace --mode count --n 1000000 --k 80
+done --variant unsorted --mode count --n 1000000 --k 80
+done --variant spherefront --mode count --n 1000000 --k 80
+done --variant tiny --mode count --n 1000000 --k 80
+done --variant base --mode count --n 1000000 --k 80 --grid-div 2
+done --variant base --mode density --n 1000000 --k 80
+done --variant report --mode density --n 1000000 --k 80
+done --variant fasttrace --mode density --n 1000000 --k 80
+done --variant unsorted --mode density --n 1000000 --k 80
+done --variant spherefront --mode density --n 1000000 --k 80
+done --variant tiny --mode density --n 1000000 --k 80
+done --variant base --mode density --n 1000000 --k 80 --grid-div 2
+done --variant base --mode force --n 1000000 --k 80
+done --variant report --mode force --n 1000000 --k 80
+done --variant fasttrace --mode force --n 1000000 --k 80
+done --variant unsorted --mode force --n 1000000 --k 80
+done --variant spherefront --mode force --n 1000000 --k 80
+done --variant tiny --mode force --n 1000000 --k 80
+done --variant base --mode force --n 1000000 --k 80 --grid-div 2
+done --variant empty --mode count --n 1000000 --k 80
+done --variant base --mode count --n 1000000 --k 1
+done --variant spherefront --mode count --n 1000000 --k 1
+done --variant empty --mode count --n 1000000 --k 1
+done --variant tiny --mode count --n 1000000 --k 1
+done --variant base --mode density --n 1000000 --k 1
+done --variant spherefront --mode density --n 1000000 --k 1
+done --variant base --mode count --n 1000000 --k 4
+done --variant spherefront --mode count --n 1000000 --k 4
+done --variant empty --mode count --n 1000000 --k 4
+done --variant tiny --mode count --n 1000000 --k 4
+done --variant base --mode density --n 1000000 --k 4
+done --variant spherefront --mode density --n 1000000 --k 4
+done --variant base --mode count --n 1000000 --k 16
+done --variant spherefront --mode count --n 1000000 --k 16
+done --variant empty --mode count --n 1000000 --k 16
+done --variant tiny --mode count --n 1000000 --k 16
+done --variant base --mode density --n 1000000 --k 16
+done --variant spherefront --mode density --n 1000000 --k 16
+done --variant base --mode count --n 1000000 --k 32
+done --variant spherefront --mode count --n 1000000 --k 32
+done --variant empty --mode count --n 1000000 --k 32
+done --variant tiny --mode count --n 1000000 --k 32
+done --variant base --mode density --n 1000000 --k 32
+done --variant spherefront --mode density --n 1000000 --k 32
+done --variant base --mode count --n 1000000 --k 80
+done --variant spherefront --mode count --n 1000000 --k 80
+done --variant empty --mode count --n 1000000 --k 80
+done --variant tiny --mode count --n 1000000 --k 80
+done --variant base --mode density --n 1000000 --k 80
+done --variant spherefront --mode density --n 1000000 --k 80
+done --variant base --mode count --n 1000000 --k 128
+done --variant spherefront --mode count --n 1000000 --k 128
+done --variant empty --mode count --n 1000000 --k 128
+done --variant tiny --mode count --n 1000000 --k 128
+done --variant base --mode density --n 1000000 --k 128
+done --variant spherefront --mode density --n 1000000 --k 128
+done --variant base --mode count --n 1000000 --k 256
+done --variant spherefront --mode count --n 1000000 --k 256
+done --variant empty --mode count --n 1000000 --k 256
+done --variant tiny --mode count --n 1000000 --k 256
+done --variant base --mode density --n 1000000 --k 256
+done --variant spherefront --mode density --n 1000000 --k 256
+done --variant base --mode count --n 1000000 --k 512
+done --variant spherefront --mode count --n 1000000 --k 512
+done --variant empty --mode count --n 1000000 --k 512
+done --variant tiny --mode count --n 1000000 --k 512
+done --variant base --mode density --n 1000000 --k 512
+done --variant spherefront --mode density --n 1000000 --k 512
+done --variant base --mode count --n 1000000 --k 80 --dist lattice
+done --variant spherefront --mode count --n 1000000 --k 80 --dist lattice
+done --variant base --mode force --n 1000000 --k 80 --dist lattice
+done --variant spherefront --mode force --n 1000000 --k 80 --dist lattice

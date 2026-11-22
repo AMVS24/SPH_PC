@@ -1,0 +1,16 @@
+{
+  "latex-workshop.latex.tools": [
+    {
+      "name": "tectonic",
+      "command": "tectonic",
+      "args": ["--synctex", "--keep-logs", "%DOC%.tex"],
+      "env": {}
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    { "name": "tectonic", "tools": ["tectonic"] }
+  ],
+  "latex-workshop.latex.recipe.default": "first",
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.view.pdf.viewer": "tab"
+}

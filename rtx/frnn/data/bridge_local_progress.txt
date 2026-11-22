@@ -1,0 +1,20 @@
+done --variant base --mode count --n 1000000 --dist file --file C:/Users/Aditya/AppData/Local/Temp/claude/45290a412ec256c0/ffb1f85f-dda4-4003-af20-286299de2893/scratchpad/extdrv/pts_disordered_1M.txt --radius const:2.754 --xfer
+done --variant base --mode count --n 1000000 --dist file --file C:/Users/Aditya/AppData/Local/Temp/claude/45290a412ec256c0/ffb1f85f-dda4-4003-af20-286299de2893/scratchpad/extdrv/pts_disordered_1M.txt --radius const:2.754 --grid-fp64 --xfer
+done --variant base --mode count --n 1000000 --dist file --file C:/Users/Aditya/AppData/Local/Temp/claude/45290a412ec256c0/ffb1f85f-dda4-4003-af20-286299de2893/scratchpad/extdrv/pts_disordered_1M.txt --radius const:2.754 --grid-compact
+done --variant kcap --kcap 50 --mode count --n 1000000 --dist file --file C:/Users/Aditya/AppData/Local/Temp/claude/45290a412ec256c0/ffb1f85f-dda4-4003-af20-286299de2893/scratchpad/extdrv/pts_disordered_1M.txt --radius const:2.754
+done --variant refit --mode count --n 1000000 --dist file --file C:/Users/Aditya/AppData/Local/Temp/claude/45290a412ec256c0/ffb1f85f-dda4-4003-af20-286299de2893/scratchpad/extdrv/pts_disordered_1M.txt --radius const:2.754
+done --variant base --mode count --n 1000000 --dist file --file C:/Users/Aditya/AppData/Local/Temp/claude/45290a412ec256c0/ffb1f85f-dda4-4003-af20-286299de2893/scratchpad/extdrv/pts_disordered_1M.txt --radius const:1.0 --xfer
+done --variant base --mode count --n 1000000 --dist file --file C:/Users/Aditya/AppData/Local/Temp/claude/45290a412ec256c0/ffb1f85f-dda4-4003-af20-286299de2893/scratchpad/extdrv/pts_disordered_1M.txt --radius const:1.0 --grid-fp64 --xfer
+done --variant base --mode count --n 1000000 --dist file --file C:/Users/Aditya/AppData/Local/Temp/claude/45290a412ec256c0/ffb1f85f-dda4-4003-af20-286299de2893/scratchpad/extdrv/pts_disordered_1M.txt --radius const:1.0 --grid-compact
+done --variant kcap --kcap 50 --mode count --n 1000000 --dist file --file C:/Users/Aditya/AppData/Local/Temp/claude/45290a412ec256c0/ffb1f85f-dda4-4003-af20-286299de2893/scratchpad/extdrv/pts_disordered_1M.txt --radius const:1.0
+done --variant refit --mode count --n 1000000 --dist file --file C:/Users/Aditya/AppData/Local/Temp/claude/45290a412ec256c0/ffb1f85f-dda4-4003-af20-286299de2893/scratchpad/extdrv/pts_disordered_1M.txt --radius const:1.0
+done --variant base --mode count --n 1000000 --dist surface --radius const:1 --xfer
+done --variant base --mode count --n 1000000 --dist surface --radius const:1 --grid-fp64 --xfer
+done --variant base --mode count --n 1000000 --dist surface --radius const:1 --grid-compact
+done --variant kcap --kcap 50 --mode count --n 1000000 --dist surface --radius const:1
+done --variant refit --mode count --n 1000000 --dist surface --radius const:1
+done --variant base --mode count --n 1000000 --dist surface --radius const:0.5 --xfer
+done --variant base --mode count --n 1000000 --dist surface --radius const:0.5 --grid-fp64 --xfer
+done --variant base --mode count --n 1000000 --dist surface --radius const:0.5 --grid-compact
+done --variant kcap --kcap 50 --mode count --n 1000000 --dist surface --radius const:0.5
+done --variant refit --mode count --n 1000000 --dist surface --radius const:0.5

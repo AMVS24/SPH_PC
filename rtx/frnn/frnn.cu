@@ -131,8 +131,74 @@ struct Args {
     std::string dist = "disordered", radius = "const:1";
     int n = 50000, cap = 128, seed = 1, clusters = 4;
     double box = 103.0, budget_s = 15.0, sigma = 25.0, ratio = 1.0;
-    bool density = false;
+    bool density = false, mlgrid = false;
 };
+
+struct MLParams {
+    int levels;
+    float rmax, box;
+    int gdim[16];
+    int off[16];
+};
+
+__device__ int mlLevel(const MLParams& p, float r){
+    int l = (int)floorf(log2f(p.rmax/r) + 1e-4f);
+    return min(max(l, 0), p.levels - 1);
+}
+
+__global__ void mlCellIdKernel(MLParams p, const float3* pos, const float* rad, int* cell_id, int n){
+    int i = blockIdx.x*blockDim.x + threadIdx.x;
+    if(i >= n) return;
+    int l = mlLevel(p, rad[i]);
+    int g = p.gdim[l];
+    float inv = g/p.box;
+    int cx = min(max((int)(pos[i].x*inv), 0), g - 1);
+    int cy = min(max((int)(pos[i].y*inv), 0), g - 1);
+    int cz = min(max((int)(pos[i].z*inv), 0), g - 1);
+    cell_id[i] = p.off[l] + cx + cy*g + cz*g*g;
+}
+
+__global__ void mlDensityKernel(MLParams p, const float3* pos, const float* rad, const int* cell_start, const int* cell_particles,
+                                int offset, int count, int* out_bits){
+    int t = blockIdx.x*blockDim.x + threadIdx.x;
+    if(t >= count) return;
+    int i = offset + t;
+    float xi = pos[i].x, yi = pos[i].y, zi = pos[i].z;
+    float sum = 0.f;
+    for(int l = 0; l < p.levels; l++){
+        int g = p.gdim[l];
+        float inv = g/p.box;
+        int cx = min(max((int)(xi*inv), 0), g - 1);
+        int cy = min(max((int)(yi*inv), 0), g - 1);
+        int cz = min(max((int)(zi*inv), 0), g - 1);
+        for(int dz = -1; dz <= 1; dz++){
+            int nz = cz + dz;
+            if(nz < 0 || nz >= g) continue;
+            for(int dy = -1; dy <= 1; dy++){
+                int ny = cy + dy;
+                if(ny < 0 || ny >= g) continue;
+                for(int dx = -1; dx <= 1; dx++){
+                    int nx = cx + dx;
+                    if(nx < 0 || nx >= g) continue;
+                    int c = p.off[l] + nx + ny*g + nz*g*g;
+                    for(int m = cell_start[c]; m < cell_start[c+1]; m++){
+                        int j = cell_particles[m];
+                        float rx = pos[j].x - xi, ry = pos[j].y - yi, rz = pos[j].z - zi;
+                        float r = rad[j];
+                        float d2 = rx*rx + ry*ry + rz*rz;
+                        if(d2 < r*r){
+                            float h = 0.5f*r;
+                            float q = sqrtf(d2)/h;
+                            float w = q < 1.f ? 1.f - 1.5f*q*q + 0.75f*q*q*q : 0.25f*(2.f - q)*(2.f - q)*(2.f - q);
+                            sum += r*r*r*0.05236f*w/(3.14159265f*h*h*h);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    out_bits[i] = __float_as_int(sum);
+}
 
 __global__ void gridDensityKernel(const float3* pos, const float* rad, const int* cell_id, const int* cell_start, const int* cell_particles,
                                   int gdim, int offset, int count, int* out_bits){
@@ -207,6 +273,33 @@ static void scene(const Args& a, std::vector<float3>& pos, std::vector<float>& r
             pos[idx] = make_float3((float)x, (float)y, (float)z);
         }
         rmin = rf; rmax = rc;
+        return;
+    }
+    else if(a.dist == "graded"){
+        auto shape = [&](double x, double y, double z){
+            double c = 0.5*L, d = sqrt((x - c)*(x - c) + (y - c)*(y - c) + (z - c)*(z - c));
+            double t = std::min(1.0, std::max(0.0, (d - 0.15*L)/(0.30*L)));
+            return pow(a.ratio, t);
+        };
+        double acc = 0;
+        const int samples = 400000;
+        for(int k = 0; k < samples; k++){
+            double g = shape(u01(rng)*L, u01(rng)*L, u01(rng)*L);
+            acc += 1.0/(g*g*g);
+        }
+        double s = cbrt(19.1*L*L*L*(acc/samples)/a.n);
+        int idx = 0;
+        while(idx < a.n){
+            double x = u01(rng)*L, y = u01(rng)*L, z = u01(rng)*L;
+            double g = shape(x, y, z);
+            if(u01(rng) < 1.0/(g*g*g)){
+                pos[idx] = make_float3((float)x, (float)y, (float)z);
+                rad[idx] = (float)(s*g);
+                idx++;
+            }
+        }
+        rmin = 1e30; rmax = 0;
+        for(float r : rad){ rmin = std::min(rmin, (double)r); rmax = std::max(rmax, (double)r); }
         return;
     }
     else if(a.dist == "cluster"){
@@ -286,6 +379,7 @@ int main(int argc, char** argv){
         else if(k == "--clusters") a.clusters = atoi(val().c_str());
         else if(k == "--ratio") a.ratio = atof(val().c_str());
         else if(k == "--density") a.density = true;
+        else if(k == "--mlgrid") a.mlgrid = true;
         else { fprintf(stderr, "unknown option %s\n", k.c_str()); return 1; }
     }
     const int n = a.n;
@@ -338,6 +432,29 @@ int main(int argc, char** argv){
     void* d_gsort = nullptr;
     CK(cub::DeviceRadixSort::SortPairs(nullptr, gsort_bytes, d_cell_id, d_sorted_keys, d_iota, d_cell_particles, n, 0, cbits));
     CK(cudaMalloc(&d_gsort, gsort_bytes));
+
+    MLParams mlp = {};
+    int ml_cells = 0, ml_bits = 1;
+    int *d_ml_cell_id = nullptr, *d_ml_sorted = nullptr, *d_ml_particles = nullptr, *d_ml_start = nullptr, *d_counts_ml = nullptr;
+    void* d_mlsort = nullptr;
+    size_t mlsort_bytes = 0;
+    if(a.mlgrid){
+        mlp.levels = std::min(16, (int)floor(log2(rmax/rmin) + 1e-4) + 1);
+        mlp.rmax = (float)rmax;
+        mlp.box = (float)a.box;
+        for(int l = 0; l < mlp.levels; l++){
+            double c = rmax/pow(2.0, l)*1.001;
+            mlp.gdim[l] = std::min(1024, std::max(1, (int)floor(a.box/c)));
+            mlp.off[l] = ml_cells;
+            ml_cells += mlp.gdim[l]*mlp.gdim[l]*mlp.gdim[l];
+        }
+        while((1 << ml_bits) <= ml_cells) ml_bits++;
+        CK(cudaMalloc(&d_ml_cell_id, n*sizeof(int))); CK(cudaMalloc(&d_ml_sorted, n*sizeof(int)));
+        CK(cudaMalloc(&d_ml_particles, n*sizeof(int))); CK(cudaMalloc(&d_ml_start, (ml_cells + 1)*sizeof(int)));
+        CK(cudaMalloc(&d_counts_ml, n*sizeof(int)));
+        CK(cub::DeviceRadixSort::SortPairs(nullptr, mlsort_bytes, d_ml_cell_id, d_ml_sorted, d_iota, d_ml_particles, n, 0, ml_bits));
+        CK(cudaMalloc(&d_mlsort, mlsort_bytes));
+    }
 
     CK(cudaFree(0));
     OK(optixInit());
@@ -408,6 +525,20 @@ int main(int argc, char** argv){
     int* d_nbr = nullptr;
 
     long long chunk_grid = std::max(1024, n/1024), chunk_rt = std::max(1024, n/1024), chunk_list = std::max(1024, n/1024);
+    long long chunk_ml = std::max(1024, n/1024);
+
+    auto ml_call = [&](double* t){
+        Timer tm;
+        tm.start();
+        mlCellIdKernel<<<blocksFor(n), BLOCK>>>(mlp, d_pos, d_rad, d_ml_cell_id, n);
+        CK(cub::DeviceRadixSort::SortPairs(d_mlsort, mlsort_bytes, d_ml_cell_id, d_ml_sorted, d_iota, d_ml_particles, n, 0, ml_bits));
+        cellStartKernel<<<blocksFor(ml_cells + 1), BLOCK>>>(d_ml_sorted, d_ml_start, n, ml_cells);
+        t[0] = tm.stop();
+        t[1] = chunked(n, chunk_ml, [&](int off, int cnt){
+            mlDensityKernel<<<blocksFor(cnt), BLOCK>>>(mlp, d_pos, d_rad, d_ml_start, d_ml_particles, off, cnt, d_counts_ml);
+        });
+        CK(cudaGetLastError());
+    };
 
     auto grid_call = [&](double* t){
         Timer tm;
@@ -459,6 +590,8 @@ int main(int argc, char** argv){
     const int rt_mode = a.density ? 2 : 0;
     grid_call(tg);
     rt_call(rt_mode, tr);
+    double tml[2] = {0, 0};
+    if(a.mlgrid) ml_call(tml);
     unsigned long long sum_g, sum_r;
     int max_g, max_r;
     stats(d_counts_grid, sum_g, max_g);
@@ -490,6 +623,20 @@ int main(int argc, char** argv){
         }
         valid = mismatched <= std::max(1, n/1000);
     }
+    double ml_worst_rel = 0;
+    int ml_mismatched = 0;
+    if(a.mlgrid && a.density){
+        std::vector<int> cm(n);
+        CK(cudaMemcpy(cm.data(), d_counts_ml, n*sizeof(int), cudaMemcpyDeviceToHost));
+        for(int i = 0; i < n; i++){
+            float g, m;
+            memcpy(&g, &cg[i], 4); memcpy(&m, &cm[i], 4);
+            double rel = fabs((double)m - g)/std::max(1e-12, fabs((double)g));
+            ml_worst_rel = std::max(ml_worst_rel, rel);
+            if(rel > 1e-3) ml_mismatched++;
+        }
+        valid = valid && ml_mismatched <= std::max(1, n/1000);
+    }
     else {
         for(int i = 0; i < n; i++){
             if(cr[i] != cg[i]) mismatched++;
@@ -500,10 +647,12 @@ int main(int argc, char** argv){
     }
 
     double first = tg[0] + tg[1] + tr[0] + tr[1] + tr[2] + (do_list ? tl[0] + tl[1] + tl[2] : 0);
-    std::vector<double> G0, G1, R0, R1, R2, L2;
+    std::vector<double> G0, G1, R0, R1, R2, L2, M0, M1;
+    first += tml[0] + tml[1];
     bool warm_counts = first > 10000.0;
     if(warm_counts){
         G0.push_back(tg[0]); G1.push_back(tg[1]);
+        if(a.mlgrid){ M0.push_back(tml[0]); M1.push_back(tml[1]); }
         R0.push_back(tr[0]); R1.push_back(tr[1]); R2.push_back(tr[2]);
         if(do_list) L2.push_back(tl[2]);
     }
@@ -515,6 +664,7 @@ int main(int argc, char** argv){
         R0.push_back(tr[0]); R1.push_back(tr[1]); R2.push_back(tr[2]);
         spent += tg[0] + tg[1] + tr[0] + tr[1] + tr[2];
         if(do_list){ rt_call(1, tl); L2.push_back(tl[2]); spent += tl[0] + tl[1] + tl[2]; }
+        if(a.mlgrid){ ml_call(tml); M0.push_back(tml[0]); M1.push_back(tml[1]); spent += tml[0] + tml[1]; }
     }
 
     auto mean = [](const std::vector<double>& v){ double s = 0; for(double x : v) s += x; return v.empty() ? -1.0 : s/v.size(); };
@@ -524,6 +674,12 @@ int main(int argc, char** argv){
 
     printf("FRNN mode=%s ratio=%.2f mean_density=%.5f worst_rel_density_diff=%.3e mismatched_queries=%d worst_count_diff=%d list_mismatched=%d sum_grid=%llu sum_rt=%llu ",
            a.density ? "density" : "count", a.ratio, a.density ? rho_sum/n : -1.0, worst_rel, mismatched, worst, list_mismatched, sum_g, sum_r);
+    if(a.mlgrid){
+        std::vector<double> ml_tot;
+        for(size_t k = 0; k < M1.size(); k++) ml_tot.push_back(M0[k] + M1[k]);
+        printf("ml_levels=%d ml_cells=%d ml_build_ms=%.4f ml_pass_ms=%.4f ml_total_ms=%.4f ml_total_sd=%.4f ml_worst_rel_diff=%.3e ml_mismatched=%d ",
+               mlp.levels, ml_cells, mean(M0), mean(M1), mean(ml_tot), sdev(ml_tot), ml_worst_rel, ml_mismatched);
+    }
     printf("dist=%s radius=%s n=%d box=%.1f rmin=%.4f rmax=%.4f gdim=%d cap=%d reps=%zu valid=%d "
            "mean_nbrs=%.3f max_nbrs=%d grid_build_ms=%.4f grid_pass_ms=%.4f rt_sched_ms=%.4f rt_bvh_ms=%.4f rt_trace_count_ms=%.4f rt_trace_list_ms=%.4f "
            "grid_total_ms=%.4f grid_total_sd=%.4f rt_total_ms=%.4f rt_total_sd=%.4f\n",

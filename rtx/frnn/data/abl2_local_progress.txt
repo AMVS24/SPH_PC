@@ -1,0 +1,29 @@
+done --variant base --mode count --n 1000000 --k 80 --dist profile --alpha 3 --core 0.01 --box 100 --no-grid
+done --variant spherefront --mode count --n 1000000 --k 80 --dist profile --alpha 3 --core 0.01 --box 100 --no-grid
+done --variant empty --mode count --n 1000000 --k 80 --dist profile --alpha 3 --core 0.01 --box 100 --no-grid
+done --variant tiny --mode count --n 1000000 --k 80 --dist profile --alpha 3 --core 0.01 --box 100 --no-grid
+done --variant base --mode count --n 1000000 --k 80 --dist profile --alpha 3 --core 0.001 --box 100 --no-grid
+done --variant spherefront --mode count --n 1000000 --k 80 --dist profile --alpha 3 --core 0.001 --box 100 --no-grid
+done --variant empty --mode count --n 1000000 --k 80 --dist profile --alpha 3 --core 0.001 --box 100 --no-grid
+done --variant tiny --mode count --n 1000000 --k 80 --dist profile --alpha 3 --core 0.001 --box 100 --no-grid
+done --variant base --mode count --n 1000000 --k 80 --dist profile --alpha 3 --core 0.0001 --box 100 --no-grid
+done --variant spherefront --mode count --n 1000000 --k 80 --dist profile --alpha 3 --core 0.0001 --box 100 --no-grid
+done --variant empty --mode count --n 1000000 --k 80 --dist profile --alpha 3 --core 0.0001 --box 100 --no-grid
+done --variant tiny --mode count --n 1000000 --k 80 --dist profile --alpha 3 --core 0.0001 --box 100 --no-grid
+done --variant base --mode count --n 1000000 --radius const:1 --box 1000 --dist disordered
+done --variant base --mode count --n 1000000 --radius const:1 --box 1000 --dist disordered --grid-compact
+done --variant base --mode count --n 1000000 --radius const:1 --box 1000 --dist lattice
+done --variant base --mode count --n 1000000 --radius const:1 --box 1000 --dist lattice --grid-compact
+done --variant base --mode count --n 1000000 --k 80 --grid-compact
+done --variant base --mode count --n 1000000 --k 1 --grid-compact
+done --variant refit --mode count --n 1000000 --k 1
+done --variant aabbseg --mode count --n 1000000 --k 1
+done --variant refit --mode count --n 1000000 --k 4
+done --variant aabbseg --mode count --n 1000000 --k 4
+done --variant refit --mode count --n 1000000 --k 16
+done --variant aabbseg --mode count --n 1000000 --k 16
+done --variant refit --mode count --n 1000000 --k 80
+done --variant aabbseg --mode count --n 1000000 --k 80
+done --variant refit --mode count --n 1000000 --k 256
+done --variant aabbseg --mode count --n 1000000 --k 256
+done --variant refit --mode force --n 1000000 --k 80
